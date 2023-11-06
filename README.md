@@ -1,3 +1,1 @@
-# Kokoa Clone 2020 Update
-
-HTML & CSS are so much fun!
+# Kokoa Clone 리팩토링 가즈아~!
