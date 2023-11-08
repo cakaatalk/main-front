@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWifi, faBatteryFull, faBolt } from '@fortawesome/free-solid-svg-icons';
-import './css/styles.css'; // CSS 파일의 경로를 확인해주세요.
+import './css/styles.css';
 
 function App() {
+  // State for current time
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date()); // Update current time every second
+    }, 1000);
+
+    return () => clearInterval(interval); // Cleanup the interval on component unmount
+  }, []);
+
+  // Function to format the time as HH:MM
+  const formatTime = (date) => {
+    return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 로그인 처리 로직을 추가하세요.
+    // Add login handling logic here
   };
 
   const findAccount = () => {
-    // 계정 찾기 로직을 추가하세요.
+    // Add find account logic here
   };
 
   return (
@@ -21,7 +37,7 @@ function App() {
           <FontAwesomeIcon icon={faWifi} />
         </div>
         <div className="status-bar__column">
-          <span>18:43</span>
+          <span>{formatTime(currentTime)}</span> {/* Display the current time */}
         </div>
         <div className="status-bar__column">
           <span>110%</span>
