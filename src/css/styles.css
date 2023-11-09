@@ -1,9 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
-
 @import "reset.css";
 @import "variables.css";
-
-/* Components */
 @import "components/status-bar.css";
 @import "components/nav-bar.css";
 @import "components/screen-header.css";
@@ -12,14 +9,13 @@
 @import "components/badge.css";
 @import "components/icon-row.css";
 @import "components/no-mobile.css";
-
-/* Screens */
 @import "screens/login.css";
 @import "screens/friends.css";
 @import "screens/find.css";
 @import "screens/more.css";
 @import "screens/settings.css";
 @import "screens/chat.css";
+
 
 body {
   color: #2e363e;
@@ -28,4 +24,49 @@ body {
 
 .main-screen {
   padding: 0px var(--horizontal-space);
+}
+
+@media (min-width: 1024px) {
+  .welcome-header__title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-header__title {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 1023px) {
+  .welcome-header__title {
+    font-size: 20px;
+  }
+}
+
+.status-bar__column {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+#login-form input[type="text"],
+#login-form input[type="password"],
+#login-form input[type="submit"] {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#no-mobile {
+  display: none;
+}
+
+@media (min-width: 1025px) {
+  #no-mobile {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    color: red;
+  }
 }

@@ -1,48 +1,74 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWifi, faBatteryFull, faBolt } from '@fortawesome/free-solid-svg-icons';
+import { faWifi, faBatteryFull, faBatteryHalf, faBatteryQuarter, faBatteryEmpty, faBolt } from '@fortawesome/free-solid-svg-icons';
 import './css/styles.css';
 
 function App() {
-  // State for current time
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [batteryLevel, setBatteryLevel] = useState(null);
+  const [isCharging, setIsCharging] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTime(new Date()); // Update current time every second
+      setCurrentTime(new Date());
     }, 1000);
 
-    return () => clearInterval(interval); // Cleanup the interval on component unmount
+    navigator.getBattery().then(battery => {
+      const updateBatteryInfo = () => {
+        setBatteryLevel((battery.level * 100).toFixed(0));
+        setIsCharging(battery.charging);
+      };
+
+      updateBatteryInfo();
+
+      battery.addEventListener('levelchange', updateBatteryInfo);
+      battery.addEventListener('chargingchange', updateBatteryInfo);
+
+      return () => {
+        clearInterval(interval);
+        battery.removeEventListener('levelchange', updateBatteryInfo);
+        battery.removeEventListener('chargingchange', updateBatteryInfo);
+      };
+    });
+
+    return () => clearInterval(interval);
   }, []);
 
-  // Function to format the time as HH:MM
   const formatTime = (date) => {
     return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add login handling logic here
   };
 
   const findAccount = () => {
-    // Add find account logic here
+  };
+
+  const getBatteryIcon = () => {
+    if (isCharging) {
+      return faBolt;
+    }
+    if (batteryLevel > 75) {
+      return faBatteryFull;
+    } else if (batteryLevel > 50) {
+      return faBatteryHalf;
+    } else if (batteryLevel > 25) {
+      return faBatteryQuarter;
+    } else {
+      return faBatteryEmpty;
+    }
   };
 
   return (
     <div>
       <div className="status-bar">
         <div className="status-bar__column">
-          <span>No Service</span>
-          <FontAwesomeIcon icon={faWifi} />
+          <span>{formatTime(currentTime)}</span>
         </div>
         <div className="status-bar__column">
-          <span>{formatTime(currentTime)}</span> {/* Display the current time */}
-        </div>
-        <div className="status-bar__column">
-          <span>110%</span>
-          <FontAwesomeIcon icon={faBatteryFull} size="lg" />
-          <FontAwesomeIcon icon={faBolt} />
+          <span>{batteryLevel !== null ? `${batteryLevel}%` : 'Loading...'}</span>
+          <FontAwesomeIcon icon={getBatteryIcon()} size="lg" />
         </div>
       </div>
 
@@ -63,7 +89,7 @@ function App() {
       </form>
 
       <div id="no-mobile">
-        <span>Your screen is too big ㅠㅠ</span>
+        
       </div>
     </div>
   );
