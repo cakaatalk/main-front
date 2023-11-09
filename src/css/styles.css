@@ -1,72 +1,128 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
-@import "reset.css";
-@import "variables.css";
-@import "components/status-bar.css";
-@import "components/nav-bar.css";
-@import "components/screen-header.css";
-@import "components/alt-screen-header.css";
-@import "components/user-component.css";
-@import "components/badge.css";
-@import "components/icon-row.css";
-@import "components/no-mobile.css";
-@import "screens/login.css";
-@import "screens/friends.css";
-@import "screens/find.css";
-@import "screens/more.css";
-@import "screens/settings.css";
-@import "screens/chat.css";
-
-
-body {
-  color: #2e363e;
-  font-family: "Open Sans", sans-serif;
+body, h1, p, input, button, span {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.main-screen {
-  padding: 0px var(--horizontal-space);
-}
-
-@media (min-width: 1024px) {
-  .welcome-header__title {
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .welcome-header__title {
-    font-size: 16px;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 1023px) {
-  .welcome-header__title {
-    font-size: 20px;
-  }
-}
-
-.status-bar__column {
+.status-bar {
+  background-color: #fee500;
+  color: #3c1e1e;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  align-items: center;
+  font-size: 14px;
 }
 
-#login-form input[type="text"],
-#login-form input[type="password"],
-#login-form input[type="submit"] {
-  width: 100%;
+.status-bar__column span {
+  display: flex;
+  align-items: center;
+}
+
+.status-bar__column span:not(:last-child) {
+  margin-right: 10px;
+}
+
+.welcome-header {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.welcome-header__title {
+  color: #3c1e1e;
+  font-size: 28px;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 
-#no-mobile {
-  display: none;
+.welcome-header__text {
+  color: #888;
+  font-size: 16px;
+  margin-bottom: 20px;
 }
 
-@media (min-width: 1025px) {
-  #no-mobile {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 20px;
-    color: red;
+#login-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+
+#login-form input {
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #e6e6e6;
+  border-radius: 20px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+#login-form input:focus {
+  border-color: #fee500;
+  outline: none;
+}
+
+#login-form input[type="submit"] {
+  background-color: #fee500;
+  color: #3c1e1e;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+#login-form input[type="submit"]:hover {
+  opacity: 0.9;
+}
+
+.link-like-button {
+  background: none;
+  border: none;
+  color: #fee500;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.link-like-button:hover {
+  color: #fada5e;
+}
+
+@media (max-width: 768px) {
+  .welcome-header__title {
+    font-size: 22px;
   }
+
+  .welcome-header__text {
+    font-size: 14px;
+  }
+
+  #login-form input,
+  #login-form input[type="submit"] {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+/* Additional Styling for Enhanced Features */
+.icon {
+  color: #3c1e1e;
+}
+
+input::placeholder {
+  color: #bbb;
+}
+
+.form-control {
+  position: relative;
+}
+
+.form-control svg {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWifi, faBatteryFull, faBatteryHalf, faBatteryQuarter, faBatteryEmpty, faBolt } from '@fortawesome/free-solid-svg-icons';
 import './css/styles.css';
+import kakaoIcon from './assets/kakao-icon.png'; 
 
 function App() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -63,9 +64,11 @@ function App() {
   return (
     <div>
       <div className="status-bar">
+
         <div className="status-bar__column">
           <span>{formatTime(currentTime)}</span>
         </div>
+
         <div className="status-bar__column">
           <span>{batteryLevel !== null ? `${batteryLevel}%` : 'Loading...'}</span>
           <FontAwesomeIcon icon={getBatteryIcon()} size="lg" />
@@ -73,6 +76,7 @@ function App() {
       </div>
 
       <header className="welcome-header">
+        <img src={kakaoIcon} alt="Kakao Icon" className="icon"/>
         <h1 className="welcome-header__title">Welcome to CaKaA Talk</h1>
         <p className="welcome-header__text">
           If you have a Kokoa Account, log in with your email or phone number.
