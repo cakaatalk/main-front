@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
-import FriendApp from './FriendApp'; 
-import StatusBar from './StatusBar';
-import LoginPage from './LoginPage'; 
-import useTimeAndBattery from './UseTimeAndBattery';
+import FriendApp from './Friends/FriendApp'; 
+import StatusBar from './Common/StatusBar';
+import LoginPage from './Login/LoginPage'; 
+import useTimeAndBattery from './Common/UseTimeAndBattery';
 
 import './css/components/styles.css'
 

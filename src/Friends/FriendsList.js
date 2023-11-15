@@ -1,11 +1,12 @@
 import React from 'react';
-import UserComponent from './UserComponent';
-
-import './css/components/friends.css'; 
+import UserComponent from '../User/UserComponent';
 
 function FriendsList() {
   return (
     <div>
+      <UserComponent avatar="https://avatars3.githubusercontent.com/u/3612017" name="Nicolas" />
+      <UserComponent avatar="https://avatars3.githubusercontent.com/u/3612017" name="Nicolas" />
+      <UserComponent avatar="https://avatars3.githubusercontent.com/u/3612017" name="Nicolas" />
       <UserComponent avatar="https://avatars3.githubusercontent.com/u/3612017" name="Nicolas" />
       {/* 여기에 추가 친구 컴포넌트를 렌더링할 수 있음. */}
       {/* 위와 같은 형식을 지켜야함. UserComponent avatar = name = */}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import './css/components/friends.css'; 
+import '../css/components/friends.css'; 
 
 function ChannelSection() {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/components/friends.css'; 
+import '../css/components/friends.css'; 
 
 {/*REAMME 
 avatar : 사용자의 프로필 이미지 URL 

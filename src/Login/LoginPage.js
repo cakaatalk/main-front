@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import kakaoIcon from './assets/kakao-icon.png';
+import kakaoIcon from '../assets/kakao-icon.png';
 
 function LoginPage() {
   const navigate = useNavigate();
