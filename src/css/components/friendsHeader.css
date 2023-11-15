@@ -1,0 +1,49 @@
+/* FriendsHeader.css */
+
+.screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: #f8f8f8; /* 상단 바 배경색 */
+  }
+  
+  .screen-header__title {
+    font-size: 24px; /* 타이틀 글꼴 크기 */
+    color: #333; /* 타이틀 글꼴 색상 */
+    margin: 0; /* 기본 마진 제거 */
+  }
+  
+  .screen-header__icons {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* 아이콘 간격 */
+  }
+  
+  .screen-header__icons .fa-icon {
+    color: #6f42c1; /* 아이콘 색상 */
+  }
+  
+  #friends-display-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: #e9ecef; /* 링크 배경색 */
+    color: #495057; /* 링크 글꼴 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+    margin-top: 16px; /* 상단 여백 */
+    font-size: 16px; /* 링크 글꼴 크기 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 상자 그림자 */
+  }
+  
+  #friends-display-link .fa-info-circle,
+  #friends-display-link .fa-chevron-right {
+    color: #6c757d; /* 아이콘 색상 */
+  }
+  
+  #friends-display-link .fa-chevron-right {
+    margin-left: auto; /* 오른쪽 정렬 */
+  }
+  

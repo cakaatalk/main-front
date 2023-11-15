@@ -1,0 +1,44 @@
+/* channel.css */
+
+.friends-screen__channel {
+    display: flex; /* Use flexbox for horizontal alignment */
+    flex-direction: row; /* Align children in a row */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    padding: 16px;
+    background: #fff; /* Example background color */
+  }
+  
+  .friends-screen__channel-header {
+    display: flex; /* Establish a flex container */
+    align-items: center; /* Center items vertically */
+    width: 100%; /* Full width to contain icons */
+  }
+  
+  .friends-screen__channel-header span {
+    margin-right: 10px; /* Space before the chevron icon */
+    font-weight: bold; /* Make the channel text bold */
+    color: #333; /* Dark color for the text */
+  }
+  
+  /* Icon style */
+  .fa-icon {
+    font-size: 1.5rem; /* Adjust icon size */
+    color: #6f42c1; /* Stylish purple color for icons */
+    margin-right: 8px; /* Space between icons */
+  }
+  
+  /* Chevron icon style */
+  .fa-chevron-up {
+    font-size: 1.5rem; /* Adjust icon size */
+    color: #6f42c1; /* Stylish purple color for the chevron */
+  }
+  
+  /* Responsive behavior for the channel items */
+  @media (max-width: 768px) {
+    .fa-icon,
+    .fa-chevron-up {
+      font-size: 1rem; /* Smaller font size for narrower viewports */
+    }
+  }
+  

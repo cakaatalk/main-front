@@ -6,7 +6,6 @@ import NavigationBar from '../Common/NavigationBar';
 import FriendsHeader from './FriendsHeader';
 import FriendsList from './FriendsList';
 import ChannelSection from '../Common/ChannelSection';
-
 import '../css/components/styles.css';
 
 function FriendApp() {

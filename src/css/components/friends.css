@@ -45,28 +45,3 @@
   font-size: 24px;
   color: #333;
 }
-
-/* 채널 섹션 스타일 */
-.friends-screen__channel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
-}
-
-.friends-screen__channel-header {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 1em;
-  color: rgba(0, 0, 0, 0.8);
-}
-
-.friends-screen__channel-header span {
-  margin-right: 10px;
-}
-
-.fa-chevron-up {
-  font-size: 0.8em;
-}

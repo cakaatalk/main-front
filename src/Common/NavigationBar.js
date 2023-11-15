@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faComment, faSearch, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import "../css/components/navigationBar.css"
 
 function NavigationBar() {
   return (
@@ -17,11 +18,11 @@ function NavigationBar() {
             <FontAwesomeIcon icon={faComment} size="2x" />
           </a>
         </li>
-        <li className="nav__btn">
+        {/* <li className="nav__btn">
           <a className="nav__link" href="find.html">
             <FontAwesomeIcon icon={faSearch} size="2x" />
           </a>
-        </li>
+        </li> */}
         <li className="nav__btn">
           <a className="nav__link" href="more.html">
             <FontAwesomeIcon icon={faEllipsisH} size="2x" />
