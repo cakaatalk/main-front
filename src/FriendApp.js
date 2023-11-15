@@ -8,7 +8,6 @@ import FriendsList from './FriendsList';
 import ChannelSection from './ChannelSection';
 
 import './css/components/styles.css';
-import './css/components/friends.css'; 
 
 function FriendApp() {
   const { currentTime, batteryLevel, getBatteryIcon } = useTimeAndBattery();

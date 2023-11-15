@@ -1,6 +1,8 @@
 import React from 'react';
 import UserComponent from './UserComponent';
 
+import './css/components/friends.css'; 
+
 function FriendsList() {
   return (
     <div>

@@ -1,49 +1,76 @@
-/* 프로필 카드 스타일 */
-.user-profile-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    padding: 16px;
-    border-radius: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 24px;
-  }
-  
-  /* 둥근 모서리의 프로필 이미지 */
-  .user-profile-card img {
-    width: 120px; /* 이미지 크기 */
-    height: 120px;
-    border-radius: 50%; /* 원형 모양 */
-    object-fit: cover; /* 이미지 비율 유지 */
-    margin-bottom: 8px;
-  }
-  
-  /* 사용자 이름 스타일 */
-  .user-profile-card h4 {
-    font-size: 1.5em;
-    color: #333;
-    margin: 0;
-  }
-  
-  /* 상단 섹션 스타일 */
-  .friends-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px;
-    background-color: #fee500; /* 카카오톡 특유의 노란색 */
-  }
-  
-  .friends-header h1 {
-    font-size: 2em;
-    color: #333;
-    margin: 0;
-  }
-  
-  /* 아이콘 스타일링 */
-  .friends-header .icon {
-    font-size: 24px;
-    color: #333;
-  }
-  
+.user-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+/* 사용자 프로필 이미지 스타일 */
+.user-component__avatar {
+  width: 80px; /* 기본 이미지 크기 */
+  height: 80px;
+  border-radius: 50%; /* 원형 모양 */
+  object-fit: cover; /* 이미지 비율 유지 */
+  margin-bottom: 8px;
+}
+
+/* 큰 이미지 스타일 */
+.user-component__avatar--xl {
+  width: 120px; /* 더 큰 이미지 크기 */
+  height: 120px;
+}
+
+/* 작은 이미지 스타일 */
+.user-component__avatar--sm {
+  width: 60px; /* 더 작은 이미지 크기 */
+  height: 60px;
+}
+
+/* 사용자 정보 텍스트 스타일 */
+.user-component__text {
+  text-align: center;
+}
+
+/* 사용자 이름 스타일 */
+.user-component__title {
+  font-size: 1.5em;
+  color: #333;
+  margin: 0;
+}
+
+/* 이름 굵게 표시 안함 */
+.user-component__title--not-bold {
+  font-weight: normal;
+}
+
+/* 추가 컨텐츠의 컬럼 스타일 */
+.user-component__additional {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 상단 섹션 스타일 */
+.friends-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #fee500; /* 카카오톡 특유의 노란색 */
+}
+
+.friends-header h1 {
+  font-size: 2em;
+  color: #333;
+  margin: 0;
+}
+
+/* 아이콘 스타일링 */
+.friends-header .icon {
+  font-size: 24px;
+  color: #333;
+}
