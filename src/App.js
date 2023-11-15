@@ -1,8 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 import FriendApp from './Friends/FriendApp'; 
+import LoginPage from './Login/LoginApp'; 
+import Chats from './Chat/ChatsApp';
+import More from './More/MoreApp';
+
 import StatusBar from './Common/StatusBar';
-import LoginPage from './Login/LoginPage'; 
 import useTimeAndBattery from './Common/UseTimeAndBattery';
 
 import './css/components/styles.css'
@@ -20,6 +23,8 @@ function App() {
           </div>
         } />
         <Route path="/friends" element={<FriendApp />} />
+        <Route path="/chats" element={<Chats />} />
+        <Route path="/more" element={<More />} />
       </Routes>
     </BrowserRouter>
   );
