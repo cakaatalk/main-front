@@ -1,4 +1,5 @@
-import { BrowserRouter as  Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+
 import kakaoIcon from './assets/kakao-icon.png'; 
 import FriendApp from './FriendApp'; 
 import StatusBar from './StatusBar';
@@ -21,7 +22,8 @@ function App() {
 
 
   return (
-      <Routes>
+    <BrowserRouter>
+     <Routes>
         <Route path="/" element={
           <div>
             <StatusBar currentTime={currentTime} batteryLevel={batteryLevel} getBatteryIcon={getBatteryIcon} />
@@ -49,7 +51,8 @@ function App() {
           </div>
         } />
         <Route path="/friends" element={<FriendApp />} /> 
-      </Routes>
+        </Routes>
+      </BrowserRouter>
   );
 }
 

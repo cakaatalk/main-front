@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, } from '@fortawesome/free-solid-svg-icons';
 import useTimeAndBattery from './UseTimeAndBattery';
 import StatusBar from './StatusBar';
 import NavigationBar from './NavigationBar';
 import FriendsHeader from './FriendsHeader';
-import FriendsDisplayLink from './FriendsDisplayLink';
 import FriendsList from './FriendsList';
 import ChannelSection from './ChannelSection';
 
 import './css/components/styles.css';
+import './css/components/friends.css'; 
 
 function FriendApp() {
   const { currentTime, batteryLevel, getBatteryIcon } = useTimeAndBattery();
