@@ -4,27 +4,26 @@ import FriendApp from './Friends/FriendApp';
 import LoginPage from './Login/LoginApp'; 
 import Chats from './Chat/ChatsApp';
 import More from './More/MoreApp';
-
+import ChatApp from './Chat-Room/ChatApp';
 import StatusBar from './Common/StatusBar';
-import useTimeAndBattery from './Common/UseTimeAndBattery';
 
 import './css/components/styles.css'
 
 function App() {
-  const { currentTime, batteryLevel, getBatteryIcon } = useTimeAndBattery();
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={
           <div>
-            <StatusBar currentTime={currentTime} batteryLevel={batteryLevel} getBatteryIcon={getBatteryIcon} />
+            <StatusBar  />
             <LoginPage />
           </div>
         } />
         <Route path="/friends" element={<FriendApp />} />
         <Route path="/chats" element={<Chats />} />
         <Route path="/more" element={<More />} />
+        <Route path="/chat/:chatId" element={<ChatApp />} />
       </Routes>
     </BrowserRouter>
   );

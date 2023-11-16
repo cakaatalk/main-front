@@ -1,7 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useTimeAndBattery from '../Common/UseTimeAndBattery';
 
-function StatusBar({ currentTime, batteryLevel, getBatteryIcon }) {
+function StatusBar() {
+  const { currentTime, batteryLevel, getBatteryIcon } = useTimeAndBattery();
+
   const formatTime = (date) => {
     return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
   };
