@@ -14,7 +14,7 @@ function UserProfile() {
       avatar="https://avatars3.githubusercontent.com/u/3612017"
       name="Nicolas"
       bold={true}
-      additionalContent={additionalContent}
+      //additionalContent={additionalContent}
     />
   );
 }
