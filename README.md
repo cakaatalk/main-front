@@ -1,3 +1,1 @@
-# Kokoa Clone 2020 Update
-
-HTML & CSS are so much fun!
+# cakaatalk에 오신 것을 환영합니다
