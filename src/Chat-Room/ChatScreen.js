@@ -11,7 +11,6 @@ function ChatScreen() {
       {/*squash test1*/}
       {/*squash test2*/}
       {/*squash test3*/}
-      {/*squash test4*/}
     </main>
   );
 }
