@@ -1,0 +1,36 @@
+/* sidebar.css */
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f1f1f1; /* 카카오톡 사이드바 배경색 */
+  }
+  
+  .sidebar-icon {
+    margin: 10px 0;
+    font-size: 24px; /* 아이콘 크기 */
+    color: #888; /* 아이콘 색상 */
+  }
+  
+  /* 프로필 영역 스타일링 */
+  .profile-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px; /* 원형 이미지 */
+    margin-bottom: 10px;
+  }
+  
+  .profile-name {
+    font-size: 18px;
+    color: #333;
+  }
+  

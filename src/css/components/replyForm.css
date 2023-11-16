@@ -1,0 +1,56 @@
+/* ReplyForm.css */
+
+.reply {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 12px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.reply__column {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.reply__column input {
+    flex: 1;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 8px;
+    border-radius: 18px;
+    font-size: 16px;
+}
+
+.reply__column button {
+    background-color: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.reply__column .faPlusSquare,
+.reply__column .faSmileWink,
+.reply__column .faArrowUp {
+    margin-right: 8px;
+    color: #333;
+}
+
+.reply__column input:focus::placeholder {
+    color: transparent;
+}
+
+.reply__column input {
+    color: #333;
+}
+
+@media (max-width: 600px) {
+    .reply__column input {
+        padding: 8px;
+    }
+}
