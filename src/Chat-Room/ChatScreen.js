@@ -10,6 +10,7 @@ function ChatScreen() {
       <Message content="Hi nice to meet you!" time="21:27" isOwnMessage={true} />  {/*API*/}
       {/*squash test1*/}
       {/*squash test2*/}
+      {/*squash test3*/}
     </main>
   );
 }
