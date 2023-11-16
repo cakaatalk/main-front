@@ -16,8 +16,9 @@ function MoreApp() {
 
       <main className="main-screen more-screen">
         <UserProfile />
-        <IconRow />
+        
         <Suggestions />
+        <IconRow />
       </main>
 
       <NavigationBar />
