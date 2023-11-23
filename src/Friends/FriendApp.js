@@ -5,6 +5,7 @@ import StatusBar from '../Common/StatusBar';
 import NavigationBar from '../Common/NavigationBar';
 import FriendsHeader from './FriendsHeader';
 import FriendsList from './FriendsList';
+import UserProfile from '../User/UserProfile';
 import ChannelSection from '../Common/ChannelSection';
 import '../css/components/styles.css';
 
@@ -14,9 +15,9 @@ function FriendApp() {
   return (
     <div>
       <StatusBar currentTime={currentTime} batteryLevel={batteryLevel} getBatteryIcon={getBatteryIcon} />
-
+      <UserProfile />
       <FriendsHeader />
-
+      
       <main className="friends-screen">
         <FriendsList />
         <ChannelSection />

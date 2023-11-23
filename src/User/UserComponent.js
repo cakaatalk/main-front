@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/components/friends.css'; 
 
-{/*REAMME 
+{/*README 
 avatar : 사용자의 프로필 이미지 URL 
 name: 사용자의 이름. 텍스트로 표시
 bold: 사용자 이름을 굵게 표시할지 여부
