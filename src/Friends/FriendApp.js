@@ -10,11 +10,11 @@ import ChannelSection from '../Common/ChannelSection';
 import '../css/components/styles.css';
 
 function FriendApp() {
-  const { currentTime, batteryLevel, getBatteryIcon } = useTimeAndBattery();
+  // const { currentTime, batteryLevel, getBatteryIcon } = useTimeAndBattery();
 
   return (
     <div>
-      <StatusBar currentTime={currentTime} batteryLevel={batteryLevel} getBatteryIcon={getBatteryIcon} />
+      {/* <StatusBar currentTime={currentTime} batteryLevel={batteryLevel} getBatteryIcon={getBatteryIcon} /> */}
       <UserProfile />
       <FriendsHeader />
       

@@ -7,8 +7,8 @@ body, h1, p, input, button, span {
 }
 
 .status-bar {
-  background-color: #fee500;
-  color: #3c1e1e;
+  background-color: #0054a6; /* 아주대학교의 대표 색상인 파란색으로 변경 */
+  color: white;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
@@ -31,14 +31,14 @@ body, h1, p, input, button, span {
 }
 
 .welcome-header__title {
-  color: #3c1e1e;
+  color: #0054a6; /* 헤더 타이틀 색상 변경 */
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
 .welcome-header__text {
-  color: #888;
+  color: #555; /* 텍스트 색상을 더 진하게 변경 */
   font-size: 16px;
   margin-bottom: 20px;
 }
@@ -59,13 +59,13 @@ body, h1, p, input, button, span {
 }
 
 #login-form input:focus {
-  border-color: #fee500;
+  border-color: #0054a6; /* 포커스 색상을 아주대학교 색상으로 변경 */
   outline: none;
 }
 
 #login-form input[type="submit"] {
-  background-color: #fee500;
-  color: #3c1e1e;
+  background-color: #0054a6; /* 버튼 색상 변경 */
+  color: white;
   border: none;
   border-radius: 20px;
   font-weight: bold;
@@ -80,7 +80,7 @@ body, h1, p, input, button, span {
 .link-like-button {
   background: none;
   border: none;
-  color: #fee500;
+  color: #0054a6; /* 링크 버튼 색상 변경 */
   cursor: pointer;
   padding: 10px;
   font-size: 16px;
@@ -88,7 +88,7 @@ body, h1, p, input, button, span {
 }
 
 .link-like-button:hover {
-  color: #fada5e;
+  color: #003973; /* 호버 시 색상 변경 */
 }
 
 @media (max-width: 768px) {
@@ -108,7 +108,7 @@ body, h1, p, input, button, span {
 }
 
 .icon {
-  color: #3c1e1e;
+  color: #0054a6; /* 아이콘 색상 변경 */
 }
 
 input::placeholder {
@@ -124,4 +124,22 @@ input::placeholder {
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
+}
+
+#login-form input[type="submit"] {
+  background-color: #0054a6; /* Base color */
+  color: white;
+  border: 1px solid #003973; /* Slightly darker border for depth */
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px #002d5a; /* Shadow for 3D effect */
+  background-image: linear-gradient(to top, #00488d, #0054a6); /* Gradient effect */
+}
+
+#login-form input[type="submit"]:hover {
+  background-image: linear-gradient(to top, #0054a6, #0060bf); /* Lighter gradient on hover */
+  box-shadow: 0 2px #002d5a; /* Smaller shadow on hover */
+  transform: translateY(-2px); /* Slight move up on hover */
 }

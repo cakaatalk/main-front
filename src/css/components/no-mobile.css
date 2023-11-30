@@ -2,7 +2,7 @@
   position: absolute;
   z-index: 99;
   height: 100vh;
-  background-color: var(--blue);
+  background-color: #0054a6; /* 아주대학교의 파란색으로 변경 */
   width: 100vw;
   display: flex;
   justify-content: center;

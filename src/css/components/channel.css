@@ -1,44 +1,82 @@
-/* channel.css */
-
 .friends-screen__channel {
-    display: flex; /* Use flexbox for horizontal alignment */
-    flex-direction: row; /* Align children in a row */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
-    padding: 16px;
-    background: #fff; /* Example background color */
-  }
-  
-  .friends-screen__channel-header {
-    display: flex; /* Establish a flex container */
-    align-items: center; /* Center items vertically */
-    width: 100%; /* Full width to contain icons */
-  }
-  
-  .friends-screen__channel-header span {
-    margin-right: 10px; /* Space before the chevron icon */
-    font-weight: bold; /* Make the channel text bold */
-    color: #333; /* Dark color for the text */
-  }
-  
-  /* Icon style */
-  .fa-icon {
-    font-size: 1.5rem; /* Adjust icon size */
-    color: #6f42c1; /* Stylish purple color for icons */
-    margin-right: 8px; /* Space between icons */
-  }
-  
-  /* Chevron icon style */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: #fff;
+}
+
+.friends-screen__channel-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.friends-screen__channel-header span {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #0054a6;
+}
+
+.fa-icon {
+  font-size: 1.5rem;
+  color: #0054a6;
+  margin-right: 8px;
+}
+
+.fa-chevron-up {
+  font-size: 1.5rem;
+  color: #0054a6;
+}
+
+@media (max-width: 768px) {
+  .fa-icon,
   .fa-chevron-up {
-    font-size: 1.5rem; /* Adjust icon size */
-    color: #6f42c1; /* Stylish purple color for the chevron */
+    font-size: 1rem;
   }
-  
-  /* Responsive behavior for the channel items */
-  @media (max-width: 768px) {
-    .fa-icon,
-    .fa-chevron-up {
-      font-size: 1rem; /* Smaller font size for narrower viewports */
-    }
-  }
-  
+}
+
+.user-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+.user-component__avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.user-component__title {
+  font-size: 1em;
+  color: #0054a6;
+  margin: 0;
+}
+
+.friends-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #f2f2f2; /* Adjusted to a lighter background */
+}
+
+.friends-header h1 {
+  font-size: 1.5em;
+  color: #0054a6;
+  margin: 0;
+}
+
+.friends-header .icon {
+  font-size: 24px;
+  color: #0054a6;
+}

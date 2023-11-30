@@ -24,7 +24,7 @@ function MoreApp() {
 
   return (
     <div>
-      <StatusBar />
+      {/* <StatusBar /> */}
       <NavigationBar />
       <main className="main-screen more-screen">
         <UserList users={users} /> {/* 유저 목록 받아오기 */}

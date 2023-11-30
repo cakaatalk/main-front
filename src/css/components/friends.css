@@ -1,47 +1,45 @@
 .user-component {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row; /* 가로 방향 정렬로 변경 */
+  align-items: center; /* 세로 방향 중앙 정렬 유지 */
+  justify-content: flex-start; /* 요소들을 왼쪽으로 정렬 */
   background-color: #fff;
   padding: 8px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 16px;
+  width: 100%; /* 부모 요소의 전체 너비를 차지하도록 설정 */
 }
 
-/* 사용자 프로필 이미지 스타일 */
 .user-component__avatar {
   width: 100px; /* 이미지 크기 */
   height: 100px;
   border-radius: 50%; /* 원형 모양 */
   object-fit: cover; /* 이미지 비율 유지 */
-  margin-bottom: 8px;
+  margin-right: 16px; /* 이미지와 텍스트 사이 간격 추가 */
 }
 
-/* 사용자 이름 스타일 */
 .user-component__title {
   font-size: 1em;
-  color: #333;
-  margin: 0;
+  color: #0054a6; /* 아주대학교 파란색 */
+  /* 여백 설정 변경 없음 */
 }
 
-/* 상단 섹션 스타일 */
 .friends-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px;
-  background-color: #fee500; /* 카카오톡 특유의 노란색 */
+  background-color: #f2f2f2; /* 부드러운 배경색 유지 */
 }
 
 .friends-header h1 {
   font-size: 1.5em;
-  color: #333;
-  margin: 0;
+  color: #0054a6; /* 아주대학교 파란색 */
+  /* 여백 설정 변경 없음 */
 }
 
-/* 아이콘 스타일링 */
 .friends-header .icon {
   font-size: 24px;
-  color: #333;
+  color: #0054a6; /* 아주대학교 파란색 */
 }

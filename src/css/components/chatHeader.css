@@ -1,27 +1,23 @@
-/* chatHeader.css */
-
 .alt-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: #fee500; /* KakaoTalk-like yellow background */
-    color: #333; /* Dark text for contrast */
-  }
-  
-  .alt-header__column {
-    display: flex;
-    align-items: center;
-  }
-  
-  .alt-header__title {
-    font-size: 1.5rem; /* Larger text for the title */
-    margin: 0 1rem; /* Space around the title */
-  }
-  
-  /* You might want to hide the duplicate title div */
-  .alt-header__column > div:nth-child(3) {
-    display: none;
-  }
-  
-  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #0054a6; /* 아주대학교 색상인 파란색으로 변경 */
+  color: #fff; /* 흰색 텍스트로 변경하여 대비 강조 */
+}
+
+.alt-header__column {
+  display: flex;
+  align-items: center;
+}
+
+.alt-header__title {
+  font-size: 1.5rem;
+  margin: 0 1rem;
+}
+
+/* If there's a specific child element to hide, the selector might need to be adjusted */
+.alt-header__column > div:nth-child(3) {
+  display: none;
+}

@@ -7,8 +7,8 @@ function ChatsApp(){
   
     return (
       <div>
-        <StatusBar />
-  
+        {/* <StatusBar />
+   */}
           <ChatScreen />
     
           <NavigationBar />
