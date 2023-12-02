@@ -8,7 +8,7 @@
 
 .screen-header__title {
   font-size: 24px;
-  color: #0054a6; /* 이미 적용된 아주대학교의 파란색 유지 */
+  color: #0054a6; /* 아주대학교의 파란색 유지 */
   margin: 0;
 }
 
@@ -18,11 +18,11 @@
   gap: 16px;
 }
 
-.screen-header__icons .fa-icon {
-  color: #0054a6; /* 이미 적용된 아주대학교의 파란색 유지 */
+.screen-header__icons .svg-inline--fa {
+  color: #0054a6; /* 아주대학교의 파란색 유지 */
 }
 
-#friends-display-link {
+.friends-display-link {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,11 +36,10 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-#friends-display-link .fa-info-circle,
-#friends-display-link .fa-chevron-right {
+.friends-display-link .svg-inline--fa {
   color: #0054a6; /* 아주대학교 파란색으로 변경 */
 }
 
-#friends-display-link .fa-chevron-right {
+.friends-display-link .svg-inline--fa.fa-chevron-right {
   margin-left: auto;
 }

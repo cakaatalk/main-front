@@ -2,7 +2,6 @@ import React from 'react';
 import UserComponent from './UserComponent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
-import '../css/components/friends.css';
 
 function UserProfile() {
   const additionalContent = (
