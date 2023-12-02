@@ -7,6 +7,7 @@ import More from './More/MoreApp';
 import ChatApp from './Chat-Room/ChatApp';
 import StatusBar from './Common/StatusBar';
 
+import "./css/components/scrollBar.css"
 import './css/components/styles.css'
 
 function App() {

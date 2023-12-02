@@ -8,7 +8,7 @@ function FriendApp() {
   return (
     <div>
       <UserProfile />
-      <FriendsHeader />
+      {/* <FriendsHeader />*/}
       
       <main className="friends-screen">
         <FriendsList />

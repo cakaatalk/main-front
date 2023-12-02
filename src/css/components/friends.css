@@ -1,23 +1,13 @@
 .user-component {
   display: flex;
-  align-items: center;
   background-color: #fff;
-  padding: 12px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* 3D effect */
-  margin-bottom: 16px;
-  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out; /* Smooth transition for hover effect */
 }
 
 .user-component:hover {
-  transform: translateY(-2px); /* Slight raise on hover for 3D effect */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .user-component__avatar {
-  width: 40px; /* Adjusted for smaller size */
-  height: 40px;
-  border-radius: 50%;
   object-fit: cover;
   margin-right: 12px;
 }
@@ -25,14 +15,14 @@
 .user-component__name {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: left;
 }
 
 .user-component__title {
   font-size: 1em;
   color: #0054a6;
   margin: 0;
-  padding-right: 8px; /* Ensures spacing if additional content is present */
+  padding-right: 8px; 
 }
 
 .user-component__subtitle {

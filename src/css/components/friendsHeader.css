@@ -1,15 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
 .screen-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px;
-  background-color: #ffffff; /* 배경색을 흰색으로 설정 */
+  background-color: #ffffff; /* Set background color to white */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* subtle shadow for depth */
+  border-bottom: 1px solid #f1f1f1; /* subtle border for a clean line */
 }
 
 .screen-header__title {
   font-size: 24px;
-  color: #0054a6; /* 아주대학교의 파란색 유지 */
+  color: #0054a6; /* Keeping the Ajou University blue */
   margin: 0;
+  font-weight: 300; /* Lighter font-weight for elegance */
+  font-family: 'Roboto', sans-serif; /* Roboto font for a modern look */
+  letter-spacing: -0.5px; /* Tighter letter spacing for a polished look */
 }
 
 .screen-header__icons {
@@ -19,27 +26,17 @@
 }
 
 .screen-header__icons .svg-inline--fa {
-  color: #0054a6; /* 아주대학교의 파란색 유지 */
+  color: #0054a6; /* Keeping the Ajou University blue */
+  cursor: pointer; /* Indicates that icons are clickable */
 }
 
-.friends-display-link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  background-color: #e9ecef; /* 배경색은 유지하되, 아주대 색상에 맞춰 조정 가능 */
-  color: #495057;
-  text-decoration: none;
-  margin-top: 16px;
-  font-size: 16px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+/* Style adjustments for FontAwesome icons */
+.svg-inline--fa {
+  height: 1.5em; /* Match the size of the icon to the text */
+  width: 1.5em;
 }
 
-.friends-display-link .svg-inline--fa {
-  color: #0054a6; /* 아주대학교 파란색으로 변경 */
-}
-
-.friends-display-link .svg-inline--fa.fa-chevron-right {
-  margin-left: auto;
+/* Additional styles for hover effects on icons for interactivity */
+.screen-header__icons .svg-inline--fa:hover {
+  color: #003973; /* A darker shade of blue for hover state */
 }
