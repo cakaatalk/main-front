@@ -1,38 +1,13 @@
-.main-layout {
-    max-height: 100vh;
-    overflow: hidden;
-  }
-  
+
   .friends-list-container {
     overflow-y: auto;
     padding-bottom: 50px;
     scrollbar-width: thin;
     scrollbar-color: #c1c1c1 #f1f1f1;
   }
-  
-  .friends-list-title {
-    font-size: 1.5em;
-    margin: 16px 0;
-    padding-left: 16px;
-  }
-  
-  .friends-divider {
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
+
   .friends-count {
     font-size: 1em;
     color: #646464;
-  }
-  
-  .user-component {
-    display: flex;
-    align-items: center;
-    padding: 8px;
-    margin-bottom: 0;
-  }
-  
-  .user-component:not(:last-child) {
-    border-bottom: 1px solid #e0e0e0;
   }
   
