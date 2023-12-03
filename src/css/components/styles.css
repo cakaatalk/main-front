@@ -7,7 +7,7 @@ body, h1, p, input, button, span {
 }
 
 .status-bar {
-  background-color: #0054a6; /* 아주대학교의 대표 색상인 파란색으로 변경 */
+  background-color: #0054a6; /* 아주대학교의 대표 색상인 파란색 */
   color: white;
   padding: 10px 20px;
   display: flex;
@@ -25,121 +25,8 @@ body, h1, p, input, button, span {
   margin-right: 10px;
 }
 
-.welcome-header {
-  text-align: center;
-  margin-top: 30px;
-}
-
-.welcome-header__title {
-  color: #0054a6; /* 헤더 타이틀 색상 변경 */
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.welcome-header__text {
-  color: #555; /* 텍스트 색상을 더 진하게 변경 */
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-#login-form {
-  display: flex;
-  flex-direction: column;
-  margin: 0 20px;
-}
-
-#login-form input {
-  margin-bottom: 15px;
-  padding: 15px;
-  border: 1px solid #e6e6e6;
-  border-radius: 20px;
-  font-size: 16px;
-  transition: border-color 0.2s;
-}
-
-#login-form input:focus {
-  border-color: #0054a6; /* 포커스 색상을 아주대학교 색상으로 변경 */
-  outline: none;
-}
-
-#login-form input[type="submit"] {
-  background-color: #0054a6; /* 버튼 색상 변경 */
-  color: white;
-  border: none;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-#login-form input[type="submit"]:hover {
-  opacity: 0.9;
-}
-
-.link-like-button {
-  background: none;
-  border: none;
-  color: #0054a6; /* 링크 버튼 색상 변경 */
-  cursor: pointer;
-  padding: 10px;
-  font-size: 16px;
-  transition: color 0.2s;
-}
-
-.link-like-button:hover {
-  color: #003973; /* 호버 시 색상 변경 */
-}
-
-@media (max-width: 768px) {
-  .welcome-header__title {
-    font-size: 22px;
-  }
-
-  .welcome-header__text {
-    font-size: 14px;
-  }
-
-  #login-form input,
-  #login-form input[type="submit"] {
-    padding: 10px;
-    font-size: 14px;
-  }
-}
-
-.icon {
-  color: #0054a6; /* 아이콘 색상 변경 */
-}
 
 input::placeholder {
   color: #bbb;
 }
 
-.form-control {
-  position: relative;
-}
-
-.form-control svg {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#login-form input[type="submit"] {
-  background-color: #0054a6; /* Base color */
-  color: white;
-  border: 1px solid #003973; /* Slightly darker border for depth */
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px #002d5a; /* Shadow for 3D effect */
-  background-image: linear-gradient(to top, #00488d, #0054a6); /* Gradient effect */
-}
-
-#login-form input[type="submit"]:hover {
-  background-image: linear-gradient(to top, #0054a6, #0060bf); /* Lighter gradient on hover */
-  box-shadow: 0 2px #002d5a; /* Smaller shadow on hover */
-  transform: translateY(-2px); /* Slight move up on hover */
-}
