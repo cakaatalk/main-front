@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../css/components/loginPage.css';
@@ -6,6 +6,21 @@ import WarningMessage from './WarningMessage';
 
 function LoginPage() {
   const navigate = useNavigate();
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      axios.get('/api/validateToken', { headers: {"Authorization" : `Bearer ${accessToken}`} })
+        .then(response => {
+          navigate('/friends');
+        })
+        .catch(error => {
+          
+          localStorage.removeItem('accessToken');
+          navigate('/');
+        });
+    }
+  }, [navigate]);
+
   const [isLoginView, setIsLoginView] = useState(true);
   const [isFindIdView, setIsFindIdView] = useState(false);
   const [isFindPasswordView, setIsFindPasswordView] = useState(false);
@@ -45,8 +60,14 @@ function LoginPage() {
     const apiUrl = `http://localhost:8080${endpoint}`;
   
     try {
-      await axios.post(apiUrl, userData);
-      navigate('/friends');
+      const response = await axios.post(apiUrl, userData);
+      
+      if (response.data.accessToken) {
+        localStorage.setItem('accessToken', response.data.accessToken);
+        navigate('/friends');
+      } else {
+        throw new Error('No access token received');
+      }
     } catch (error) {
       isLoginView ? setWarningMessage('ID가 없습니다.') : setWarningMessage('이미 존재하는 ID입니다.');
     }
@@ -66,7 +87,7 @@ function LoginPage() {
       <header className="welcome-header">
         <h1 className="login-header">{isLoginView ? "CaKaA Talk 로그인" : "회원가입"}</h1>
         <p className="login-description">
-          {isLoginView ? "You can log in with your Ajou University email address." : "새로운 계정을 만드세요."}
+          {isLoginView ? "아주대학교 이메일로 로그인 할 수 있습니다." : "새로운 계정을 만드세요."}
         </p>
         <form onSubmit={handleSubmit} id="login-form">
           {!isLoginView && (

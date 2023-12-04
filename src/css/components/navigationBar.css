@@ -1,48 +1,29 @@
-
 .nav {
-    background-color: #fff; /* 배경색 */
-    border-top: 1px solid #e1e1e1; /* 상단 테두리 */
-    position: fixed; /* 항상 하단에 고정 */
-    bottom: 0;
-    width: 100%; /* 전체 너비 */
-    display: flex;
-    justify-content: center; /* 가운데 정렬 */
-  }
-  
-  .nav__list {
-    list-style: none; /* 목록 스타일 제거 */
-    padding: 0; /* 패딩 제거 */
-    margin: 0; /* 마진 제거 */
-    display: flex; /* 아이템들을 가로로 배열 */
-  }
-  
-  .nav__btn {
-    flex: 1; /* 모든 버튼이 동일한 너비를 가지도록 설정 */
-    text-align: center; /* 텍스트 가운데 정렬 */
-    padding: 10px 0; /* 상하 패딩 */
-  }
-  
-  .nav__link {
-    color: #333; /* 링크 색상 */
-    text-decoration: none; /* 밑줄 제거 */
-    display: block; /* 전체 버튼 영역이 클릭 가능하도록 설정 */
-  }
-  
-  .nav__notification {
-    position: absolute; /* 뱃지 위치 조정 */
-    top: -10px; /* 버튼 위쪽에 위치 */
-    right: 10px; /* 오른쪽 정렬 */
-    background-color: red; /* 배경색 */
-    color: #fff; /* 텍스트 색상 */
-    border-radius: 50%; /* 원형 뱃지 */
-    padding: 5px; /* 패딩 */
-    font-size: 0.75em; /* 글씨 크기 */
-  }
-  
-  .badge {
-    min-width: 20px; /* 최소 너비 */
-    height: 20px; /* 높이 */
-    line-height: 20px; /* 세로 중앙 정렬 */
-    display: inline-block; /* 인라인 블록으로 표시 */
-  }
-  
+  background-color: #fff;
+  border-top: 1px solid #e1e1e1;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.nav__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.nav__btn {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 100px; 
+}
+
+.nav__link {
+  color: #333;
+  text-decoration: none;
+  display: block;
+}

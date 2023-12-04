@@ -43,6 +43,7 @@ function FriendsList() {
             key={friend.id}
             avatar={friend.avatar}
             name={friend.name}
+            subtitle={friend.subTitle}
             bold={true}
             additionalContent={additionalContent}
           />
