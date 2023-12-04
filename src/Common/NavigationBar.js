@@ -15,7 +15,7 @@ function NavigationBar() {
         </li>
         <li className="nav__btn">
           <Link className="nav__link" to="/chats">
-            <span className="nav__notification badge">1</span>
+            {/* <span className="nav__notification badge">1</span> */}
             <FontAwesomeIcon icon={faComment} size="2x" />
           </Link>
         </li>

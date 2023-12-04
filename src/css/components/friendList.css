@@ -1,0 +1,13 @@
+
+  .friends-list-container {
+    overflow-y: auto;
+    padding-bottom: 50px;
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #f1f1f1;
+  }
+
+  .friends-count {
+    font-size: 1em;
+    color: #646464;
+  }
+  
