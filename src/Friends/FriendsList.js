@@ -4,6 +4,7 @@ import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { friendsData } from './friendsData.js';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import "../css/components/friendList.css"
 
@@ -39,14 +40,16 @@ function FriendsList() {
       <div className="friends-divider"></div>
       <div className="friends-list">
         {friendsData.map(friend => (
-          <UserComponent
-            key={friend.id}
-            avatar={friend.avatar}
-            name={friend.name}
-            subtitle={friend.subTitle}
-            bold={true}
-            additionalContent={additionalContent}
-          />
+          
+           <UserComponent
+             avatar={friend.avatar}
+             name={friend.name}
+             subtitle={friend.subTitle}
+             bold={true}
+             additionalContent={<Link to={`/chat/${friend.id}`} className="additional-content-link">
+             {additionalContent}
+           </Link>}
+           />
         ))}
       </div>
     </div>
