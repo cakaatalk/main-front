@@ -3,11 +3,12 @@
   background-color: #fff;
 }
 
-.user-component:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.1); 
-}
-
 .user-component__avatar {
+  width: 84px;
+  height: 84px;
+  left: 19px;
+  top: 12px;
+  border-radius: 30px;
   object-fit: cover;
   margin-right: 12px;
 }
@@ -20,7 +21,7 @@
 
 .user-component__title {
   font-size: 1em;
-  color: #0054a6;
+  color: #646464;
   margin: 0;
   padding-right: 8px; 
 }
@@ -28,11 +29,46 @@
 .user-component__subtitle {
   font-size: 0.75em;
   color: #646464;
-  margin: 0;
 }
 
 .user-component__additional {
   margin-left: auto;
   display: flex;
   align-items: center;
+  color: #848484;
+  position: relative;
+}
+
+
+.user-component__edit-button {
+  position: relative;
+  margin-right: auto;
+  display: flex;
+  align-items: end;
+  background-color: transparent;
+  border: none;
+  color: #1e1b1b;
+  transition: color 0.5s;
+}
+
+.user-component__edit-button:hover {
+  color: #FF0000; 
+}
+
+.user-component__edit-button svg {
+  font-size: 12px;
+}
+
+.friend-text {
+
+  width: 337px;
+  height: 66px;
+  left: 21px;
+  top: 0px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+  color: #848484;
 }
