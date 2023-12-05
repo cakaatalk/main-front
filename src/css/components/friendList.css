@@ -18,3 +18,13 @@
     color: #848484;
   }
   
+  .additional-content-link {
+    text-decoration: none; 
+    color: #007BFF; 
+    font-weight: bold; 
+    transition: color 0.3s ease-in-out; 
+  
+    &:hover {
+      color: #0056b3; 
+    }
+  }

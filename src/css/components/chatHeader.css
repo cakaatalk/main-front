@@ -4,7 +4,7 @@
   justify-content: space-between;
   padding: 1rem;
   background-color: #0054a6; /* 아주대학교 색상인 파란색으로 변경 */
-  color: #fff; /* 흰색 텍스트로 변경하여 대비 강조 */
+  color: #fff;
 }
 
 .alt-header__column {
@@ -17,7 +17,6 @@
   margin: 0 1rem;
 }
 
-/* If there's a specific child element to hide, the selector might need to be adjusted */
 .alt-header__column > div:nth-child(3) {
   display: none;
 }

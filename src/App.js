@@ -5,6 +5,7 @@ import LoginPage from './Login/LoginApp';
 import Chats from './Chat/ChatsApp';
 import More from './More/MoreApp';
 import ChatApp from './Chat-Room/ChatApp';
+import { AuthProvider } from './AuthContext';
 
 import "./css/components/scrollBar.css"
 import './css/components/styles.css'
@@ -12,6 +13,7 @@ import './css/components/styles.css'
 function App() {
 
   return (
+    <AuthProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={
@@ -25,6 +27,7 @@ function App() {
         <Route path="/chat/:chatId" element={<ChatApp />} />
       </Routes>
     </BrowserRouter>
+    </AuthProvider>
   );
 }
 

@@ -1,8 +1,10 @@
 import React from 'react';
 import UserComponent from '../User/UserComponent';
+import axios from 'axios';
+import UserService from '../UserService'; 
+import AuthService from '../AuthService'; 
 import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { friendsData } from './friendsData.js';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -12,8 +14,32 @@ import "../css/components/friendList.css"
 function FriendsList() {
   const additionalContent = <FontAwesomeIcon icon={faCommentAlt} size="2x" />;
   const [maxHeight, setMaxHeight] = useState('auto');
-
+  const [friendsList, setFriendsList] = useState([]); 
+  
   useEffect(() => {
+    async function fetchFriends() {
+      const refreshToken = localStorage.getItem('refreshToken');
+    
+      try {
+        const response = await UserService.getFriendList();
+          setFriendsList(response.data.users);
+      } catch (error) {
+        if (error.response && refreshToken) {
+          try {
+            const refreshResponse = await AuthService.refreshAccessToken();
+            localStorage.setItem('accessToken', refreshResponse.data.accessToken);
+            return fetchFriends();
+          } catch (refreshError) {
+            console.error('Error refreshing token:', refreshError);
+          }
+        } else {
+          console.error('Error fetching friends:', error);
+        }
+      }
+    }
+
+    fetchFriends();
+
     function updateMaxHeight() {
       const header = document.querySelector('.header');
       const footer = document.querySelector('.footer');
@@ -35,22 +61,22 @@ function FriendsList() {
   return (
     <div className="friends-list-container" style={{ maxHeight }}>
       <div className="friends-header">
-        <h2 className="friends-list-title">친구{friendsData.length}</h2>
+        <h2 className="friends-list-title">친구{friendsList.length}</h2>
       </div>
       <div className="friends-divider"></div>
       <div className="friends-list">
-        {friendsData.map(friend => (
-          
-           <UserComponent
-             avatar={friend.avatar}
-             name={friend.name}
-             subtitle={friend.subTitle}
-             bold={true}
-             additionalContent={<Link to={`/chat/${friend.id}`} className="additional-content-link">
-             {additionalContent}
-           </Link>}
-           />
+      {friendsList.map(friend => (
+        <UserComponent
+          key={friend.id}  
+          avatar={friend.image_url}
+          name={friend.user_name}
+          subtitle={friend.comment}
+          bold={true}
+          additionalContent={<Link to={`/chat/${friend.id}`} className="additional-content-link">
+          {additionalContent} </Link>}
+        />
         ))}
+
       </div>
     </div>
   );
