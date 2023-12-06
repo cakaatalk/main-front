@@ -18,8 +18,8 @@ const UserService = {
         }
       });
   },
-  searchProfile: async (userId ) => {
-    return axios.get(`${API_User_URL}/profile/:userIda`,userId ,{
+  searchProfile: async (userId) => {
+    return axios.get(`${API_User_URL}/profile/:userIda`, userId ,{
         headers: {
           'Authorization': `${accessToken}`
         }

@@ -16,7 +16,6 @@ function UserProfile() {
     async function fetchProfile() {
       try {
         const response = await UserService.searchProfile(1);
-        console.log(response)
         if (response.data && response.data.user) {
           setSubtitle(response.data.user.subtitle);
           setUserProfile(response.data.user);

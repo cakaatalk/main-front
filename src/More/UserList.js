@@ -1,31 +1,31 @@
 import React from 'react';
 import UserComponent from '../User/UserComponent';
-import axios from 'axios';
 import UserService from '../UserService'; 
+import AuthService from '../AuthService'; 
 import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import "../css/components/friendList.css"
-
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function UserList() {
   const additionalContent = <FontAwesomeIcon icon={faCommentAlt} size="2x" />;
   const [maxHeight, setMaxHeight] = useState('auto');
   const [friendsList, setFriendsList] = useState([]); 
-  
+  const [searchQuery, setSearchQuery] = useState('');
+  const [userList, setUserList] = useState([]);
+
   useEffect(() => {
     async function fetchFriends() {
       const refreshToken = localStorage.getItem('refreshToken');
     
       try {
         const response = await UserService.getAllUserList();
-          setFriendsList(response.data.users);
-      } catch (error) {
+        setFriendsList(response.data);
+      } 
+      catch (error) {
         if (error.response && refreshToken) {
           try {
-            const refreshResponse = await axios.get('/api/auth/refresh', { refreshToken });
+            const refreshResponse = await AuthService.refreshAccessToken();
             localStorage.setItem('accessToken', refreshResponse.data.accessToken);
             return fetchFriends();
           } catch (refreshError) {
@@ -37,8 +37,10 @@ function UserList() {
       }
     }
 
+    
     fetchFriends();
 
+    
     function updateMaxHeight() {
       const header = document.querySelector('.header');
       const footer = document.querySelector('.footer');
@@ -57,22 +59,48 @@ function UserList() {
     return () => window.removeEventListener('resize', updateMaxHeight);
   }, []);
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = searchQuery
+          ? await UserService.searchUser(searchQuery)
+          : await UserService.getAllUserList();
+        setUserList(response.data.users);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchUsers();
+  }, [searchQuery]);
+
   return (
     <div className="friends-list-container" style={{ maxHeight }}>
+     <div className="search-box">
+      <div className="search-icon"></div>
+      <FontAwesomeIcon icon={faSearch} className="search-icon" />
+        <input
+          type="text"
+          placeholder="이름 검색"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="search-input"
+        />
+      </div>
       <div className="friends-header">
         <h2 className="friends-list-title">전체 유저{Array.isArray(friendsList) ? friendsList.length : 0}</h2>
       </div>
       <div className="friends-divider"></div>
       <div className="friends-list">
         {Array.isArray(friendsList) && friendsList.map(friend => (
+          
           <UserComponent
             key={friend.id}  
             avatar={friend.image_url}
             name={friend.user_name}
             subtitle={friend.comment}
             bold={true}
-            additionalContent={<Link to={`/chat/${friend.id}`} className="additional-content-link">
-            {additionalContent} </Link>}
+            additionalContent= {additionalContent} 
           />
         ))}
       </div>

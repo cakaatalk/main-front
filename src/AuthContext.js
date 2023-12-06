@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
       user: user
     });
     localStorage.setItem('accessToken', token);
-    localStorage.setItem('refreshToken', token);
   };
 
   const signOut = () => {
