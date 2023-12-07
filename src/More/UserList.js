@@ -2,13 +2,27 @@ import React from 'react';
 import UserComponent from '../User/UserComponent';
 import UserService from '../UserService'; 
 import AuthService from '../AuthService'; 
-import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function UserList() {
-  const additionalContent = <FontAwesomeIcon icon={faCommentAlt} size="2x" />;
+  const handleAddFriend = async (userId) => {
+    try {
+      await UserService.addFriend(userId);
+    }
+    catch (error) {
+      try {
+        const refreshResponse = await AuthService.refreshAccessToken();
+        localStorage.setItem('accessToken', refreshResponse.data.accessToken);
+
+      } catch (refreshError) {
+        console.error('Error refreshing token:', refreshError);
+      }
+  }
+  };
+
   const [maxHeight, setMaxHeight] = useState('auto');
   const [friendsList, setFriendsList] = useState([]); 
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,14 +30,13 @@ function UserList() {
 
   useEffect(() => {
     async function fetchFriends() {
-      const refreshToken = localStorage.getItem('refreshToken');
     
       try {
         const response = await UserService.getAllUserList();
         setFriendsList(response.data);
       } 
       catch (error) {
-        if (error.response && refreshToken) {
+        if (error.response) {
           try {
             const refreshResponse = await AuthService.refreshAccessToken();
             localStorage.setItem('accessToken', refreshResponse.data.accessToken);
@@ -83,6 +96,7 @@ function UserList() {
           type="text"
           placeholder="이름 검색"
           value={searchQuery}
+          
           onChange={(e) => setSearchQuery(e.target.value)}
           className="search-input"
         />
@@ -100,7 +114,9 @@ function UserList() {
             name={friend.user_name}
             subtitle={friend.comment}
             bold={true}
-            additionalContent= {additionalContent} 
+            additionalContent={() => (
+              <FontAwesomeIcon icon={faUserPlus} size="2x" onClick={() => handleAddFriend(friend.id)} />
+            )}
           />
         ))}
       </div>

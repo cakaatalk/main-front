@@ -19,23 +19,25 @@ const UserService = {
       });
   },
   searchProfile: async (userId) => {
-    return axios.get(`${API_User_URL}/profile/:userIda`, userId ,{
+    return axios.get(`${API_User_URL}/profile/${userId}` ,{
         headers: {
           'Authorization': `${accessToken}`
         }
       });
   },
   searchUser: async (name) => {
-    return axios.get(`${API_User_URL}/searchUser?name=성`,{
-        headers: {
-          'Authorization': `${accessToken}`
-        }
-      });
+    return axios.get(`${API_User_URL}/searchUser?name=${name}`, {
+      headers: {
+        'Authorization': `${accessToken}`
+      }
+    });
   },
-  addFriend: async (userData) => {
-    return axios.post(`${API_User_URL}/addFriend`,{
+  addFriend: async (friendId) => {
+    return axios.post(`${API_User_URL}/addFriend`, {
+      "friendId": friendId,
+    }, {
         headers: {
-          'Authorization': `${accessToken}`
+          'Authorization': `${accessToken}`,
         }
       });
   },

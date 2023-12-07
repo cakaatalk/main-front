@@ -1,6 +1,5 @@
 import React from 'react';
 import UserComponent from '../User/UserComponent';
-import axios from 'axios';
 import UserService from '../UserService'; 
 import AuthService from '../AuthService'; 
 import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';

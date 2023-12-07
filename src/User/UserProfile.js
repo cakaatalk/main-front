@@ -3,6 +3,7 @@ import UserComponent from './UserComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentAlt } from '@fortawesome/free-solid-svg-icons';
 import UserService from '../UserService';
+import AuthService from '../AuthService'; 
 
 function UserProfile() {
   const accessToken = localStorage.getItem('accessToken');
@@ -15,14 +16,21 @@ function UserProfile() {
   useEffect(() => {
     async function fetchProfile() {
       try {
-        const response = await UserService.searchProfile(1);
+        const response = await UserService.searchProfile();
         if (response.data && response.data.user) {
           setSubtitle(response.data.user.subtitle);
           setUserProfile(response.data.user);
           setUserName(response.data.user.name);
         }
-      } catch (error) {
-        console.error('Error fetching profile:', error);
+      } 
+      catch (error) {
+          try {
+            const refreshResponse = await AuthService.refreshAccessToken();
+            localStorage.setItem('accessToken', refreshResponse.data.accessToken);
+            fetchProfile(); 
+          } catch (refreshError) {
+            console.error('Error refreshing token:', refreshError);
+          }
       }
     }
 
