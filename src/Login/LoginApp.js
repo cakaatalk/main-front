@@ -40,7 +40,7 @@ function LoginPage() {
     e.preventDefault();
     const { username,  email, password } = e.target.elements;
     const userData = {
-      user_name : username.value,
+      user_name : isLoginView ? "" : username.value,
       email: email.value,
       password: password.value,
     };

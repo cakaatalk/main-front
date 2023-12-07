@@ -1,6 +1,5 @@
 import React from 'react';
 import '../css/components/chatScreen.css';
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import UserService from '../UserService'; 
 import AuthService from '../AuthService'; 

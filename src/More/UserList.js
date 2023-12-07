@@ -107,7 +107,6 @@ function UserList() {
       <div className="friends-divider"></div>
       <div className="friends-list">
         {Array.isArray(friendsList) && friendsList.map(friend => (
-          
           <UserComponent
             key={friend.id}  
             avatar={friend.image_url}
