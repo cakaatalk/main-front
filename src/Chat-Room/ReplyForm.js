@@ -1,15 +1,21 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusSquare, faSmileWink, faArrowUp } from '@fortawesome/free-solid-svg-icons';
-import useTimeAndBattery from '../Common/UseTimeAndBattery';
-import "../css/components/replyForm.css"
-
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlusSquare,
+  faSmileWink,
+  faArrowUp,
+} from "@fortawesome/free-solid-svg-icons";
+import useTimeAndBattery from "../Components/Common/UseTimeAndBattery";
+import "../css/components/replyForm.css";
 
 function ReplyForm() {
-  const {currentTime} = useTimeAndBattery();
+  const { currentTime } = useTimeAndBattery();
 
   const formatTime = (date) => {
-    return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+    return `${date.getHours().toString().padStart(2, "0")}:${date
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}`;
   };
 
   return (
