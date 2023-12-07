@@ -18,8 +18,9 @@ function UserProfile() {
       try {
         const response = await UserService.searchProfile();
         if (response.data && response.data.user) {
+          
           setSubtitle(response.data.user.subtitle);
-          setUserProfile(response.data.user);
+          setUserProfile(response.data.imageURL);
           setUserName(response.data.user.name);
         }
       } 

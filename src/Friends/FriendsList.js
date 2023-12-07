@@ -67,8 +67,8 @@ function FriendsList() {
       {friendsList.map(friend => (
         <UserComponent
           key={friend.id}  
-          avatar={friend.image_url}
-          name={friend.user_name}
+          avatar={friend.imageURL}
+          name={friend.name}
           subtitle={friend.comment}
           bold={true}
           additionalContent={<Link to={`/chat/${friend.id}`} className="additional-content-link">

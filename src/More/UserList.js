@@ -33,6 +33,7 @@ function UserList() {
     
       try {
         const response = await UserService.getAllUserList();
+        console.log(response.data);
         setFriendsList(response.data);
       } 
       catch (error) {
@@ -40,7 +41,7 @@ function UserList() {
           try {
             const refreshResponse = await AuthService.refreshAccessToken();
             localStorage.setItem('accessToken', refreshResponse.data.accessToken);
-            return fetchFriends();
+            return fetchFriends(); 
           } catch (refreshError) {
             console.error('Error refreshing token:', refreshError);
           }
@@ -109,8 +110,8 @@ function UserList() {
         {Array.isArray(friendsList) && friendsList.map(friend => (
           <UserComponent
             key={friend.id}  
-            avatar={friend.image_url}
-            name={friend.user_name}
+            avatar={friend.imageURL}
+            name={friend.name}
             subtitle={friend.comment}
             bold={true}
             additionalContent={() => (
