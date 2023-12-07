@@ -1,25 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext  } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { AuthContext } from '../AuthContext'; 
+import authService from '../AuthService'; 
+import WarningMessage from './WarningMessage';
+
 import '../css/components/loginPage.css';
-import WarningMessage from './WarningMessage'; 
 
 function LoginPage() {
   const navigate = useNavigate();
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
-      axios.get('/api/validateToken', { headers: {"Authorization" : `Bearer ${accessToken}`} })
-        .then(response => {
-          navigate('/friends');
-        })
-        .catch(error => {
-          
-          localStorage.removeItem('accessToken');
-          navigate('/');
-        });
-    }
-  }, [navigate]);
+  const { signIn } = useContext(AuthContext);
 
   const [isLoginView, setIsLoginView] = useState(true);
   const [isFindIdView, setIsFindIdView] = useState(false);
@@ -49,31 +38,45 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, username, password } = e.target.elements;
+    const { username,  email, password } = e.target.elements;
     const userData = {
+      user_name : isLoginView ? "" : username.value,
       email: email.value,
-      user_name: isLoginView ? null : username.value,
       password: password.value,
     };
-  
-    const endpoint = isLoginView ? '/api/auth/login' : '/api/auth/signup';
-    const apiUrl = `http://localhost:8080${endpoint}`;
-  
-    try {
-      const response = await axios.post(apiUrl, userData);
-      
-      if (response.data.accessToken) {
-        localStorage.setItem('accessToken', response.data.accessToken);
-        navigate('/friends');
-      } else {
-        throw new Error('No access token received');
+
+
+    if(isLoginView){
+      try {
+        const response = await authService.login(userData);
+        if (response.data.accessToken) {
+          signIn(response.data.accessToken, userData);
+          
+          navigate('/friends');
+        } else {
+          throw new Error('No access token received');
+        }
+      } catch (error) {
+        setWarningMessage(`${error.response.data.error}`);
       }
-    } catch (error) {
-      isLoginView ? setWarningMessage('ID가 없습니다.') : setWarningMessage('이미 존재하는 ID입니다.');
     }
-    
+    else{
+      try {
+        const response = await authService.signUp(userData);
+        if (response.data.accessToken) {
+          signIn(response.data.accessToken, userData);
+          
+          navigate('/friends');
+        } else {
+          throw new Error('No access token received');
+        }
+      } catch (error) {
+        console.log(error)
+        setWarningMessage(`${error.response.data.error}`);
+      }
+    }
   };
-  
+
   if (isFindIdView) {
     return <div>ID 찾기</div>;
   }

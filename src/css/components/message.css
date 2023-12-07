@@ -5,26 +5,26 @@
   }
   
   .message-row img {
-    width: 40px; /* Adjust size as needed */
+    width: 40px;
     height: 40px;
     border-radius: 20px;
     margin-right: 10px;
   }
   
   .message-row__content {
-    max-width: 80%; /* Adjust as needed */
+    max-width: 80%;
   }
   
   .message__author {
     font-weight: bold;
     margin-bottom: 10px;
-    display: block; /* Or inline-block */
+    display: block; 
   }
   
   .message__bubble {
     padding: 10px;
     border-radius: 20px;
-    background-color: #f1f1f1; /* Adjust color as needed */
+    background-color: #f1f1f1; 
     margin-right: 10px;
     max-width: fit-content;
   }
@@ -32,29 +32,27 @@
   .message__time {
     font-size: 0.8rem;
     color: #888;
-    display: block; /* Or inline-block */
+    display: block; 
     text-align: right;
   }
   
-  /* Styles for own messages */
   .message-row--own {
     justify-content: flex-end;
   }
   
   .message-row--own .message__bubble {
-    background-color: #fee500; /* KakaoTalk yellow for own messages */
+    background-color: #fee500; 
   }
   
-  /* Reply Form Styles */
   .reply {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    background-color: #fff; /* Adjust as needed */
+    background-color: #fff;
     position: fixed;
     bottom: 0;
-    width: 100%; /* Adjust as needed */
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional */
+    width: 100%; 
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
   }
   
   .reply__column {
@@ -67,7 +65,7 @@
     margin: 0 10px;
     padding: 5px 10px;
     border-radius: 20px;
-    border: 1px solid #ccc; /* Adjust as needed */
+    border: 1px solid #ccc;
   }
   
   .reply button {
@@ -76,11 +74,10 @@
     cursor: pointer;
   }
   
-  /* Make sure the FontAwesome icons are the correct size */
   .fa-lg {
-    font-size: 1.33333em; /* 20px */
+    font-size: 1.33333em;
   }
   
   .fa-arrow-up {
-    color: #fee500; /* Adjust as needed */
+    color: #fee500; 
   }
