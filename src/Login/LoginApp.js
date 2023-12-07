@@ -38,8 +38,9 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = e.target.elements;
+    const { username,  email, password } = e.target.elements;
     const userData = {
+      user_name : username.value,
       email: email.value,
       password: password.value,
     };
