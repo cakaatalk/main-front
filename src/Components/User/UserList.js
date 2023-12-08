@@ -29,7 +29,6 @@ function UserList() {
     async function fetchFriends() {
       try {
         const response = await UserService.getAllUserList();
-        console.log(response);
         setUserList(response.data);
       } catch (error) {
         if (error.response) {
