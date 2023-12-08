@@ -22,7 +22,6 @@ function UserList() {
   };
 
   const [maxHeight, setMaxHeight] = useState("auto");
-  const [friendsList, setFriendsList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [userList, setUserList] = useState([]);
 
@@ -30,8 +29,8 @@ function UserList() {
     async function fetchFriends() {
       try {
         const response = await UserService.getAllUserList();
-        console.log(response.data);
-        setFriendsList(response.data);
+        console.log(response);
+        setUserList(response.data);
       } catch (error) {
         if (error.response) {
           try {
@@ -76,7 +75,7 @@ function UserList() {
         const response = searchQuery
           ? await UserService.searchUser(searchQuery)
           : await UserService.getAllUserList();
-        setUserList(response.data.users);
+        setUserList(response.data);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -100,13 +99,13 @@ function UserList() {
       </div>
       <div className="friends-header">
         <h2 className="friends-list-title">
-          전체 유저{Array.isArray(friendsList) ? friendsList.length : 0}
+          전체 유저{Array.isArray(userList) ? userList.length : 0}
         </h2>
       </div>
       <div className="friends-divider"></div>
       <div className="friends-list">
-        {Array.isArray(friendsList) &&
-          friendsList.map((friend) => (
+        {Array.isArray(userList) &&
+          userList.map((friend) => (
             <UserComponent
               key={friend.id}
               avatar={friend.imageURL}

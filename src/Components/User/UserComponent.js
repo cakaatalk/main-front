@@ -3,7 +3,7 @@ import "../../css/components/friends.css";
 import { FaPen } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 
-function UserComponent({ avatar, name, subtitle, additionalContent, onEdit }) {
+function UserComponent({ avatar, name, subtitle, additionalContent }) {
   return (
     <div className="user-component">
       <img src={avatar} className="user-component__avatar" alt={name} />
