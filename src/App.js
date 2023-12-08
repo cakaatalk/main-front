@@ -1,34 +1,31 @@
-import { Routes, Route } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
-import FriendApp from './Friends/FriendApp'; 
-import LoginPage from './Login/LoginApp'; 
-import Chats from './Chat/ChatsApp';
-import More from './More/MoreApp';
-import ChatApp from './Chat-Room/ChatApp';
-import { AuthProvider } from './AuthContext';
+import React, { useState, useContext, useEffect } from "react";
+import LoginPage from "./Pages/Auth/LoginPage";
+import { AuthProvider, AuthContext } from "./Contexts/AuthContext";
 
-import "./css/components/scrollBar.css"
-import './css/components/styles.css'
+import "./css/components/scrollBar.css";
+import "./css/components/styles.css";
+import Main from "./Pages/Main/Main";
 
 function App() {
+  const [route, setRoute] = useState(window.location.pathname);
 
-  return (
-    <AuthProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={
-          <div>
-            <LoginPage />
-          </div>
-        } />
-        <Route path="/friends" element={<FriendApp />} />
-        <Route path="/chats" element={<Chats />} />
-        <Route path="/more" element={<More />} />
-        <Route path="/chat/:chatId" element={<ChatApp />} />
-      </Routes>
-    </BrowserRouter>
-    </AuthProvider>
-  );
+  let Component;
+
+  switch (route) {
+    case "/":
+      Component = <LoginPage />;
+      break;
+    case "/main":
+      Component = <Main />;
+      break;
+    case "/chat":
+      // Component = <Chats />;
+      break;
+    default:
+      Component = <div>404 Not Found</div>;
+  }
+
+  return <div>{Component}</div>;
 }
 
 export default App;
