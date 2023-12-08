@@ -1,7 +1,7 @@
 import React from "react";
-import ChatHeader from "../../Components/Chat/ChatHeader";
-import ReplyForm from "../../Components/Chat/ReplyForm";
-import ChatScreen from "../../Components/Chat/ChatScreen";
+import ChatHeader from "./ChatHeader";
+import ReplyForm from "./ReplyForm";
+import ChatScreen from "./ChatScreen";
 
 function ChatApp() {
   return (
