@@ -8,55 +8,60 @@ import { AuthContext } from "../../../Contexts/AuthContext";
 function InputArea(props) {
   const [warningMessage, setWarningMessage] = useState("");
   const { signIn } = useContext(AuthContext);
-  const handleSubmit = async (e) => {
+
+  const loginHandler = async (e) => {
     
+    const { email, password } = e.target.elements;
+    const userData = {
+      email: email.value,
+      password: password.value,
+    };
+  
+    try {
+      const response = await authService.login(userData);
+      if (response) {
+        signIn(response, userData);
+        window.location.href = "/main";
+      } else {
+        throw new Error("No access token received");
+      }
+    } catch (error) {
+      setWarningMessage(`${error.response.data.error}`);
+    }
+  };
+
+  const signUpHandler = async (e) => {
+    const { name, email, password } = e.target.elements;
+    const userData = {
+      user_name: name.value,
+      email: email.value,
+      password: password.value,
+    };
+    try {
+      const response = await authService.signUp(userData);
+      if (response) {
+        
+        signIn(response, userData);
+        window.location.href = "/main";
+      } else {
+        throw new Error("No access token received");
+      }
+    } catch (error) {
+      setWarningMessage(`${error.response.data.error}`);
+    }
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    props.isLoginView ? (
-      async () => {
-        const { email, password } = e.target.elements;
-        const userData = {
-          email: email.value,
-          password: password.value,
-        };
-        try {
-          const response = await authService.login(userData);
-          if (response.data.accessToken) {
-            signIn(response.data.accessToken, userData);
-            window.location.href = "/main";
-          } else {
-            throw new Error("No access token received");
-          }
-        } catch (error) {
-          setWarningMessage(`${error.response.data.error}`);
-        }
-      }
-    )() : (
-      async () => {
-        const { name, email, password } = e.target.elements;
-        const userData = {
-          user_name: name.value,
-          email: email.value,
-          password: password.value,
-        };
-        try {
-          const response = await authService.signUp(userData);
-          if (response.data.accessToken) {
-            signIn(response.data.accessToken, userData);
-            window.location.href = "/main";
-          } else {
-            throw new Error("No access token received");
-          }
-        } catch (error) {
-          setWarningMessage(`${error.response.data.error}`);
-        }
-      }
-    )();
-  } 
+    props.isLoginView === 1 ? loginHandler(e) : signUpHandler(e);
+  };
 
   return (
     <>
       <h1 className="login-header">
-        {props.isLoginView === 1 ? "\"CaKaA Talk 로그인\"" : "\"CaKaA Talk 회원가입"}
+        {props.isLoginView === 1
+          ? "\"CaKaA Talk 로그인\""
+          : "\"CaKaA Talk 회원가입\""}
       </h1>
       {props.isLoginView === 1 ? (
         <CommonForm
@@ -106,7 +111,6 @@ function InputArea(props) {
       {warningMessage && <WarningMessage message={warningMessage} />}
     </>
   );
-  
 }
 
 export default InputArea;

@@ -29,15 +29,12 @@ function UserList() {
     async function fetchFriends() {
       try {
         const response = await UserService.getAllUserList();
-        setUserList(response.data);
+        setUserList(response);
       } catch (error) {
         if (error.response) {
           try {
             const refreshResponse = await AuthService.refreshAccessToken();
-            localStorage.setItem(
-              "accessToken",
-              refreshResponse.data.accessToken
-            );
+            localStorage.setItem("accessToken",refreshResponse.data.accessToken);
             return fetchFriends();
           } catch (refreshError) {
             console.error("Error refreshing token:", refreshError);
@@ -74,7 +71,7 @@ function UserList() {
         const response = searchQuery
           ? await UserService.searchUser(searchQuery)
           : await UserService.getAllUserList();
-        setUserList(response.data);
+        setUserList(response);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
