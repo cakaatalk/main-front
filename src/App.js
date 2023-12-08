@@ -1,4 +1,4 @@
-import React, { useState, } from "react";
+import React, { useState, useEffect } from "react";
 import LoginPage from "./Pages/Auth/LoginPage";
 
 import "./css/components/scrollBar.css";
@@ -9,29 +9,47 @@ import FindAccount from "./Pages/FindAccount/FindAccount";
 
 function App() {
   const [route, setRoute] = useState(window.location.pathname);
-  let Component;
 
-  switch (route) {
-    case "/":
-      Component = <LoginPage />;
-      break;
-    case "/main":
-      Component = <Main />;
-      break;
-    case "/chat":
-      // Component = <Chats />; 
-      break;
-    case "/signUp":
-      Component = <SignUp />;
-      break;
-      case "/findAccount":
-        Component = <FindAccount />;
-        break;  
-    default:
-      Component = <div>404 Not Found</div>;
-  }
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setRoute(window.location.pathname);
+    };
 
-  return <div>{Component}</div>;
+    window.addEventListener('popstate', handleLocationChange);
+
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+    };
+  }, []);
+
+  const isAuthenticated = () => {
+    return localStorage.getItem("accessToken") !== null;
+  };
+
+  const renderComponent = () => {
+    if (isAuthenticated()) {
+      switch (route) {
+        case "/":
+        case "/login":
+          return <LoginPage />;
+        case "/main":
+          return <Main />;
+        case "/chat":
+          // return <Chats />;
+          return <div>Chat Page</div>; 
+        case "/signUp":
+          return <SignUp />;
+        case "/findAccount":
+          return <FindAccount />;
+        default:
+          return <div>404 Not Found</div>;
+      }
+    } else {
+      return <LoginPage />;
+    }
+  };
+
+  return <div>{renderComponent()}</div>;
 }
 
 export default App;
