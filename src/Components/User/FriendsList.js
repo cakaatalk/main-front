@@ -1,6 +1,7 @@
 import React from "react";
 import UserComponent from "./UserComponent";
 import UserService from "../../API/UserService";
+import ChatService from "../../API/ChatService";
 import AuthService from "../../API/AuthService";
 import { faCommentAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -57,7 +58,21 @@ function FriendsList() {
 
     return () => window.removeEventListener("resize", updateMaxHeight);
   }, []);
-
+  const enterRoom = async (userId) => {
+    let roomId;
+    try {
+      roomId = await ChatService.getPersonalRoomId(userId);
+      localStorage.setItem("roomId", roomId.data.room_id);
+      window.location.href = `/chat`;
+    } catch (error) {
+      try {
+        const refreshResponse = await AuthService.refreshAccessToken();
+        localStorage.setItem("accessToken", refreshResponse.data.accessToken);
+      } catch (refreshError) {
+        console.error("Error refreshing token:", refreshError);
+      }
+    }
+  };
   return (
     <div className="friends-list-container" style={{ maxHeight }}>
       <div className="friends-header">
@@ -73,8 +88,8 @@ function FriendsList() {
             subtitle={friend.comment}
             additionalContent={
               <div
-                to={`/chat/${friend.id}`}
                 className="additional-content-link"
+                onClick={() => enterRoom(friend.id)}
               >
                 {additionalContent}{" "}
               </div>

@@ -5,6 +5,7 @@ import { AuthProvider, AuthContext } from "./Contexts/AuthContext";
 import "./css/components/scrollBar.css";
 import "./css/components/styles.css";
 import Main from "./Pages/Main/Main";
+import Chat from "./Pages/Chat/Chat";
 
 function App() {
   const [route, setRoute] = useState(window.location.pathname);
@@ -19,7 +20,7 @@ function App() {
       Component = <Main />;
       break;
     case "/chat":
-      // Component = <Chats />;
+      Component = <Chat />;
       break;
     default:
       Component = <div>404 Not Found</div>;

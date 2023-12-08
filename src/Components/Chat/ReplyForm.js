@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSocket } from "../Context/socketContext";
+import { useSocket } from "../../Contexts/SocketContext";
 import {
   faPlusSquare,
   faSmileWink,
   faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 import useTimeAndBattery from "../Common/UseTimeAndBattery";
-import "../css/components/replyForm.css";
+import "../../css/components/replyForm.css";
 
 function ReplyForm() {
   const socket = useSocket();
