@@ -1,5 +1,5 @@
 import React from 'react';
-import "../css/components/message.css"
+import "../../css/components/message.css"
 
 function Message({ author, content, time, isOwnMessage }) {
   const messageRowClass = `message-row ${isOwnMessage ? 'message-row--own' : ''}`;

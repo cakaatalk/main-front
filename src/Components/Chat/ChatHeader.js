@@ -6,7 +6,7 @@ import {
   faSearch,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import "../css/components/chatHeader.css";
+import "../../css/components/chatHeader.css";
 
 function ChatHeader({ title }) {
   return (

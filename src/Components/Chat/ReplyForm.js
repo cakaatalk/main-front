@@ -6,7 +6,7 @@ import {
   faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 import useTimeAndBattery from "../Common/UseTimeAndBattery";
-import "../css/components/replyForm.css";
+import "../../css/components/replyForm.css";
 
 function ReplyForm() {
   const { currentTime } = useTimeAndBattery();
