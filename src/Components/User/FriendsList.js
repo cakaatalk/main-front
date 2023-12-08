@@ -61,7 +61,7 @@ function FriendsList() {
   return (
     <div className="friends-list-container" style={{ maxHeight }}>
       <div className="friends-header">
-        <h2 className="friends-list-title">친구{friendsList.length}</h2>
+        <h2 className="friends-list-title">친구  {friendsList.length}</h2>
       </div>
       <div className="friends-divider"></div>
       <div className="friends-list">

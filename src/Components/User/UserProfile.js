@@ -36,7 +36,7 @@ function UserProfile() {
     fetchProfile();
   }, [accessToken]);
 
-  const additionalContent = <FontAwesomeIcon icon={faCommentAlt} size="2x" />;
+  const additionalContent = <FontAwesomeIcon icon={faCommentAlt} size="lg" />;
 
   const handleEdit = () => {
     setIsEditing(true);

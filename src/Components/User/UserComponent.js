@@ -1,6 +1,7 @@
 import React from "react";
 import "../../css/components/friends.css";
 import { FaPen } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 
 function UserComponent({ avatar, name, subtitle, additionalContent, onEdit }) {
   return (
@@ -12,7 +13,7 @@ function UserComponent({ avatar, name, subtitle, additionalContent, onEdit }) {
       </div>
       {onEdit && (
         <button onClick={onEdit} className="user-component__edit-button">
-          <FaPen />
+          상태메시지 <FaPlus className="plus-icon" />
         </button>
       )}
       {additionalContent && (
