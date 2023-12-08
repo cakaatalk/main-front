@@ -109,12 +109,13 @@ function UserList() {
       <div className="friends-header">
         <h2 className="friends-list-title">
           전체 유저{Array.isArray(userList) ? userList.length : 0}
+          <button className="toggle-friends-button" onClick={toggleAddedFriends}>
+            {showAddedFriends ? "추가된 친구 숨기기" : "모든 친구 보기"}
+          </button>
         </h2>
       </div>
       <div className="friends-divider"></div>
-      <button onClick={toggleAddedFriends}>
-        {showAddedFriends ? "Hide Added Friends" : "Show Added Friends"}
-      </button>
+      
       <div className="friends-list">
         {Array.isArray(userList) &&
           userList

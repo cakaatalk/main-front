@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/components/friends.css";
+import "../../css/components/userProfile.css";
 import Pen from "../../assets/pen-icon.png";
 
 function ProfileComponent({ avatar, name, subtitle, onEdit }) {

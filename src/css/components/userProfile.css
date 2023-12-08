@@ -126,3 +126,26 @@
   line-height: 48px;
   color: #111010;
 }
+
+.toggle-friends-button {
+ 
+  padding: 1px 2px;
+  margin: 10px 0;
+  background-color: #4CAF50; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.toggle-friends-button:hover {
+  background-color: #45a049; 
+}
+
+.toggle-friends-button {
+  margin-left: 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+}

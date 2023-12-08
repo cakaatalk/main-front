@@ -47,7 +47,12 @@ function InputArea(props) {
         throw new Error("No access token received");
       }
     } catch (error) {
-      setWarningMessage(`${error.response.data.error}`);
+      if (error.response && error.response.data) {
+        setWarningMessage(`${error.response.data.error}`);
+      } else {
+        setWarningMessage('An unexpected error occurred');
+        console.error(error);
+      }
     }
   };
 
