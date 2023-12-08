@@ -1,6 +1,6 @@
 import React from "react";
 import "../../css/components/friends.css";
-import { FaPen } from "react-icons/fa";
+import Pen from "../../assets/pen-icon.png";
 
 function ProfileComponent({ avatar, name, subtitle, onEdit }) {
   return (
@@ -11,7 +11,7 @@ function ProfileComponent({ avatar, name, subtitle, onEdit }) {
         {subtitle && <p className="user-component__subtitle">{subtitle}</p>}
       </div>
       <button onClick={onEdit} className="user-component__edit-button">
-        <FaPen />
+        <img src={Pen} alt="Edit" />
       </button>
     </div>
   );

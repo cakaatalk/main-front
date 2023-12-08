@@ -1,11 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleLeft,
-  faSearch,
-  faBars,
-} from "@fortawesome/free-solid-svg-icons";
 import "../css/components/chatHeader.css";
 
 function ChatHeader({ title }) {
@@ -13,7 +7,7 @@ function ChatHeader({ title }) {
     <header className="alt-header">
       <div className="alt-header__column">
         <Link to="/chats">
-          <FontAwesomeIcon icon={faAngleLeft} size="3x" />
+          {/* <FontAwesomeIcon icon={faAngleLeft} size="3x" /> */}
         </Link>
       </div>
 

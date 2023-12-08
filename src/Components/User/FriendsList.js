@@ -2,32 +2,29 @@ import React from "react";
 import UserComponent from "./UserComponent";
 import UserService from "../../API/UserService";
 import AuthService from "../../API/AuthService";
-import { faCommentAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Comment from "../../assets/comment-icon.png";
+
 import { useEffect, useState } from "react";
 
 import "../../css/components/friendList.css";
 
 function FriendsList() {
-  const additionalContent = <FontAwesomeIcon icon={faCommentAlt} size="2x" />;
+  const additionalContent = <img src={Comment} alt={"Comment"} />
   const [maxHeight, setMaxHeight] = useState("auto");
   const [friendsList, setFriendsList] = useState([]);
 
   useEffect(() => {
     async function fetchFriends() {
-      const refreshToken = localStorage.getItem("refreshToken");
-
       try {
         const response = await UserService.getFriendList();
-        setFriendsList(response.data.users);
+        if (response && Array.isArray(response.users)) {
+          setFriendsList(response.users);
+        }
       } catch (error) {
-        if (error.response && refreshToken) {
+        if (error.response) {
           try {
             const refreshResponse = await AuthService.refreshAccessToken();
-            localStorage.setItem(
-              "accessToken",
-              refreshResponse.data.accessToken
-            );
+            localStorage.setItem("accessToken", refreshResponse.data.accessToken);
             return fetchFriends();
           } catch (refreshError) {
             console.error("Error refreshing token:", refreshError);

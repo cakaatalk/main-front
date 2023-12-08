@@ -2,10 +2,10 @@ import React from "react";
 import UserComponent from "../User/UserComponent";
 import UserService from "../../API/UserService";
 import AuthService from "../../API/AuthService";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import Add from "../../assets/add-friend-icon.png";
+import Search from "../../assets/search-icon.png";
+
 
 function UserList() {
   const handleAddFriend = async (userId) => {
@@ -29,16 +29,12 @@ function UserList() {
     async function fetchFriends() {
       try {
         const response = await UserService.getAllUserList();
-        console.log(response);
-        setUserList(response.data);
+        setUserList(response);
       } catch (error) {
         if (error.response) {
           try {
             const refreshResponse = await AuthService.refreshAccessToken();
-            localStorage.setItem(
-              "accessToken",
-              refreshResponse.data.accessToken
-            );
+            localStorage.setItem("accessToken",refreshResponse.data.accessToken);
             return fetchFriends();
           } catch (refreshError) {
             console.error("Error refreshing token:", refreshError);
@@ -75,7 +71,7 @@ function UserList() {
         const response = searchQuery
           ? await UserService.searchUser(searchQuery)
           : await UserService.getAllUserList();
-        setUserList(response.data);
+        setUserList(response);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -88,7 +84,7 @@ function UserList() {
     <div className="friends-list-container" style={{ maxHeight }}>
       <div className="search-box">
         <div className="search-icon"></div>
-        <FontAwesomeIcon icon={faSearch} className="search-icon" />
+          <img src={Search} alt={"Search"} />
         <input
           type="text"
           placeholder="이름 검색"
@@ -113,11 +109,7 @@ function UserList() {
               subtitle={friend.comment}
               bold={true}
               additionalContent={() => (
-                <FontAwesomeIcon
-                  icon={faUserPlus}
-                  size="2x"
-                  onClick={() => handleAddFriend(friend.id)}
-                />
+                <img src={Add} alt={"Add"} />
               )}
             />
           ))}

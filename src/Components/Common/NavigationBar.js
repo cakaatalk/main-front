@@ -42,7 +42,7 @@ function NavigationBar({ state, setState }) {
             <FontAwesomeIcon icon={faEllipsisH} size="2x" />
           </div>
         </li>
-        <li className="nav__btn">
+        {/* <li className="nav__btn">
           <div
             className="nav__link"
             onClick={() => {
@@ -51,7 +51,7 @@ function NavigationBar({ state, setState }) {
           >
             <FontAwesomeIcon icon={faEllipsisH} size="2x" />
           </div>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
