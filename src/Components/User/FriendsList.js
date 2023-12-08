@@ -69,10 +69,7 @@ function FriendsList() {
             name={friend.name}
             subtitle={friend.comment}
             additionalContent={
-              <div
-                to={`/chat/${friend.id}`}
-                className="additional-content-link"
-              >
+              <div to={`/chat/${friend.id}`} className="additional-content-link" >
                 {additionalContent}{" "}
               </div>
             }
