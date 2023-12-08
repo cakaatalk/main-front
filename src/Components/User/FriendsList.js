@@ -2,14 +2,14 @@ import React from "react";
 import UserComponent from "./UserComponent";
 import UserService from "../../API/UserService";
 import AuthService from "../../API/AuthService";
-import { faCommentAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Comment from "../../assets/comment-icon.png";
+
 import { useEffect, useState } from "react";
 
 import "../../css/components/friendList.css";
 
 function FriendsList() {
-  const additionalContent = <FontAwesomeIcon icon={faCommentAlt} size="2x" />;
+  const additionalContent = <img src={Comment} alt={"Comment"} />
   const [maxHeight, setMaxHeight] = useState("auto");
   const [friendsList, setFriendsList] = useState([]);
 
