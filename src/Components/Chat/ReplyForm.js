@@ -5,7 +5,7 @@ import {
   faSmileWink,
   faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
-import useTimeAndBattery from "../Components/Common/UseTimeAndBattery";
+import useTimeAndBattery from "../Common/UseTimeAndBattery";
 import "../css/components/replyForm.css";
 
 function ReplyForm() {

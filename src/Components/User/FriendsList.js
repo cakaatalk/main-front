@@ -71,7 +71,14 @@ function FriendsList() {
             avatar={friend.imageURL}
             name={friend.name}
             subtitle={friend.comment}
-            bold={true}
+            additionalContent={
+              <div
+                to={`/chat/${friend.id}`}
+                className="additional-content-link"
+              >
+                {additionalContent}{" "}
+              </div>
+            }
           />
         ))}
       </div>

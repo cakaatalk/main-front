@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import UserComponent from "./UserComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCommentAlt } from "@fortawesome/free-solid-svg-icons";
 import UserService from "../../API/UserService";
 import AuthService from "../../API/AuthService";
+import ProfileComponent from "./ProfileComponent";
 
 function UserProfile() {
   const accessToken = localStorage.getItem("accessToken");
@@ -52,7 +52,7 @@ function UserProfile() {
   };
 
   return (
-    <UserComponent
+    <ProfileComponent
       avatar={userProfile}
       name={userName}
       subtitle={
@@ -67,8 +67,6 @@ function UserProfile() {
           subtitle
         )
       }
-      bold={true}
-      additionalContent={additionalContent}
       onEdit={handleEdit}
     />
   );
