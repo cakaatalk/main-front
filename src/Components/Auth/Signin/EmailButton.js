@@ -1,16 +1,10 @@
 import React, { useState } from "react";
 
-function EmailButton({
-  onClick,
-  text,
-  email,
-  setWarningMessage,
-  setViewable,
-  disableValue,
-}) {
+function EmailButton({onClick,text,email,setWarningMessage,setViewable,disableValue,})
+{
   const [verifyNum, setVerifyNum] = useState("");
   const [verificationComplete, setVerificationComplete] = useState(false);
-  const [verifyText, setVerifyText] = useState("인증");
+  const [verifyText, setVerifyText] = useState("확인");
 
   const onValueChange = (e) => {
     setWarningMessage(``);
@@ -49,7 +43,9 @@ function EmailButton({
   };
 
   return (
-    <div className="email-verification-div">
+    
+    <div className="email-verification-container">
+     
       <button
         type="button"
         className="email-button"
@@ -58,11 +54,12 @@ function EmailButton({
       >
         {text}
       </button>
+      
       <input
         type="text"
         value={verifyNum}
         onChange={onValueChange}
-        placeholder="Verification Number"
+        placeholder="인증번호"
         className="email-verification-input"
       />
       <input

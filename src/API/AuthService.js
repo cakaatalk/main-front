@@ -18,7 +18,6 @@ const AuthService = {
     return data.accessToken;
   },
   login: async (userData) => {
-    console.log(API_Auth_URL);
     const response = await fetch(`${API_Auth_URL}/login`, {
       method: 'POST',
       headers: {
