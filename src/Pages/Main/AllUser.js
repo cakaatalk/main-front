@@ -3,7 +3,9 @@ import UserList from "../../Components/User/UserList";
 function AllUser() {
   return (
     <div>
-      <h1 className="friend-add">친구 추가</h1>
+      <div className="friends-header">
+        <h1 className="friend-text">친구 추가</h1>
+      </div>
       <main className="main-screen more-screen">
           <UserList />
       </main>
