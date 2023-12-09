@@ -98,7 +98,7 @@ function UserList() {
       <div className="friends-list-container" style={{ maxHeight }}>
         <div className="search-box">
           <div className="search-icon"></div>
-          <img src={Search} alt={"Search"} />
+          <img src={Search} alt={"Search"} height="30" />
 
           <input
             type="text"
@@ -128,29 +128,32 @@ function UserList() {
             .filter(
               (friend) => showAddedFriends || !addedFriends.includes(friend.id)
             )
-            .map((friend) => (
-              <UserComponent
-                key={friend.id}
-                avatar={
-                  !friend.profileImage
-                    ? "http://localhost:8040/uploads/default-profile.png"
-                    : friend.profileImage
-                }
-                name={friend.name}
-                subtitle={friend.comment}
-                bold={true}
-                additionalContent={() =>
-                  !addedFriends.includes(friend.id) && (
-                    <img
-                      src={Add}
-                      alt={"Add"}
-                      className="add-friend-icon"
-                      onClick={() => handleAddFriend(friend.id)}
-                    />
-                  )
-                }
-              />
-            ))}
+            .map((friend) => {
+              console.log(friend);
+              return (
+                <UserComponent
+                  key={friend.id}
+                  avatar={
+                    !friend.profileImage
+                      ? "http://localhost:8040/uploads/default-profile.png"
+                      : friend.profileImage
+                  }
+                  name={friend.name}
+                  subtitle={friend.comment}
+                  bold={true}
+                  additionalContent={() =>
+                    !addedFriends.includes(friend.id) && (
+                      <img
+                        src={Add}
+                        alt={"Add"}
+                        className="add-friend-icon"
+                        onClick={() => handleAddFriend(friend.id)}
+                      />
+                    )
+                  }
+                />
+              );
+            })}
       </div>
     </>
   );
