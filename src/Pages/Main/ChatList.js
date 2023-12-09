@@ -38,6 +38,12 @@ function ChatList() {
     }
   }
 
+  const onClickRoom = (chatId) => {
+    console.log(chatId);
+    localStorage.setItem("roomId", chatId);
+    window.location.href = `/chat`;
+  }
+
   return (
     <div>
       <div className="screen-header">
@@ -60,6 +66,7 @@ function ChatList() {
               time={room.time}
               badgeCount={room.badgeCount}
               chatId={room.room_id}
+              onClick={() => onClickRoom(room.room_id)}
             />
           ))}
       </main>
