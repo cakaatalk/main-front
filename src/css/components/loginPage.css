@@ -93,11 +93,15 @@
 
 .email-button {
   display: inline;
+  font-weight: 700;
+  font-size: 13px;
+  color: #818080;
   border: none;
   padding: 5px;
   width: 60px;
   border-radius: 10%;
   margin: 0;
+  margin-right: 10px;
 }
 
 .email-button:hover {
@@ -108,7 +112,7 @@
 .email-verification-input {
   display: inline;
   margin-bottom: 0;
-  width: 100%;
+  width: 60%;
   max-width: 300px;
 }
 
@@ -119,6 +123,10 @@
 
 .login-button:hover {
   background-color: #5a92c5;
+}
+
+.email-checkbox {
+  margin-left: 10px;
 }
 
 .additional-options {

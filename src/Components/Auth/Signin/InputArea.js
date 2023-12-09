@@ -40,20 +40,15 @@ function InputArea(props) {
     };
     try {
       const response = await authService.signUp(userData);
+      console.log(response);
       if (response) {
-
+        console.log(response);
         signIn(response, userData);
         window.location.href = "/main";
-      } else {
-        throw new Error("No access token received");
       }
     } catch (error) {
-      if (error.response && error.response.data) {
-        setWarningMessage(`${error.response.data.error}`);
-      } else {
-        setWarningMessage('An unexpected error occurred');
-        console.error(error);
-      }
+      setWarningMessage(`${error}`);
+      console.log(error);
     }
   };
 
@@ -73,6 +68,7 @@ function InputArea(props) {
         <CommonForm
           onSubmit={handleSubmit}
           buttonText="로그인"
+          setWarningMessage={setWarningMessage}
           fields={[
             {
               name: "email",
@@ -92,6 +88,7 @@ function InputArea(props) {
         <CommonForm
           onSubmit={handleSubmit}
           buttonText="회원가입"
+          setWarningMessage={setWarningMessage}
           fields={[
             {
               name: "name",

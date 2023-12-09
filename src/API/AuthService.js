@@ -10,7 +10,10 @@ const AuthService = {
       body: JSON.stringify(userData)
     });
     const data = await response.json();
-    return data.accessToken; 
+    if (data.error) {
+      throw data.error
+    }
+    return data.accessToken;
   },
   login: async (userData) => {
     const response = await fetch(`${API_Auth_URL}/login`, {
@@ -21,20 +24,20 @@ const AuthService = {
       body: JSON.stringify(userData)
     });
     const data = await response.json();
-    return data.accessToken; 
+    return data.accessToken;
   },
   logout: async () => {
     const response = await fetch(`${API_Auth_URL}/logout`, {
       method: 'POST'
     });
-    return response.json(); 
+    return response.json();
   },
   refreshAccessToken: async () => {
     const response = await fetch(`${API_Auth_URL}/refresh`, {
       method: 'GET'
     });
     const data = await response.json();
-    return data.accessToken; 
+    return data.accessToken;
   },
 };
 
