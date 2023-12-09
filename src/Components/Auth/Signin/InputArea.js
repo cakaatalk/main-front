@@ -7,16 +7,17 @@ import { AuthContext } from "../../../Contexts/AuthContext";
 
 function InputArea(props) {
   const [warningMessage, setWarningMessage] = useState("");
+  const VERIFICATION_SEND = true;
   const { signIn } = useContext(AuthContext);
 
   const loginHandler = async (e) => {
-    
+
     const { email, password } = e.target.elements;
     const userData = {
       email: email.value,
       password: password.value,
     };
-  
+
     try {
       const response = await authService.login(userData);
       if (response) {
@@ -40,7 +41,7 @@ function InputArea(props) {
     try {
       const response = await authService.signUp(userData);
       if (response) {
-        
+
         signIn(response, userData);
         window.location.href = "/main";
       } else {
@@ -65,8 +66,8 @@ function InputArea(props) {
     <>
       <h1 className="login-header">
         {props.isLoginView === 1
-          ? "\"CaKaA Talk 로그인\""
-          : "\"CaKaA Talk 회원가입\""}
+          ? "Hello, CaKaA-Talk"
+          : "Welcome, CaKaA-Talk"}
       </h1>
       {props.isLoginView === 1 ? (
         <CommonForm
@@ -102,7 +103,7 @@ function InputArea(props) {
               name: "email",
               type: "text",
               placeholder: "Ajou University Email (@ajou.ac.kr)",
-              className: "input-email",
+              className: "input-email verify-email",
             },
             {
               name: "password",
@@ -111,6 +112,7 @@ function InputArea(props) {
               className: "input-password",
             },
           ]}
+          showVerificationButton={VERIFICATION_SEND}
         />
       )}
       {warningMessage && <WarningMessage message={warningMessage} />}

@@ -2,7 +2,7 @@ function AuthNavigation({ isLoginView }) {
   return (
     <div className="additional-options">
       <span
-        onClick={()=>{
+        onClick={() => {
           isLoginView ? window.location.href = "/signUp" : window.location.href = "/";
         }}
         role="button"
@@ -12,30 +12,15 @@ function AuthNavigation({ isLoginView }) {
         {isLoginView ? "회원가입" : "로그인으로 돌아가기"}
       </span>
 
-      <span className="text-separator">/</span>
-
       <span
-        onClick={()=>{
+        onClick={() => {
           window.location.href = "/findAccount";
         }}
         role="button"
         tabIndex={0}
         className="text-button"
       >
-        아이디 찾기
-      </span>
-
-      <span className="text-separator">/</span>
-
-      <span
-        onClick={()=>{
-          window.location.href = "/findAccount";
-        }}
-        role="button"
-        tabIndex={0}
-        className="text-button"
-      >
-        패스워드 찾기
+        {isLoginView ? "비밀번호 찾기" : ""}
       </span>
     </div>
   );
