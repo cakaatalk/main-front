@@ -1,16 +1,19 @@
-import axios from "axios";
+import env from '../Components/Common/dotenv';
 
-const API_User_URL = "http://localhost:8080/api/chat";
+const API_User_URL = env.REACT_APP_API_BASE_URL + "/chat";
 const accessToken = localStorage.getItem("accessToken");
 
 const ChatService = {
-  getPersonalRoomId: async (userId) => { 
-    const response = await fetch(`${API_User_URL}/roomId/${userId}`, {
-      method: 'GET',
+  getRoomId: async (users) => { 
+    const response = await fetch(`${API_User_URL}/roomId`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `${accessToken}`,
       },
+      body : {
+        users
+      }
     });
     const data = await response.json();
     return data.room_id; 

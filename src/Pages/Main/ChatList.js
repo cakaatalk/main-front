@@ -1,7 +1,5 @@
 import React from "react";
 import "../../css/components/chatScreen.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import ChatService from "../../API/ChatService";
 import AuthService from "../../API/AuthService";

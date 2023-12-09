@@ -1,4 +1,6 @@
-const API_Auth_URL = "http://localhost:8080/api/auth";
+import env from '../Components/Common/dotenv';
+
+const API_Auth_URL = env.REACT_APP_API_BASE_URL + "/auth";
 
 const AuthService = {
   signUp: async (userData) => {
@@ -13,6 +15,7 @@ const AuthService = {
     return data.accessToken; 
   },
   login: async (userData) => {
+    console.log(API_Auth_URL);
     const response = await fetch(`${API_Auth_URL}/login`, {
       method: 'POST',
       headers: {

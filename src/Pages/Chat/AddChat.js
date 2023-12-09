@@ -83,7 +83,7 @@ function AddChat({ onClose }) {
     const onAddChat = async () => {
         let roomId;
         try {
-            roomId = await ChatService.getPersonalRoomId(selectedUsers);
+            roomId = await ChatService.getRoomId(selectedUsers);
             localStorage.setItem("roomId", roomId.data.room_id);
             window.location.href = `/chat`;
         } catch (error) {
