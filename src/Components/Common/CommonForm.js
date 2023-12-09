@@ -6,6 +6,8 @@ import { EmailButton } from '../Auth/Signin/EmailButton.js';
 function CommonForm({ onSubmit, buttonText, fields, showVerificationButton, setWarningMessage }) {
   const [emailMessage, setEmailMessage] = useState("전송");
   const [emailValue, setEmailValue] = useState("");
+  const [disableValue, setDisableValue] = useState(false);
+  const [viewable, setViewable] = useState("none");
 
 
   const emailVerificationSend = async () => {
@@ -59,6 +61,9 @@ function CommonForm({ onSubmit, buttonText, fields, showVerificationButton, setW
               onClick={emailVerificationSend}
               email={emailValue}
               setWarningMessage={setWarningMessage}
+              viewable={viewable}
+              setViewable={setViewable}
+              disableValue={disableValue}
             />
           )}
         </div>
