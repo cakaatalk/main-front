@@ -7,26 +7,26 @@ import { AuthContext } from "../../../Contexts/AuthContext";
 
 function InputArea(props) {
   const [warningMessage, setWarningMessage] = useState("");
+  const VERIFICATION_SEND = true;
   const { signIn } = useContext(AuthContext);
 
   const loginHandler = async (e) => {
-    
+
     const { email, password } = e.target.elements;
     const userData = {
       email: email.value,
       password: password.value,
     };
-  
+
     try {
       const response = await authService.login(userData);
       if (response) {
         signIn(response, userData);
         window.location.href = "/main";
-      } else {
-        throw new Error("No access token received");
       }
     } catch (error) {
-      setWarningMessage(`${error.response.data.error}`);
+      setWarningMessage(`${error}`);
+      console.log(error);
     }
   };
 
@@ -39,20 +39,14 @@ function InputArea(props) {
     };
     try {
       const response = await authService.signUp(userData);
+      console.log(response);
       if (response) {
-        
         signIn(response, userData);
         window.location.href = "/main";
-      } else {
-        throw new Error("No access token received");
       }
     } catch (error) {
-      if (error.response && error.response.data) {
-        setWarningMessage(`${error.response.data.error}`);
-      } else {
-        setWarningMessage('An unexpected error occurred');
-        console.error(error);
-      }
+      setWarningMessage(`${error}`);
+      console.log(error);
     }
   };
 
@@ -65,13 +59,14 @@ function InputArea(props) {
     <>
       <h1 className="login-header">
         {props.isLoginView === 1
-          ? "\"CaKaA Talk 로그인\""
-          : "\"CaKaA Talk 회원가입\""}
+          ? "Hello, CaKaA-Talk"
+          : "Welcome, CaKaA-Talk"}
       </h1>
       {props.isLoginView === 1 ? (
         <CommonForm
           onSubmit={handleSubmit}
           buttonText="로그인"
+          setWarningMessage={setWarningMessage}
           fields={[
             {
               name: "email",
@@ -82,7 +77,7 @@ function InputArea(props) {
             {
               name: "password",
               type: "password",
-              placeholder: "password",
+              placeholder: "Password",
               className: "input-password",
             },
           ]}
@@ -91,6 +86,7 @@ function InputArea(props) {
         <CommonForm
           onSubmit={handleSubmit}
           buttonText="회원가입"
+          setWarningMessage={setWarningMessage}
           fields={[
             {
               name: "name",
@@ -102,15 +98,16 @@ function InputArea(props) {
               name: "email",
               type: "text",
               placeholder: "Ajou University Email (@ajou.ac.kr)",
-              className: "input-email",
+              className: "input-email verify-email",
             },
             {
               name: "password",
               type: "password",
-              placeholder: "password",
+              placeholder: "Password",
               className: "input-password",
             },
           ]}
+          showVerificationButton={VERIFICATION_SEND}
         />
       )}
       {warningMessage && <WarningMessage message={warningMessage} />}
