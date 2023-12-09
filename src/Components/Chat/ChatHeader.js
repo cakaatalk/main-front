@@ -2,8 +2,6 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
-  faSearch,
-  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import "../../css/components/chatHeader.css";
 

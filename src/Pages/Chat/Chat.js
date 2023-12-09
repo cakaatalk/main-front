@@ -7,7 +7,7 @@ function Chat() {
   return (
     <WebSocketProvider>
       <div id="chat-screen">
-        <ChatHeader title="니꼬" />
+        <ChatHeader title="" />
         <ChatScreen />
       </div>
     </WebSocketProvider>

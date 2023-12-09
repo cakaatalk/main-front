@@ -1,6 +1,5 @@
 import React from "react";
 import "../../css/components/friends.css";
-import { FaPen } from "react-icons/fa";
 
 function UserComponent({ avatar, name, subtitle, additionalContent }) {
   return (

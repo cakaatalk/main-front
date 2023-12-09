@@ -1,65 +1,72 @@
 import React from "react";
 import "../../css/components/chatScreen.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import UserService from "../../API/UserService";
+import ChatService from "../../API/ChatService";
 import AuthService from "../../API/AuthService";
-import UserComponent from "../../Components/User/UserComponent";
-
-function Header() {
-  return <h1 className="screen-header__title">채팅</h1>;
-}
+import UserMessage from "../../Components/Chat/UserMessage";
+import AddChat from "../Chat/AddChat";
 
 function ChatList() {
-  const [friendsList, setFriendsList] = useState([]);
+  const [roomlist, setRoomList] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    async function fetchFriends() {
-      const refreshToken = localStorage.getItem("refreshToken");
-
-      try {
-        const response = await UserService.getFriendList();
-        setFriendsList(response.data);
-      } catch (error) {
-        if (error.response && refreshToken) {
-          try {
-            const refreshResponse = await AuthService.refreshAccessToken();
-            localStorage.setItem(
-              "accessToken",
-              refreshResponse.data.accessToken
-            );
-            fetchFriends();
-          } catch (refreshError) {
-            console.error("Error refreshing token:", refreshError);
-          }
-        } else {
-          console.error("Error fetching friends:", error);
-        }
-      }
-    }
-
     fetchFriends();
   }, []);
 
+  async function fetchFriends() {
+    const refreshToken = localStorage.getItem("refreshToken");
+
+    try {
+      const response = await ChatService.getRoomList();
+      console.log(response.data);
+      setRoomList(response.data);
+    } catch (error) {
+      if (error.response && refreshToken) {
+        try {
+          const refreshResponse = await AuthService.refreshAccessToken();
+          localStorage.setItem(
+            "accessToken",
+            refreshResponse.data.accessToken
+          );
+          fetchFriends();
+        } catch (refreshError) {
+          console.error("Error refreshing token:", refreshError);
+        }
+      } else {
+        console.error("Error fetching friends:", error);
+      }
+    }
+  }
+
   return (
-    <>
+    <div>
       <div className="screen-header">
-        <Header />
-        <div className="screen-header__icons"></div>
+        <h1 className="header-title">채팅{roomlist.length}</h1>
+        <button onClick={() => setShowPopup(true)}>방만들기</button>
       </div>
+
+      {showPopup &&
+        <AddChat onClose={() => setShowPopup(false)}>
+        </AddChat>}
+
+
       <main className="main-screen">
-        {Array.isArray(friendsList) &&
-          friendsList.map((friend) => (
-            <UserComponent
-              key={friend.id}
-              avatar={friend.image_url}
-              name={friend.user_name}
-              subtitle={friend.comment}
-              bold={true}
-              // additionalContent= {additionalContent} //유저의 마지막 메세지를 표기하기로
+        {Array.isArray(roomlist) &&
+          roomlist.map((room) => (
+            <UserMessage
+              key={room.id}
+              avatar={room.avatar}
+              name={room.users}
+              time={room.time}
+              badgeCount={room.badgeCount}
+              chatId={room.room_id}
             />
           ))}
       </main>
-    </>
+    </div >
   );
 }
 

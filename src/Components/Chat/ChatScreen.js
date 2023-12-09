@@ -18,11 +18,8 @@ function ChatScreen() {
   useEffect(() => {
     fetchUserInfo();
     //메시지 받아오는 API
-
     sendMessageWhenReady(socket, { type: "joinRoom", data: { roomId } });
-
     socket.addEventListener("message", handleSocketMessage);
-
     return () => {
       socket.removeEventListener("message", handleSocketMessage);
     };
@@ -72,7 +69,6 @@ function ChatScreen() {
   };
 
   const handleSendMessage = () => {
-    // console.log({ userId, roomId, message });
     socket.send(
       JSON.stringify({ type: "sendmsg", data: { userName : userId, roomId, message } })
     );
