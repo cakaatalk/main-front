@@ -59,8 +59,8 @@ function InputArea(props) {
     <>
       <h1 className="login-header">
         {props.isLoginView === 1
-          ? "Hello, CaKaA-Talk"
-          : "Welcome, CaKaA-Talk"}
+          ? "CaKaA-Talk 로그인"
+          : "CaKaA-Talk 회원가입"}
       </h1>
       {props.isLoginView === 1 ? (
         <CommonForm
@@ -93,7 +93,6 @@ function InputArea(props) {
               type: "text",
               placeholder: "Name",
               className: "input-name",
-              
             },
             {
               name: "email",

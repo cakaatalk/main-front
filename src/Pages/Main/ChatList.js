@@ -38,10 +38,19 @@ function ChatList() {
     }
   }
 
-  const onClickRoom = (chatId) => {
-    console.log(chatId);
-    localStorage.setItem("roomId", chatId);
-    window.location.href = `/chat`;
+  const onClickRoom = async (roomId) => {
+    try {
+      localStorage.setItem("roomId", roomId);
+      localStorage.setItem("roomname", roomId);
+      window.location.href = `/chat`;
+    } catch (error) {
+      try {
+        const refreshResponse = await AuthService.refreshAccessToken();
+        localStorage.setItem("accessToken", refreshResponse.data.accessToken);
+      } catch (refreshError) {
+        console.error("Error refreshing token:", refreshError);
+      }
+    }
   }
 
   return (

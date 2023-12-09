@@ -16,11 +16,13 @@ function UserList() {
   const [maxHeight, setMaxHeight] = useState("auto");
   const [searchQuery, setSearchQuery] = useState("");
   const [userList, setUserList] = useState([]);
+  const [me, setUser] = useState([]);
 
   const handleAddFriend = async (userId) => {
     try {
       await UserService.addFriend(userId);
       setAddedFriends([...addedFriends, userId]);
+      setUserList(prevUserList => prevUserList.filter(user => user.id !== userId));
     } catch (error) {
       try {
         const refreshResponse = await AuthService.refreshAccessToken();
@@ -32,10 +34,12 @@ function UserList() {
   };
 
   useEffect(() => {
-    async function fetchFriends() {
+    async function fetchAllUser() {
       try {
         const response = await UserService.getAllUserList();
-        setUserList(response);
+        const profile  = await UserService.searchProfile();
+        setUser(profile);
+        setUserList(response.filter(user => user.id !== profile.id)); 
       } catch (error) {
         if (error.response) {
           try {
@@ -44,7 +48,7 @@ function UserList() {
               "accessToken",
               refreshResponse.data.accessToken
             );
-            return fetchFriends();
+            return fetchAllUser();
           } catch (refreshError) {
             console.error("Error refreshing token:", refreshError);
           }
@@ -54,7 +58,7 @@ function UserList() {
       }
     }
 
-    fetchFriends();
+    fetchAllUser();
 
     function updateMaxHeight() {
       const header = document.querySelector(".header");
@@ -77,17 +81,20 @@ function UserList() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = searchQuery
+        let response = searchQuery
           ? await UserService.searchUser(searchQuery)
           : await UserService.getAllUserList();
+  
+          response = response.filter(user => user.id !== me.id);
+  
         setUserList(response);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
     };
-
+  
     fetchUsers();
-  }, [searchQuery, addedFriends]);
+  }, [searchQuery, me]);
 
   const toggleAddedFriends = () => {
     setShowAddedFriends(!showAddedFriends);
@@ -97,8 +104,9 @@ function UserList() {
     <>
       <div className="friends-list-container" style={{ maxHeight }}>
         <div className="search-box">
-          <div className="search-icon"></div>
-          <img src={Search} alt={"Search"} />
+
+          <div className="search-icon">
+          <img src={Search} alt={"Search"} height="30" /></div>
 
           <input
             type="text"
@@ -108,10 +116,14 @@ function UserList() {
             className="search-input"
           />
         </div>
+       
       </div>
       <div className="friends-header">
         <h2 className="friends-list-title">
-          전체 유저{Array.isArray(userList) ? userList.length : 0}
+            전체 유저 { Array.isArray(userList) ? (
+          me ? userList.length : userList.length)
+          : 0
+           }
           <button
             className="toggle-friends-button"
             onClick={toggleAddedFriends}
@@ -125,10 +137,11 @@ function UserList() {
       <div className="friends-list">
         {Array.isArray(userList) &&
           userList
+            .filter(friend => friend.id !== me.id)
             .filter(
               (friend) => showAddedFriends || !addedFriends.includes(friend.id)
             )
-            .map((friend) => (
+            .map( friend => (
               <UserComponent
                 key={friend.id}
                 avatar={
@@ -151,6 +164,7 @@ function UserList() {
                 }
               />
             ))}
+
       </div>
     </>
   );
