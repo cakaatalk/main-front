@@ -16,9 +16,9 @@ function ProfileComponent({ avatar, name, subtitle, onEdit }) {
       {showPopup && (
         <ProfileUpdate
           onClose={() => setShowPopup(false)}
-          image={avatar}
+          origin_image={avatar}
           name={name}
-          comment={subtitle}
+          origin_comment={subtitle}
         />
       )}
       {/* <button onClick={onEdit} className="user-component__edit-button">

@@ -83,7 +83,11 @@ function FriendsList() {
         {friendsList.map((friend) => (
           <UserComponent
             key={friend.id}
-            avatar={friend.imageURL}
+            avatar={
+              friend.profileImage == null || friend.profileImage == ""
+                ? "http://localhost:8040/uploads/default-profile.png"
+                : friend.profileImage
+            }
             name={friend.name}
             subtitle={friend.comment}
             additionalContent={

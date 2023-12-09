@@ -1,11 +1,62 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
+import UserService from "../../API/UserService";
+const baseURL = "http://localhost:8040";
 
-function ProfileUpdate({ onClose, image, comment, name }) {
+function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(origin_image);
+  const [comment, setComment] = useState(origin_comment);
   const popupRef = useRef();
 
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const maxSize = 2 * 1024 * 1024; // 2MB in bytes
+    if (file.size > maxSize) {
+      alert("File size should be less than 2MB.");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await fetch(`${baseURL}/api/upload`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Image upload failed");
+      }
+
+      const data = await response.json();
+      setImageUrl(`${baseURL}${data.imageUrl}`); // 서버로부터 받은 이미지 URL
+      console.log(data.imageUrl);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
   // 팝업 내부 클릭 이벤트를 중지하여 오버레이 클릭 이벤트와 구분
   const stopPropagation = (e) => {
     e.stopPropagation();
+  };
+
+  const handleSave = async () => {
+    try {
+      const response = await UserService.updateProfile(imageUrl, comment);
+      console.log(response.ok);
+      if (!response.ok) {
+        throw new Error("Failed to update profile");
+      }
+
+      alert("Profile updated successfully");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -51,7 +102,25 @@ function ProfileUpdate({ onClose, image, comment, name }) {
         onClick={stopPropagation}
         ref={popupRef}
       >
-        hi
+        <div>
+          <img
+            src={imageUrl}
+            alt="content"
+            style={{ width: "100px", height: "100px" }}
+          />
+          <input
+            type="file"
+            accept=".png, .jpg, .jpeg"
+            onChange={handleImageChange}
+          />
+        </div>
+        <div>
+          <p>{name}</p>
+        </div>
+        <div>
+          <textarea value={comment} onChange={handleCommentChange} />
+          <button onClick={handleSave}>Save</button>
+        </div>
       </div>
     </div>
   );
