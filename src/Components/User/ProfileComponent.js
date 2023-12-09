@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "../../css/components/friends.css";
+// import "../../css/components/friends.css";
 import ProfileUpdate from "./ProfileUpdate";
+import Pen from "../../assets/pen-icon.png";
 
 function ProfileComponent({ avatar, name, subtitle, onEdit }) {
   const [showPopup, setShowPopup] = useState(false);
@@ -20,6 +21,9 @@ function ProfileComponent({ avatar, name, subtitle, onEdit }) {
           comment={subtitle}
         />
       )}
+      {/* <button onClick={onEdit} className="user-component__edit-button">
+        <img src={Pen} alt="Edit" />
+      </button> */}
     </div>
   );
 }

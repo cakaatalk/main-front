@@ -3,12 +3,17 @@ import React from "react";
 import App from "./App";
 import { AuthProvider } from "./Contexts/AuthContext";
 import "./css/components/styles.css";
+import { FriendsProvider } from "./Contexts/FriendsContext";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
-  <AuthProvider>
-    <App />
-  </AuthProvider>
+  <React.StrictMode>
+    <AuthProvider>
+      <FriendsProvider>
+        <App />
+      </FriendsProvider>
+    </AuthProvider>
+  </React.StrictMode>
 );

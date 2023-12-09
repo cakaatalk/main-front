@@ -42,6 +42,16 @@ function NavigationBar({ state, setState }) {
             <FontAwesomeIcon icon={faEllipsisH} size="2x" />
           </div>
         </li>
+        {/* <li className="nav__btn">
+          <div
+            className="nav__link"
+            onClick={() => {
+              setState("ALLUSER");
+            }}
+          >
+            <FontAwesomeIcon icon={faEllipsisH} size="2x" />
+          </div>
+        </li> */}
       </ul>
     </nav>
   );

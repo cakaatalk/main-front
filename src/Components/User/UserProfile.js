@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCommentAlt } from "@fortawesome/free-solid-svg-icons";
 import UserService from "../../API/UserService";
 import AuthService from "../../API/AuthService";
 import ProfileComponent from "./ProfileComponent";
@@ -17,10 +15,10 @@ function UserProfile() {
     async function fetchProfile() {
       try {
         const response = await UserService.searchProfile();
-        if (response.data) {
-          setSubtitle(response.data.comment);
-          setUserProfile(response.data.imageURL);
-          setUserName(response.data.name);
+        if (response) {
+          setSubtitle(response.comment);
+          setUserProfile(response.imageURL);
+          setUserName(response.name);
         }
       } catch (error) {
         try {
@@ -35,8 +33,6 @@ function UserProfile() {
 
     fetchProfile();
   }, [accessToken]);
-
-  const additionalContent = <FontAwesomeIcon icon={faCommentAlt} size="2x" />;
 
   const handleEdit = () => {
     setIsEditing(true);

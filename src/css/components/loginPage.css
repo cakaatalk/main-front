@@ -1,4 +1,4 @@
-.welcome-header {
+.welcome-header, .signUp-header {
   background-color: transparent;
   text-align: center;
   display: block;
@@ -7,7 +7,7 @@
   cursor: pointer;
 }
 
-.login-container {
+.login-container, .signUp-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,13 +19,13 @@
   box-sizing: border-box;
 }
 
-.login-header {
+.login-header, .signUp-header {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 40px;
   line-height: 48px;
   color: #000000;
-  margin-bottom: 32px; /* Space between header and description */
+  margin-bottom: 32px;
 }
 
 .login-description {
@@ -34,9 +34,9 @@
   font-size: 25px;
   line-height: 30px;
   color: #676767;
-  margin-bottom: 48px; /* Space between description and form */
+  margin-bottom: 48px;
 }
-.input-username,
+.input-name,
 .input-email,
 .input-password {
   font-family: 'Inter', sans-serif;
@@ -46,19 +46,19 @@
   background: none;
   border: none;
   border-bottom: 2px solid #848484;
-  margin-bottom: 24px; /* Space between inputs */
-  width: 100%; /* Full width */
-  max-width: 360px; /* Max width */
-  padding: 8px; /* Padding inside inputs */
+  margin-bottom: 24px; 
+  width: 100%; 
+  max-width: 360px; 
+  padding: 8px;
 }
 
 .input-email:focus,
 .input-password:focus {
   outline: none;
-  border-color: #6FA2E8; /* Highlight color when focused */
+  border-color: #6FA2E8; 
 }
 
-.login-button {
+.login-button, .signUp-button {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 30px;
@@ -69,13 +69,13 @@
   border: none;
   cursor: pointer;
   padding: 16px 32px;
-  width: 100%; /* Full width */
-  max-width: 360px; /* Max width */
+  width: 100%; 
+  max-width: 360px;
   transition: background-color 0.3s ease;
 }
 
 .login-button:hover {
-  background-color: #5a92c5; /* Slightly darker on hover */
+  background-color: #5a92c5; 
 }
 
 .additional-options {
@@ -84,20 +84,20 @@
   font-size: 20px;
   line-height: 24px;
   color: #000000;
-  margin-top: 24px; /* Space after login button */
+  margin-top: 24px; 
   cursor: pointer;
   text-align: center;
 }
 
 .text-button {
   text-decoration: underline;
-  padding: 0 10px; /* Padding for clickable area */
+  padding: 0 10px; 
 }
 
 .text-button:hover {
-  color: #45a049; /* Color on hover */
+  color: #45a049;
 }
 
 .text-separator {
-  margin: 0 5px; /* Margin between text buttons */
+  margin: 0 5px;
 }

@@ -1,19 +1,40 @@
-import axios from "axios";
-
 const API_Auth_URL = "http://localhost:8080/api/auth";
 
 const AuthService = {
   signUp: async (userData) => {
-    return axios.post(`${API_Auth_URL}/signup`, userData);
+    const response = await fetch(`${API_Auth_URL}/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    });
+    const data = await response.json();
+    return data.accessToken; 
   },
   login: async (userData) => {
-    return axios.post(`${API_Auth_URL}/login`, userData);
+    const response = await fetch(`${API_Auth_URL}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    });
+    const data = await response.json();
+    return data.accessToken; 
   },
   logout: async () => {
-    return axios.post(`${API_Auth_URL}/logout`);
+    const response = await fetch(`${API_Auth_URL}/logout`, {
+      method: 'POST'
+    });
+    return response.json(); 
   },
   refreshAccessToken: async () => {
-    return axios.get(`${API_Auth_URL}/refresh`);
+    const response = await fetch(`${API_Auth_URL}/refresh`, {
+      method: 'GET'
+    });
+    const data = await response.json();
+    return data.accessToken; 
   },
 };
 
