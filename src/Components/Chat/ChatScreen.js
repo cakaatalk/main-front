@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
-import {} from "../../Contexts/AuthContext";
+import { } from "../../Contexts/AuthContext";
 import Message from "./Message";
 
 function ChatScreen() {
@@ -12,12 +12,14 @@ function ChatScreen() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [userId, setUserId] = useState();
+  const [startId, setStartId] = useState(null);
   const accessToken = localStorage.getItem("accessToken");
   const roomId = localStorage.getItem("roomId");
 
   useEffect(() => {
     fetchUserInfo();
-    //메시지 받아오는 API
+    fetchMesssages();
+
     sendMessageWhenReady(socket, { type: "joinRoom", data: { roomId } });
     socket.addEventListener("message", handleSocketMessage);
     return () => {
@@ -25,12 +27,38 @@ function ChatScreen() {
     };
   }, []);
 
+  useEffect(() => {
+    console.log(messages)
+  }, [messages]);
+
   function sendMessageWhenReady(client, message) {
     if (client.readyState === WebSocket.OPEN) {
       client.send(JSON.stringify(message));
     } else {
       setTimeout(() => sendMessageWhenReady(client, message), 100);
     }
+  }
+
+  const fetchMesssages = () => {
+    let apiUrl = `http://localhost:8080/api/chat/messages/${roomId}`;
+    if (startId) {
+      apiUrl = apiUrl + `?startId=${startId}`
+    }
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: accessToken,
+      }
+    };
+
+    fetch(apiUrl, requestOptions)
+      .then((response) => response.json())
+      .then((res) => {
+        setStartId(res.nextId);
+        setMessages(res.messages);
+      })
+      .catch((error) => console.error("Error:", error));
   }
 
   const fetchUserInfo = () => {
@@ -56,7 +84,7 @@ function ChatScreen() {
       case "getmsg":
         console.log(receivedMessage.data);
         setMessages((messages) => {
-          return [...messages, receivedMessage];
+          return [...messages, receivedMessage.data];
         });
         break;
       default:
@@ -69,16 +97,14 @@ function ChatScreen() {
   };
 
   const handleSendMessage = () => {
-    socket.send(
-      JSON.stringify({ type: "sendmsg", data: { userName : userId, roomId, message } })
-    );
+    sendMessageWhenReady(socket, { type: "sendmsg", data: { userName: userId, roomId, message } })
     setMessage("");
   };
 
   return (
     <main className="main-screen main-chat">
-      {messages.map((message) => (
-        <Message message={message.data} userId={userId}/>
+      {messages.map((msg) => (
+        <Message message={msg} userId={userId} />
       ))}
       <div className="reply">
         <div className="reply__column">

@@ -15,54 +15,55 @@ function FriendsList() {
   const [friendsList, setFriendsList] = useState([]);
 
   useEffect(() => {
-    async function fetchFriends() {
-      try {
-        const response = await UserService.getFriendList();
-        if (response && Array.isArray(response.users)) {
-          setFriendsList(response.users);
-        }
-      } catch (error) {
-        if (error.response) {
-          try {
-            const refreshResponse = await AuthService.refreshAccessToken();
-            localStorage.setItem(
-              "accessToken",
-              refreshResponse.data.accessToken
-            );
-            return fetchFriends();
-          } catch (refreshError) {
-            console.error("Error refreshing token:", refreshError);
-          }
-        } else {
-          console.error("Error fetching friends:", error);
-        }
-      }
-    }
-
     fetchFriends();
-
-    function updateMaxHeight() {
-      const header = document.querySelector(".header");
-      const footer = document.querySelector(".footer");
-
-      if (header && footer) {
-        const headerHeight = header.offsetHeight;
-        const footerHeight = footer.offsetHeight;
-        const newMaxHeight = window.innerHeight - headerHeight - footerHeight;
-        setMaxHeight(`${newMaxHeight}px`);
-      }
-    }
-
     window.addEventListener("resize", updateMaxHeight);
     updateMaxHeight();
 
     return () => window.removeEventListener("resize", updateMaxHeight);
   }, []);
+
+  const fetchFriends = async () => {
+    try {
+      const response = await UserService.getFriendList();
+      if (response && Array.isArray(response.users)) {
+        setFriendsList(response.users);
+      }
+    } catch (error) {
+      if (error.response) {
+        try {
+          const refreshResponse = await AuthService.refreshAccessToken();
+          localStorage.setItem(
+            "accessToken",
+            refreshResponse.data.accessToken
+          );
+          return fetchFriends();
+        } catch (refreshError) {
+          console.error("Error refreshing token:", refreshError);
+        }
+      } else {
+        console.error("Error fetching friends:", error);
+      }
+    }
+  }
+
+  const updateMaxHeight = () => {
+    const header = document.querySelector(".header");
+    const footer = document.querySelector(".footer");
+
+    if (header && footer) {
+      const headerHeight = header.offsetHeight;
+      const footerHeight = footer.offsetHeight;
+      const newMaxHeight = window.innerHeight - headerHeight - footerHeight;
+      setMaxHeight(`${newMaxHeight}px`);
+    }
+  }
+
   const enterRoom = async (userId) => {
     let roomId;
     try {
-      roomId = await ChatService.getPersonalRoomId(userId);
+      roomId = await ChatService.getRoomId([userId]);
       localStorage.setItem("roomId", roomId);
+      localStorage.setItem("roomname", roomId);
       window.location.href = `/chat`;
     } catch (error) {
       try {
@@ -73,6 +74,7 @@ function FriendsList() {
       }
     }
   };
+
   return (
     <div className="friends-list-container" style={{ maxHeight }}>
       <div className="friends-header">
