@@ -1,6 +1,6 @@
-function UserMessage({ avatar, name, time, badgeCount, chatId }) {
+function UserMessage({ avatar, name, time, badgeCount, chatId, onClick }) {
     return (
-      <div className="user-component-link">
+      <div className="user-component-link" onClick={onClick}>
         <div className="user-component">
           <div className="user-component__avatar-container">
             <img

@@ -11,12 +11,13 @@ const ChatService = {
         'Content-Type': 'application/json',
         'Authorization': `${accessToken}`,
       },
-      body : {
-        users
-      }
+      body : JSON.stringify({
+        userIds : users,
+        roomName : "testRoom"
+      }),
     });
     const data = await response.json();
-    return data.room_id; 
+    return data.roomId; 
   },
   getRoomList: async () => {
     const response = await fetch(`${API_User_URL}/roomlist`, {
@@ -27,7 +28,6 @@ const ChatService = {
       },
     });
     const data = await response.json();
-    console.log(data);
     return data; 
   }
 };

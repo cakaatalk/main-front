@@ -8,7 +8,6 @@ function MyFriends() {
       <h1 className="friend-text">친구</h1>
     </div>
       <UserProfile />
-
       <main className="friends-screen">
         <FriendsList />
       </main>

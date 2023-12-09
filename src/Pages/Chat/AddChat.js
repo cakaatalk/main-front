@@ -29,28 +29,28 @@ function AddChat({ onClose }) {
     }
 
     async function fetchFriends() {
-        const refreshToken = localStorage.getItem("refreshToken");
-
         try {
-            const response = await UserService.getFriendList();
-            setFriendsList(response.data.users);
+          const response = await UserService.getFriendList();
+          if (response && Array.isArray(response.users)) {
+            setFriendsList(response.users);
+          }
         } catch (error) {
-            if (error.response && refreshToken) {
-                try {
-                    const refreshResponse = await AuthService.refreshAccessToken();
-                    localStorage.setItem(
-                        "accessToken",
-                        refreshResponse.data.accessToken
-                    );
-                    return fetchFriends();
-                } catch (refreshError) {
-                    console.error("Error refreshing token:", refreshError);
-                }
-            } else {
-                console.error("Error fetching friends:", error);
+          if (error.response) {
+            try {
+              const refreshResponse = await AuthService.refreshAccessToken();
+              localStorage.setItem(
+                "accessToken",
+                refreshResponse.data.accessToken
+              );
+              return fetchFriends();
+            } catch (refreshError) {
+              console.error("Error refreshing token:", refreshError);
             }
+          } else {
+            console.error("Error fetching friends:", error);
+          }
         }
-    }
+      }
 
     const toggleUserSelection = (userId) => {
         setSelectedUsers((prevSelectedUsers) => {
@@ -84,7 +84,7 @@ function AddChat({ onClose }) {
         let roomId;
         try {
             roomId = await ChatService.getRoomId(selectedUsers);
-            localStorage.setItem("roomId", roomId.data.room_id);
+            localStorage.setItem("roomId", roomId);
             window.location.href = `/chat`;
         } catch (error) {
             try {
