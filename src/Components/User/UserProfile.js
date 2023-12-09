@@ -6,7 +6,6 @@ import ProfileComponent from "./ProfileComponent";
 function UserProfile() {
   const accessToken = localStorage.getItem("accessToken");
 
-  const [isEditing, setIsEditing] = useState(false);
   const [subtitle, setSubtitle] = useState("");
   const [userProfile, setUserProfile] = useState(null);
   const [userName, setUserName] = useState("");
@@ -17,7 +16,11 @@ function UserProfile() {
         const response = await UserService.searchProfile();
         if (response) {
           setSubtitle(response.comment);
-          setUserProfile(response.imageURL);
+          if (response.profileImage == null || response.profileImage == "") {
+            setUserProfile("http://localhost:8040/uploads/default-profile.png");
+          } else {
+            setUserProfile(response.profileImage);
+          }
           setUserName(response.name);
         }
       } catch (error) {
@@ -34,36 +37,11 @@ function UserProfile() {
     fetchProfile();
   }, [accessToken]);
 
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
-
-  const handleSubtitleChange = (e) => {
-    setSubtitle(e.target.value);
-  };
-
-  const handleSave = async () => {
-    setIsEditing(false);
-    await UserService.updateProfile(userProfile, subtitle);
-  };
-
   return (
     <ProfileComponent
       avatar={userProfile}
       name={userName}
-      subtitle={
-        isEditing ? (
-          <input
-            type="text"
-            value={subtitle}
-            onChange={handleSubtitleChange}
-            onBlur={handleSave}
-          />
-        ) : (
-          subtitle
-        )
-      }
-      onEdit={handleEdit}
+      subtitle={subtitle}
     />
   );
 }
