@@ -1,63 +1,112 @@
-import axios from "axios";
-
 const API_User_URL = "http://localhost:8080/api/user";
 const accessToken = localStorage.getItem("accessToken");
 
+
 const UserService = {
   getFriendList: async () => {
-    return axios.get(`${API_User_URL}/friends`, {
-      headers: {
-        Authorization: `${accessToken}`,
-      },
-    });
+    try {
+      const response = await fetch(`${API_User_URL}/friends`, {
+        method: "GET",
+        headers: {
+          Authorization: `${accessToken}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return await response.json();
+    } catch (error) {
+      throw error;
+    }
   },
   getAllUserList: async () => {
-    return axios.get(`${API_User_URL}/findAll`, {
-      headers: {
-        Authorization: `${accessToken}`,
-      },
-    });
+    try {
+      const response = await fetch(`${API_User_URL}/findAll`, {
+        method: "GET",
+        headers: {
+          Authorization: `${accessToken}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return await response.json();
+    } catch (error) {
+      throw error;
+    }
   },
   searchProfile: async () => {
-    return axios.get(`${API_User_URL}/profile`, {
-      headers: {
-        Authorization: `${accessToken}`,
-      },
-    });
+    try {
+      const response = await fetch(`${API_User_URL}/profile`, {
+        method: "GET",
+        headers: {
+          Authorization: `${accessToken}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return await response.json();
+    } catch (error) {
+      throw error;
+    }
   },
   searchUser: async (name) => {
-    return axios.get(`${API_User_URL}/searchUser?name=${name}`, {
-      headers: {
-        Authorization: `${accessToken}`,
-      },
-    });
+    try {
+      const response = await fetch(`${API_User_URL}/searchUser?name=${name}`, {
+        method: "GET",
+        headers: {
+          Authorization: `${accessToken}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return await response.json();
+    } catch (error) {
+      throw error;
+    }
   },
   addFriend: async (friendId) => {
-    return axios.post(
-      `${API_User_URL}/addFriend`,
-      {
-        friendId: friendId,
-      },
-      {
+    try {
+      const response = await fetch(`${API_User_URL}/addFriend`, {
+        method: "POST",
         headers: {
           Authorization: `${accessToken}`,
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          friendId: friendId,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    );
+      return await response.json();
+    } catch (error) {
+      throw error;
+    }
   },
   updateProfile: async (img, comment) => {
-    return axios.post(
-      `${API_User_URL}/updateProfile`,
-      {
-        imageUrl: `${img}`,
-        comment: `${comment}`,
-      },
-      {
+    try {
+      const response = await fetch(`${API_User_URL}/updateProfile`, {
+        method: "POST",
         headers: {
           Authorization: `${accessToken}`,
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          imageUrl: img,
+          comment: comment,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    );
+      return await response.json();
+    } catch (error) {
+      throw error;
+    }
   },
 };
 

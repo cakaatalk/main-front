@@ -1,5 +1,6 @@
 import React from "react";
 import "../../css/components/friends.css";
+import "../../css/components/userProfile.css";
 
 function UserComponent({ avatar, name, subtitle, additionalContent }) {
   return (

@@ -3,26 +3,26 @@ import UserComponent from "./UserComponent";
 import UserService from "../../API/UserService";
 import ChatService from "../../API/ChatService";
 import AuthService from "../../API/AuthService";
-import { faCommentAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Comment from "../../assets/comment-icon.png";
+
 import { useEffect, useState } from "react";
 
 import "../../css/components/friendList.css";
 
 function FriendsList() {
-  const additionalContent = <FontAwesomeIcon icon={faCommentAlt} size="2x" />;
+  const additionalContent = <img src={Comment} alt={"Comment"} />;
   const [maxHeight, setMaxHeight] = useState("auto");
   const [friendsList, setFriendsList] = useState([]);
 
   useEffect(() => {
     async function fetchFriends() {
-      const refreshToken = localStorage.getItem("refreshToken");
-
       try {
         const response = await UserService.getFriendList();
-        setFriendsList(response.data.users);
+        if (response && Array.isArray(response.users)) {
+          setFriendsList(response.users);
+        }
       } catch (error) {
-        if (error.response && refreshToken) {
+        if (error.response) {
           try {
             const refreshResponse = await AuthService.refreshAccessToken();
             localStorage.setItem(
@@ -76,7 +76,7 @@ function FriendsList() {
   return (
     <div className="friends-list-container" style={{ maxHeight }}>
       <div className="friends-header">
-        <h2 className="friends-list-title">친구{friendsList.length}</h2>
+        <h2 className="friends-list-title">친구 {friendsList.length}</h2>
       </div>
       <div className="friends-divider"></div>
       <div className="friends-list">
