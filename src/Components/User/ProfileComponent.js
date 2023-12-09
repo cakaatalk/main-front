@@ -11,10 +11,13 @@ function ProfileComponent({ avatar, name, subtitle, onEdit }) {
         <h4 className="user-component__title">{name}</h4>
         {subtitle && <p className="user-component__subtitle">{subtitle}</p>}
       </div>
-      <button onClick={() => setShowPopup(true)}>
-        {" "}
-        <img src={Pen} alt="Edit" />
+      <button
+        onClick={() => setShowPopup(true)}
+        style={{ background: "transparent", border: "none" }}
+      >
+        <img src={Pen} alt="Edit" height="30" />
       </button>
+
       {showPopup && (
         <ProfileUpdate
           onClose={() => setShowPopup(false)}
