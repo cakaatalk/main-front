@@ -94,17 +94,20 @@ function UserList() {
   };
 
   return (
-    <div className="friends-list-container" style={{ maxHeight }}>
-      <div className="search-box">
-        <div className="search-icon"></div>
-        <img src={Search} alt={"Search"} />
-        <input
-          type="text"
-          placeholder="이름 검색"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="search-input"
-        />
+    <>
+      <div className="friends-list-container" style={{ maxHeight }}>
+        <div className="search-box">
+          <div className="search-icon"></div>
+          <img src={Search} alt={"Search"} />
+
+          <input
+            type="text"
+            placeholder="이름 검색"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+          />
+        </div>
       </div>
       <div className="friends-header">
         <h2 className="friends-list-title">
@@ -141,6 +144,7 @@ function UserList() {
                     <img
                       src={Add}
                       alt={"Add"}
+                      className="add-friend-icon"
                       onClick={() => handleAddFriend(friend.id)}
                     />
                   )
@@ -148,7 +152,7 @@ function UserList() {
               />
             ))}
       </div>
-    </div>
+    </>
   );
 }
 
