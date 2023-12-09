@@ -16,6 +16,7 @@ function UserList() {
   const [maxHeight, setMaxHeight] = useState("auto");
   const [searchQuery, setSearchQuery] = useState("");
   const [userList, setUserList] = useState([]);
+  const [me, setUser] = useState([]);
 
   const handleAddFriend = async (userId) => {
     try {
@@ -35,6 +36,8 @@ function UserList() {
     async function fetchFriends() {
       try {
         const response = await UserService.getAllUserList();
+        const me = await UserService.searchProfile();
+        setUser(me);
         setUserList(response);
       } catch (error) {
         if (error.response) {
@@ -97,9 +100,9 @@ function UserList() {
     <>
       <div className="friends-list-container" style={{ maxHeight }}>
         <div className="search-box">
-          <div className="search-icon"></div>
+          <div className="search-icon">
           <img src={Search} alt={"Search"} />
-
+          </div>
           <input
             type="text"
             placeholder="이름 검색"
@@ -108,10 +111,14 @@ function UserList() {
             className="search-input"
           />
         </div>
+       
       </div>
       <div className="friends-header">
         <h2 className="friends-list-title">
-          전체 유저{Array.isArray(userList) ? userList.length : 0}
+            전체 유저 { Array.isArray(userList) ? (
+          me ? userList.length - 1 : userList.length)
+          : 0
+           }
           <button
             className="toggle-friends-button"
             onClick={toggleAddedFriends}
@@ -125,6 +132,7 @@ function UserList() {
       <div className="friends-list">
         {Array.isArray(userList) &&
           userList
+            .filter(friend => friend.id !== me.id)
             .filter(
               (friend) => showAddedFriends || !addedFriends.includes(friend.id)
             )
@@ -140,14 +148,7 @@ function UserList() {
                 subtitle={friend.comment}
                 bold={true}
                 additionalContent={() =>
-                  !addedFriends.includes(friend.id) && (
-                    <img
-                      src={Add}
-                      alt={"Add"}
-                      className="add-friend-icon"
-                      onClick={() => handleAddFriend(friend.id)}
-                    />
-                  )
+                  !addedFriends.includes(friend.id) && (<img src={Add} alt={"Add"} className="add-friend-icon" onClick={() => handleAddFriend(friend.id)} />)
                 }
               />
             ))}
