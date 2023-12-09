@@ -13,6 +13,7 @@ function CommonForm({ onSubmit, buttonText, fields, showVerificationButton, setW
   const emailVerificationSend = async () => {
     setWarningMessage(``);
     setEmailMessage("전송 중");
+    setDisableValue(true);
     try {
       const response = await fetch("http://localhost:8080/api/auth/mail", {
         method: "POST",
@@ -26,14 +27,17 @@ function CommonForm({ onSubmit, buttonText, fields, showVerificationButton, setW
 
       if (response.ok) {
         setEmailMessage("재전송");
+        setDisableValue(false);
       } else {
         const errorResponse = await response.json();
         setWarningMessage(errorResponse.error);
         setEmailMessage("전송");
+        setDisableValue(false);
       }
     } catch (error) {
       setWarningMessage(`${error.response.data.error}`);
       setEmailMessage("전송");
+      setDisableValue(false);
     }
   }
 
@@ -64,6 +68,7 @@ function CommonForm({ onSubmit, buttonText, fields, showVerificationButton, setW
               viewable={viewable}
               setViewable={setViewable}
               disableValue={disableValue}
+              setDisableValue={setDisableValue}
             />
           )}
         </div>

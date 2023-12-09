@@ -54,6 +54,7 @@ function FindForm({ onSubmit, buttonText, fields, showVerificationButton, setWar
 
             if (response.ok) {
                 setEmailMessage("재전송");
+                setDisableValue(false);
             } else {
                 const errorResponse = await response.json();
                 setWarningMessage(errorResponse.error);
@@ -100,6 +101,7 @@ function FindForm({ onSubmit, buttonText, fields, showVerificationButton, setWar
                             viewable={viewable}
                             setViewable={setViewable}
                             disableValue={disableValue}
+                            setDisableValue={setDisableValue}
                         />
                     )}
                 </div>

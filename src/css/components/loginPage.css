@@ -164,3 +164,8 @@
 .text-separator {
   margin: 0 5px;
 }
+
+.disabled-button:hover {
+  background-color: initial;
+  cursor: default;
+}
