@@ -4,19 +4,28 @@ const API_User_URL = "http://localhost:8080/api/chat";
 const accessToken = localStorage.getItem("accessToken");
 
 const ChatService = {
-  getPersonalRoomId: async (userId) => {
-    return axios.get(`${API_User_URL}/roomId/${userId}`, {
+  getPersonalRoomId: async (userId) => { 
+    const response = await fetch(`${API_User_URL}/roomId/${userId}`, {
+      method: 'GET',
       headers: {
-        Authorization: `${accessToken}`,
+        'Content-Type': 'application/json',
+        'Authorization': `${accessToken}`,
       },
     });
+    const data = await response.json();
+    return data.room_id; 
   },
   getRoomList: async () => {
-    return axios.get(`${API_User_URL}/roomlist`, {
+    const response = await fetch(`${API_User_URL}/roomlist`, {
+      method: 'GET',
       headers: {
-        Authorization: `${accessToken}`,
+        'Content-Type': 'application/json',
+        'Authorization': `${accessToken}`,
       },
     });
+    const data = await response.json();
+    console.log(data);
+    return data; 
   }
 };
 
