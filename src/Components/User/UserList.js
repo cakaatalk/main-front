@@ -22,6 +22,7 @@ function UserList() {
     try {
       await UserService.addFriend(userId);
       setAddedFriends([...addedFriends, userId]);
+      setUserList(prevUserList => prevUserList.filter(user => user.id !== userId));
     } catch (error) {
       try {
         const refreshResponse = await AuthService.refreshAccessToken();
@@ -36,9 +37,9 @@ function UserList() {
     async function fetchFriends() {
       try {
         const response = await UserService.getAllUserList();
-        const me = await UserService.searchProfile();
-        setUser(me);
-        setUserList(response);
+        const profile  = await UserService.searchProfile();
+        setUser(profile);
+        setUserList(response.filter(user => user.id !== profile.id)); 
       } catch (error) {
         if (error.response) {
           try {
@@ -80,17 +81,20 @@ function UserList() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = searchQuery
+        let response = searchQuery
           ? await UserService.searchUser(searchQuery)
           : await UserService.getAllUserList();
+  
+          response = response.filter(user => user.id !== me.id);
+  
         setUserList(response);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
     };
-
+  
     fetchUsers();
-  }, [searchQuery, addedFriends]);
+  }, [searchQuery, me]);
 
   const toggleAddedFriends = () => {
     setShowAddedFriends(!showAddedFriends);
@@ -116,7 +120,7 @@ function UserList() {
       <div className="friends-header">
         <h2 className="friends-list-title">
             전체 유저 { Array.isArray(userList) ? (
-          me ? userList.length - 1 : userList.length)
+          me ? userList.length : userList.length)
           : 0
            }
           <button
@@ -136,7 +140,7 @@ function UserList() {
             .filter(
               (friend) => showAddedFriends || !addedFriends.includes(friend.id)
             )
-            .map((friend) => (
+            .map( friend => (
               <UserComponent
                 key={friend.id}
                 avatar={
@@ -148,7 +152,14 @@ function UserList() {
                 subtitle={friend.comment}
                 bold={true}
                 additionalContent={() =>
-                  !addedFriends.includes(friend.id) && (<img src={Add} alt={"Add"} className="add-friend-icon" onClick={() => handleAddFriend(friend.id)} />)
+                  !addedFriends.includes(friend.id) && (
+                    <img
+                      src={Add}
+                      alt={"Add"}
+                      className="add-friend-icon"
+                      onClick={() => handleAddFriend(friend.id)}
+                    />
+                  )
                 }
               />
             ))}
