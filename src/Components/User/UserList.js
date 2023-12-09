@@ -96,7 +96,7 @@ function UserList() {
   return (
     <div className="friends-list-container" style={{ maxHeight }}>
       <div className="search-box">
-        <div className="search-icon"></div>
+        <div className="search-icon">
           <img src={Search} alt={"Search"} />
         <input
           type="text"
@@ -105,10 +105,11 @@ function UserList() {
           onChange={(e) => setSearchQuery(e.target.value)}
           className="search-input"
         />
+        </div>
       </div>
       <div className="friends-header">
         <h2 className="friends-list-title">
-          전체 유저{Array.isArray(userList) ? userList.length : 0}
+           전체 유저{Array.isArray(userList) ? userList.length : 0}
           <button className="toggle-friends-button" onClick={toggleAddedFriends}>
             {showAddedFriends ? "추가된 친구 숨기기" : "모든 친구 보기"}
           </button>
@@ -129,7 +130,7 @@ function UserList() {
                 bold={true}
                 additionalContent={() => (
                   !addedFriends.includes(friend.id) && 
-                  <img src={Add} alt={"Add"} onClick={() => handleAddFriend(friend.id)} />
+                  <img src={Add} alt={"Add"} className="add-friend-icon" onClick={() => handleAddFriend(friend.id)} />
                 )}
               />
             ))}

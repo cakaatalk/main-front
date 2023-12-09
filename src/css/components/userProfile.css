@@ -37,14 +37,16 @@
 }
 
 .user-component__additional {
-  margin-right: 30px;
+  margin-right: 40px;
   margin-left: 10px;
   display: flex;
   align-items: center;
   color: #848484;
-  position: relative;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
-
 
 .user-component__edit-button {
   margin-left: auto;
@@ -149,3 +151,9 @@
   font-family: 'Inter', sans-serif;
   font-size: 10px;
 }
+
+.user-component-container {
+  position: relative;
+  padding-right: 40px; 
+}
+

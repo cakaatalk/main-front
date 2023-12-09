@@ -97,6 +97,7 @@ function InputArea(props) {
               type: "text",
               placeholder: "Name",
               className: "input-name",
+              
             },
             {
               name: "email",

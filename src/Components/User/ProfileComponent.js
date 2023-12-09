@@ -21,9 +21,9 @@ function ProfileComponent({ avatar, name, subtitle, onEdit }) {
           comment={subtitle}
         />
       )}
-      {/* <button onClick={onEdit} className="user-component__edit-button">
+      <button onClick={onEdit} className="user-component__edit-button">
         <img src={Pen} alt="Edit" />
-      </button> */}
+      </button>
     </div>
   );
 }
