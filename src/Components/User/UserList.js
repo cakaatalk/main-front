@@ -32,7 +32,7 @@ function UserList() {
   };
 
   useEffect(() => {
-    async function fetchFriends() {
+    async function fetchAllUser() {
       try {
         const response = await UserService.getAllUserList();
         setUserList(response);
@@ -44,7 +44,7 @@ function UserList() {
               "accessToken",
               refreshResponse.data.accessToken
             );
-            return fetchFriends();
+            return fetchAllUser();
           } catch (refreshError) {
             console.error("Error refreshing token:", refreshError);
           }
@@ -54,7 +54,7 @@ function UserList() {
       }
     }
 
-    fetchFriends();
+    fetchAllUser();
 
     function updateMaxHeight() {
       const header = document.querySelector(".header");
@@ -124,11 +124,9 @@ function UserList() {
 
       <div className="friends-list">
         {Array.isArray(userList) &&
-          userList
-            .filter(
+          userList.filter(
               (friend) => showAddedFriends || !addedFriends.includes(friend.id)
-            )
-            .map((friend) => (
+            ).map((friend) => (
               <UserComponent
                 key={friend.id}
                 avatar={
@@ -140,7 +138,7 @@ function UserList() {
                 subtitle={friend.comment}
                 bold={true}
                 additionalContent={() =>
-                  !addedFriends.includes(friend.id) && (
+                  addedFriends.includes(friend.id) && (
                     <img
                       src={Add}
                       alt={"Add"}
