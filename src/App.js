@@ -12,6 +12,7 @@ function App() {
   const [route, setRoute] = useState(window.location.pathname);
 
   useEffect(() => {
+    console.log(route);
     const handleLocationChange = () => {
       setRoute(window.location.pathname);
     };
@@ -45,7 +46,17 @@ function App() {
           return <div>404 Not Found</div>;
       }
     } else {
-      return <LoginPage />;
+      switch (route) {
+        case "/":
+        case "/login":
+          return <LoginPage />;
+        case "/signUp":
+          return <SignUp />;
+        case "/findAccount":
+          return <FindAccount />;
+        default:
+          return <LoginPage />;
+      }
     }
   };
 

@@ -6,9 +6,8 @@ function LoginPage() {
   return (
     <div className="login-container">
       <header className="welcome-header">
-    
-        <InputArea isLoginView={1}/>
-        <AuthNavigation isLoginView={1} />
+        <InputArea isLoginView={1} />
+        <AuthNavigation />
       </header>
     </div>
   );

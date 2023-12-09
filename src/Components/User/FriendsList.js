@@ -10,7 +10,9 @@ import { useEffect, useState } from "react";
 import "../../css/components/friendList.css";
 
 function FriendsList() {
-  const additionalContent = <img src={Comment} alt={"Comment"} />;
+  const additionalContent = (
+    <img src={Comment} alt={"Comment"} height={"40px"} />
+  );
   const [maxHeight, setMaxHeight] = useState("auto");
   const [friendsList, setFriendsList] = useState([]);
 
@@ -32,10 +34,7 @@ function FriendsList() {
       if (error.response) {
         try {
           const refreshResponse = await AuthService.refreshAccessToken();
-          localStorage.setItem(
-            "accessToken",
-            refreshResponse.data.accessToken
-          );
+          localStorage.setItem("accessToken", refreshResponse.data.accessToken);
           return fetchFriends();
         } catch (refreshError) {
           console.error("Error refreshing token:", refreshError);
@@ -44,7 +43,7 @@ function FriendsList() {
         console.error("Error fetching friends:", error);
       }
     }
-  }
+  };
 
   const updateMaxHeight = () => {
     const header = document.querySelector(".header");
@@ -56,7 +55,7 @@ function FriendsList() {
       const newMaxHeight = window.innerHeight - headerHeight - footerHeight;
       setMaxHeight(`${newMaxHeight}px`);
     }
-  }
+  };
 
   const enterRoom = async (userId) => {
     let roomId;
