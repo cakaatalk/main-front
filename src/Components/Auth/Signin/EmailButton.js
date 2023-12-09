@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-function EmailButton({ onClick, text, email, setWarningMessage }) {
+function EmailButton({ onClick, text, email, setWarningMessage, setViewable, disableValue }) {
 
     const [verifyNum, setVerifyNum] = useState("");
+    const [verificationComplete, setVerificationComplete] = useState(false);
+    const [verifyText, setVerifyText] = useState("인증");
 
     const onValueChange = (e) => {
         setWarningMessage(``);
@@ -25,7 +27,9 @@ function EmailButton({ onClick, text, email, setWarningMessage }) {
             });
 
             if (response.ok) {
-                console.log("정상 요청");
+                setVerificationComplete(true);
+                setVerifyText("인증 완료");
+                setViewable("");
             } else {
                 const errorResponse = await response.json();
                 setWarningMessage(errorResponse.error);
@@ -37,11 +41,17 @@ function EmailButton({ onClick, text, email, setWarningMessage }) {
 
     return (
         <div className="email-verification-div">
-            <button type="button" className="email-button" onClick={onClick}>
+            <button type="button" className="email-button" onClick={onClick} disabled={disableValue}>
                 {text}
             </button>
             <input type="text" value={verifyNum} onChange={onValueChange} placeholder="Verification Number" className="email-verification-input" />
-            <input type="button" className="email-checkbox" onClick={handleCheckboxClick} value="인증" />
+            <input
+                type="button"
+                className="email-check-button"
+                onClick={handleCheckboxClick}
+                value={verifyText}
+                disabled={verificationComplete}
+            />
         </div>
     );
 }

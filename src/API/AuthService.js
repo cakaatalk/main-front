@@ -23,7 +23,11 @@ const AuthService = {
       },
       body: JSON.stringify(userData)
     });
+    console.log(response);
     const data = await response.json();
+    if (data.error) {
+      throw data.error
+    }
     return data.accessToken;
   },
   logout: async () => {

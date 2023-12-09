@@ -87,11 +87,15 @@
 }
 
 .email-verification-div {
+  display: flex;
   margin-bottom: 24px;
+  margin: 0 auto;
+  width: 90%;
   align-items: center;
 }
 
-.email-button {
+.email-button,
+.email-check-button {
   display: inline;
   font-weight: 700;
   font-size: 13px;
@@ -100,11 +104,10 @@
   padding: 5px;
   width: 60px;
   border-radius: 10%;
-  margin: 0;
-  margin-right: 10px;
 }
 
-.email-button:hover {
+.email-button:hover,
+.email-check-button:hover {
   cursor: pointer;
   background-color: #e0dede;
 }
@@ -112,8 +115,7 @@
 .email-verification-input {
   display: inline;
   margin-bottom: 0;
-  width: 60%;
-  max-width: 300px;
+  width: 50%;
 }
 
 .verify-email {
@@ -123,10 +125,6 @@
 
 .login-button:hover {
   background-color: #5a92c5;
-}
-
-.email-checkbox {
-  margin-left: 10px;
 }
 
 .additional-options {

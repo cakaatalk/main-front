@@ -23,11 +23,10 @@ function InputArea(props) {
       if (response) {
         signIn(response, userData);
         window.location.href = "/main";
-      } else {
-        throw new Error("No access token received");
       }
     } catch (error) {
-      setWarningMessage(`${error.response.data.error}`);
+      setWarningMessage(`${error}`);
+      console.log(error);
     }
   };
 
@@ -42,7 +41,6 @@ function InputArea(props) {
       const response = await authService.signUp(userData);
       console.log(response);
       if (response) {
-        console.log(response);
         signIn(response, userData);
         window.location.href = "/main";
       }
@@ -79,7 +77,7 @@ function InputArea(props) {
             {
               name: "password",
               type: "password",
-              placeholder: "password",
+              placeholder: "Password",
               className: "input-password",
             },
           ]}
@@ -105,7 +103,7 @@ function InputArea(props) {
             {
               name: "password",
               type: "password",
-              placeholder: "password",
+              placeholder: "Password",
               className: "input-password",
             },
           ]}
