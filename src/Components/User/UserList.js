@@ -34,7 +34,7 @@ function UserList() {
   };
 
   useEffect(() => {
-    async function fetchFriends() {
+    async function fetchAllUser() {
       try {
         const response = await UserService.getAllUserList();
         const profile  = await UserService.searchProfile();
@@ -48,7 +48,7 @@ function UserList() {
               "accessToken",
               refreshResponse.data.accessToken
             );
-            return fetchFriends();
+            return fetchAllUser();
           } catch (refreshError) {
             console.error("Error refreshing token:", refreshError);
           }
@@ -58,7 +58,7 @@ function UserList() {
       }
     }
 
-    fetchFriends();
+    fetchAllUser();
 
     function updateMaxHeight() {
       const header = document.querySelector(".header");
@@ -104,9 +104,10 @@ function UserList() {
     <>
       <div className="friends-list-container" style={{ maxHeight }}>
         <div className="search-box">
+
           <div className="search-icon">
-          <img src={Search} alt={"Search"} />
-          </div>
+          <img src={Search} alt={"Search"} height="30" /></div>
+
           <input
             type="text"
             placeholder="이름 검색"
@@ -163,6 +164,7 @@ function UserList() {
                 }
               />
             ))}
+
       </div>
     </>
   );

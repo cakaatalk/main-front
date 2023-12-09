@@ -31,7 +31,6 @@ function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
 
       const data = await response.json();
       setImageUrl(`${baseURL}${data.imageUrl}`); // 서버로부터 받은 이미지 URL
-      console.log(data.imageUrl);
     } catch (error) {
       console.error(error);
     }
@@ -52,8 +51,8 @@ function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
       if (!response.ok) {
         throw new Error("Failed to update profile");
       }
-
-      alert("Profile updated successfully");
+      window.location.reload();
+      onClose();
     } catch (error) {
       console.error(error);
     }

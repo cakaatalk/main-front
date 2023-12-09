@@ -4,6 +4,7 @@ import ChatScreen from "../../Components/Chat/ChatScreen";
 import { WebSocketProvider } from "../../Contexts/SocketContext";
 
 function Chat() {
+  const roomName = localStorage.getItem('roomName');
   return (
     <WebSocketProvider>
       <div id="chat-screen">

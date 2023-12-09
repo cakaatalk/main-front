@@ -5,6 +5,7 @@ const accessToken = localStorage.getItem("accessToken");
 
 const ChatService = {
   getRoomId: async (users) => { 
+    console.log(users);
     const response = await fetch(`${API_User_URL}/roomId`, {
       method: 'POST',
       headers: {
@@ -17,6 +18,7 @@ const ChatService = {
       }),
     });
     const data = await response.json();
+    console.log(data);
     return data.roomId; 
   },
   getRoomList: async () => {
