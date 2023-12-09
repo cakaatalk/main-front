@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSocket } from "../../Contexts/SocketContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faPlusSquare,
-  faSmileWink,
   faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 import {} from "../../Contexts/AuthContext";
@@ -13,26 +11,19 @@ function ChatScreen() {
   const socket = useSocket();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
-  const [userName, setUserName] = useState();
+  const [userId, setUserId] = useState();
   const accessToken = localStorage.getItem("accessToken");
   const roomId = localStorage.getItem("roomId");
 
   useEffect(() => {
     fetchUserInfo();
     //메시지 받아오는 API
-
     sendMessageWhenReady(socket, { type: "joinRoom", data: { roomId } });
-
     socket.addEventListener("message", handleSocketMessage);
-
     return () => {
       socket.removeEventListener("message", handleSocketMessage);
     };
   }, []);
-
-  useEffect(() => {
-    console.log("useEffect : " + messages);
-  }, [messages]);
 
   function sendMessageWhenReady(client, message) {
     if (client.readyState === WebSocket.OPEN) {
@@ -54,7 +45,7 @@ function ChatScreen() {
 
     fetch(apiUrl, requestOptions)
       .then((response) => response.json())
-      .then((res) => setUserName(res.id))
+      .then((res) => setUserId(res.id))
       .catch((error) => console.error("Error:", error));
   };
 
@@ -63,14 +54,10 @@ function ChatScreen() {
 
     switch (receivedMessage.type) {
       case "getmsg":
+        console.log(receivedMessage.data);
         setMessages((messages) => {
-          return [...messages, receivedMessage.data];
+          return [...messages, receivedMessage];
         });
-        console.log(
-          "messages : " + messages,
-          "newMessage : ",
-          receivedMessage.data
-        );
         break;
       default:
         break;
@@ -82,9 +69,8 @@ function ChatScreen() {
   };
 
   const handleSendMessage = () => {
-    console.log({ userName, roomId, message });
     socket.send(
-      JSON.stringify({ type: "sendmsg", data: { userName, roomId, message } })
+      JSON.stringify({ type: "sendmsg", data: { userName : userId, roomId, message } })
     );
     setMessage("");
   };
@@ -92,7 +78,7 @@ function ChatScreen() {
   return (
     <main className="main-screen main-chat">
       {messages.map((message) => (
-        <Message message={message} userName={userName} />
+        <Message message={message.data} userId={userId}/>
       ))}
       <div className="reply">
         <div className="reply__column">

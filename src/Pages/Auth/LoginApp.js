@@ -51,7 +51,7 @@ function LoginPage() {
         if (response.data.accessToken) {
           signIn(response.data.accessToken, userData);
 
-          navigate("/friends");
+          // navigate("/friends");
         } else {
           throw new Error("No access token received");
         }

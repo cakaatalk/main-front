@@ -11,6 +11,13 @@ const ChatService = {
       },
     });
   },
+  getRoomList: async () => {
+    return axios.get(`${API_User_URL}/roomlist`, {
+      headers: {
+        Authorization: `${accessToken}`,
+      },
+    });
+  }
 };
 
 export default ChatService;

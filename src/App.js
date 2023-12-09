@@ -36,8 +36,7 @@ function App() {
         case "/main":
           return <Main />;
         case "/chat":
-          // return <Chats />;
-          return <div>Chat Page</div>;
+          return <Chat />;
         case "/signUp":
           return <SignUp />;
         case "/findAccount":
