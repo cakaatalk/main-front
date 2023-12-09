@@ -21,8 +21,7 @@ function ChatList() {
 
     try {
       const response = await ChatService.getRoomList();
-      console.log(response.data);
-      setRoomList(response.data);
+      setRoomList(response);
     } catch (error) {
       if (error.response && refreshToken) {
         try {

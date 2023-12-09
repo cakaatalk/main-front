@@ -62,7 +62,7 @@ function FriendsList() {
     let roomId;
     try {
       roomId = await ChatService.getPersonalRoomId(userId);
-      localStorage.setItem("roomId", roomId.data.room_id);
+      localStorage.setItem("roomId", roomId);
       window.location.href = `/chat`;
     } catch (error) {
       try {
