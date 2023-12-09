@@ -85,42 +85,87 @@ function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
         right: 0,
         bottom: 0,
         backdropFilter: "blur(5px)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
       onClick={onClose}
     >
       <div
         style={{
-          position: "fixed",
-          top: "20%",
-          left: "30%",
-          width: "40%",
+          position: "relative",
+          width: "30%",
           padding: "20px",
-          border: "1px solid black",
+          borderRadius: "10px",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
           backgroundColor: "white",
           zIndex: 101,
         }}
         onClick={stopPropagation}
         ref={popupRef}
       >
-        <div>
+        <div style={{ marginBottom: "20px" }}>
           <img
             src={imageUrl}
             alt="content"
-            style={{ width: "100px", height: "100px" }}
+            style={{ width: "100%", height: "auto", borderRadius: "10px" }}
           />
           <input
+            id="fileInput"
             type="file"
             accept=".png, .jpg, .jpeg"
             onChange={handleImageChange}
+            style={{ display: "none" }}
           />
+          <label
+            htmlFor="fileInput"
+            style={{
+              display: "block",
+              width: "90%",
+              padding: "10px",
+              marginTop: "10px",
+              textAlign: "center",
+              borderRadius: "5px",
+              border: "1px solid #007bff",
+              backgroundColor: "#007bff",
+              color: "white",
+              cursor: "pointer",
+            }}
+          >
+            이미지 선택
+          </label>
         </div>
-        <div>
+        <div style={{ marginBottom: "20px" }}>
           <p>{name}</p>
         </div>
-        <div>
-          <textarea value={comment} onChange={handleCommentChange} />
-          <button onClick={handleSave}>Save</button>
+        <div style={{ marginBottom: "20px" }}>
+          <textarea
+            value={comment}
+            onChange={handleCommentChange}
+            style={{
+              width: "90%",
+              padding: "10px",
+              borderRadius: "5px",
+              border: "1px solid #ccc",
+              resize: "vertical",
+              minHeight: "20px", // 줄인 텍스트 영역 높이
+            }}
+          />
         </div>
+        <button
+          onClick={handleSave}
+          style={{
+            width: "100%",
+            padding: "10px",
+            borderRadius: "5px",
+            border: "none",
+            backgroundColor: "#007bff",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          저장
+        </button>
       </div>
     </div>
   );

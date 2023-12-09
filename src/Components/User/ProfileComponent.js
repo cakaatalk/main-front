@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import "../../css/components/friends.css";
 import ProfileUpdate from "./ProfileUpdate";
 import Pen from "../../assets/pen-icon.png";
 
@@ -12,7 +11,10 @@ function ProfileComponent({ avatar, name, subtitle, onEdit }) {
         <h4 className="user-component__title">{name}</h4>
         {subtitle && <p className="user-component__subtitle">{subtitle}</p>}
       </div>
-      <button onClick={() => setShowPopup(true)}>Open Popup</button>
+      <button onClick={() => setShowPopup(true)}>
+        {" "}
+        <img src={Pen} alt="Edit" />
+      </button>
       {showPopup && (
         <ProfileUpdate
           onClose={() => setShowPopup(false)}
@@ -21,9 +23,6 @@ function ProfileComponent({ avatar, name, subtitle, onEdit }) {
           origin_comment={subtitle}
         />
       )}
-      {/* <button onClick={onEdit} className="user-component__edit-button">
-        <img src={Pen} alt="Edit" />
-      </button> */}
     </div>
   );
 }
