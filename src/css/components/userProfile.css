@@ -157,7 +157,7 @@
   padding-right: 40px;
   z-index: 10;
 }
-comment .profile-component {
+.profile-component {
   padding-top: 2vh;
   padding-bottom: 1.5vh;
   position: relative;

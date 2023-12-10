@@ -23,7 +23,6 @@ function ChatHeader({ roomId }) {
           ""
         )}
       </div>
-      <h1> </h1>
     </header>
   );
 }

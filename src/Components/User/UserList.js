@@ -102,8 +102,7 @@ function UserList() {
     <>
       <div className="friends-list-container" style={{ maxHeight }}>
         <div className="search-box">
-          <div className="search-icon"></div>
-
+          
           <input
             type="text"
             placeholder="이름 검색"
@@ -116,11 +115,9 @@ function UserList() {
       <div className="friends-header">
         <h2 className="friends-list-title">
           전체 유저{" "}
-          {Array.isArray(userList)
-            ? me
-              ? userList.length
-              : userList.length
-            : 0}
+          {showAddedFriends
+          ? userList.length
+          : userList.filter((user) => !user.isFriend).length}
           <button
             className="toggle-friends-button"
             onClick={toggleAddedFriends}
