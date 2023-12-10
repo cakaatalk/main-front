@@ -11,9 +11,7 @@ function ChatScreen({ roomId, userInfo }) {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [userId, setUserId] = useState();
-  console.log(userInfo);
   const [startId, setStartId] = useState(null);
-  const accessToken = localStorage.getItem("accessToken");
 
   useEffect(() => {
     fetchUserInfo();
