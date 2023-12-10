@@ -4,6 +4,7 @@ import UserService from "../../API/UserService";
 import ChatService from "../../API/ChatService";
 import AuthService from "../../API/AuthService";
 import Comment from "../../assets/speech-bubble.png";
+import env from "../Common/dotenv"
 
 import { useEffect, useState } from "react";
 
@@ -86,7 +87,7 @@ function FriendsList() {
             key={friend.id}
             avatar={
               friend.profileImage == null || friend.profileImage == ""
-                ? "http://localhost:8040/uploads/default-profile.png"
+                ? `${env.REACT_APP_IMAGE_BASE_URL}/uploads/default-profile.png`
                 : friend.profileImage
             }
             name={friend.name}

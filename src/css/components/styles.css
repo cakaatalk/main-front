@@ -6,26 +6,6 @@ body, h1, p, input, button, span {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.status-bar {
-  background-color: #0054a6; 
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-}
-
-.status-bar__column span {
-  display: flex;
-  align-items: center;
-}
-
-.status-bar__column span:not(:last-child) {
-  margin-right: 10px;
-}
-
-
 input::placeholder {
   color: #bbb;
 }

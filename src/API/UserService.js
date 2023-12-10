@@ -3,7 +3,6 @@ import env from '../Components/Common/dotenv';
 const API_User_URL = env.REACT_APP_API_BASE_URL + "/user";
 const accessToken = localStorage.getItem("accessToken");
 
-
 const UserService = {
   getFriendList: async () => {
     try {

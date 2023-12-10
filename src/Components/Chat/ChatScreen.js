@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSocket } from "../../Contexts/SocketContext";
-import chatService from "../../API/ChatService"
-import userService from "../../API/UserService"
+import chatService from "../../API/ChatService";
+import userService from "../../API/UserService";
 import Message from "./Message";
 
 function ChatScreen({ roomId, userInfo }) {
@@ -10,17 +10,29 @@ function ChatScreen({ roomId, userInfo }) {
   const [message, setMessage] = useState("");
   const [userId, setUserId] = useState();
   const [startId, setStartId] = useState(null);
+  const [isNearBottom, setIsNearBottom] = useState(true);
+  const [scrollPosition, setScrollPosition] = useState(null);
 
   useEffect(() => {
     fetchUserInfo();
-    fetchMesssages();
-
+    fetchMessages();
     sendMessageWhenReady(socket, { type: "joinRoom", data: { roomId } });
+
     socket.addEventListener("message", handleSocketMessage);
+
     return () => {
       socket.removeEventListener("message", handleSocketMessage);
     };
   }, []);
+
+  useEffect(() => {
+    if(scrollPosition == 0) {
+      fetchMessages();
+      window.scrollTo({
+        top: document.documentElement.scrollHeight-10,
+      });
+    }
+  }, [scrollPosition]);
 
   function sendMessageWhenReady(client, message) {
     if (client.readyState === WebSocket.OPEN) {
@@ -30,10 +42,18 @@ function ChatScreen({ roomId, userInfo }) {
     }
   }
 
-  const fetchMesssages = async () => {
+  const fetchMessages = async () => {
     const response = await chatService.getMessages(roomId, startId);
     setStartId(response.nextId);
-    setMessages(response.messages);
+    setMessages((prevMessages) => {
+      let newMessages = [];
+      if (startId) {
+        newMessages = response.messages.concat(prevMessages);
+      } else {
+        newMessages = response.messages;
+      }
+      return newMessages;
+    });   
   };
 
   const fetchUserInfo = async () => {
@@ -41,18 +61,14 @@ function ChatScreen({ roomId, userInfo }) {
     setUserId(response.id);
   };
 
-  // useEffect(() => {
-  //   console.log(messages);
-  // }, [messages]);
-
   const handleSocketMessage = (event) => {
     const receivedMessage = JSON.parse(event.data);
 
     switch (receivedMessage.type) {
       case "getmsg":
-          setMessages((messages) => {
-            return !messages ? [receivedMessage.data] : [...messages, receivedMessage.data];
-          });
+        setMessages((messages) => {
+          return !messages ? [receivedMessage.data] : [...messages, receivedMessage.data];
+        });
         break;
       default:
         break;
@@ -69,8 +85,9 @@ function ChatScreen({ roomId, userInfo }) {
       data: { userName: userId, roomId, message },
     });
     setMessage("");
+    handleScrollToBottom(true);
   };
-  
+
   const getUserInfo = (id) => {
     for (let el of userInfo) {
       if (el.id == id) {
@@ -79,31 +96,69 @@ function ChatScreen({ roomId, userInfo }) {
     }
   };
 
+  const handleScroll = () => {
+    setScrollPosition(window.scrollY);
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    const num = scrollTop + clientHeight >= scrollHeight - 100;
+    setIsNearBottom(num);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    handleNewMessage();
+  }, [messages]);
+
+  const handleScrollToBottom = () => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+      });
+  };
+
+  const handleNewMessage = () => {
+    if(isNearBottom) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+      });
+    }
+  };
+
   return (
-    <main className="main-screen main-chat">
-      {Array.isArray(messages) && 
-        messages.map((msg) => (
-          <Message
-            message={msg}
-            userId={userId}
-            senderInfo={getUserInfo(msg.sender)}
-          />
-        ))}
-      <div className="reply">
-        <div className="reply__column">
-          <input
-            type="text"
-            placeholder="Write a message..."
-            value={message}
-            onChange={handleMessageChange}
-            onKeyPress={(event) => {
-              if (event.key === "Enter") {
-                handleSendMessage();
-              }
-            }}
-          />
-        </div>
+    <main>
+      <div className="main-screen main-chat">
+        {!isNearBottom && (
+          <button className="scroll-to-bottom-btn" onClick={handleScrollToBottom}>
+            이동
+          </button>
+        )}
+        {Array.isArray(messages) &&
+          messages.map((msg) => (
+            <Message
+              key={msg.id}
+              message={msg}
+              userId={userId}
+              senderInfo={getUserInfo(msg.sender)}
+            />
+          ))}
       </div>
+      <footer className="reply">
+        <input
+          type="text"
+          placeholder="Write a message..."
+          value={message}
+          onChange={handleMessageChange}
+          onKeyPress={(event) => {
+            if (event.key === "Enter") {
+              handleSendMessage();
+            }
+          }}
+        />
+      </footer>
     </main>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import UserService from "../../API/UserService";
 import AuthService from "../../API/AuthService";
 import ProfileComponent from "./ProfileComponent";
+import env from "../Common/dotenv"
 
 function UserProfile() {
   const accessToken = localStorage.getItem("accessToken");
@@ -17,7 +18,7 @@ function UserProfile() {
         if (response) {
           setSubtitle(response.comment);
           if (response.profileImage == null || response.profileImage == "") {
-            setUserProfile("http://localhost:8040/uploads/default-profile.png");
+            setUserProfile(`${env.REACT_APP_IMAGE_BASE_URL}/uploads/default-profile.png`);
           } else {
             setUserProfile(response.profileImage);
           }

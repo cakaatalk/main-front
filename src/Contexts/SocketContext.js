@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect } from "react";
+import env from "../Components/Common/dotenv"
 
 const SocketContext = createContext();
 
-const socket = new WebSocket("ws://localhost:3001");
+const socket = new WebSocket(`${env.REACT_APP_SOCKET_BASE_URL}`);
 
 export function useSocket() {
   return useContext(SocketContext);

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { EmailButton } from '../Auth/Signin/EmailButton.js';
 import authService from "../../API/AuthService.js";
 
-
 function CommonForm({ onSubmit, buttonText, fields, showVerificationButton, setWarningMessage }) {
   const [emailMessage, setEmailMessage] = useState("전송");
   const [emailValue, setEmailValue] = useState("");

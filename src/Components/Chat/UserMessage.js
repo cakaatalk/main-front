@@ -1,3 +1,5 @@
+import env from "../Common/dotenv"
+
 function UserMessage({
   avatar,
   name,
@@ -14,7 +16,7 @@ function UserMessage({
           <img
             src={
               avatar == null || avatar == ""
-                ? "http://localhost:8040/uploads/default-profile.png"
+                ? `${env.REACT_APP_IMAGE_BASE_URL}/uploads/default-profile.png`
                 : avatar
             }
             className="user-component__avatar user-component__avatar--xl"

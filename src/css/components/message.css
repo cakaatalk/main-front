@@ -1,8 +1,12 @@
 .main-screen.main-chat {
   /* background-color: #f9f9f9; */
-  padding: 20px;
+  padding-left: 3vw;
+  padding-right: 3vw;
   overflow-y: auto;
+  margin-top: 7vh;
+  margin-bottom: 7vh;
 }
+
 .message {
   margin-bottom: 20px;
   padding: 10px;
@@ -16,15 +20,6 @@
   margin-bottom: 5px;
 }
 
-.reply {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
-  background-color: #fff;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-}
 .reply__column {
   display: flex;
   align-items: center;
@@ -97,10 +92,29 @@
   background-color: #fee500;
 }
 
+.scroll-to-bottom-btn {
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%); 
+  background-color: #0054a6;
+  color: #fff;
+  border: none;
+  border-radius: 25%;
+  padding: 1%;
+  cursor: pointer;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  white-space: nowrap;
+  margin-bottom: 1%;
+}
+
 .reply {
-  /* display: flex; */
-  justify-content: space-between;
-  padding: 10px;
+  display: flex;
+  justify-content: start;
+  padding: 1vh;
+  height: 3vh;
   background-color: #fff;
   position: fixed;
   bottom: 0;

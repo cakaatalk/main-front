@@ -1,4 +1,5 @@
 import React from "react";
+import env from "../Common/dotenv"
 import "../../css/components/userProfile.css";
 
 function UserComponent({ avatar, name, subtitle, additionalContent }) {
@@ -14,7 +15,7 @@ function UserComponent({ avatar, name, subtitle, additionalContent }) {
         <img
           src={
             !avatar
-              ? "http://localhost:8040/uploads/default-profile.png"
+              ? `${env.REACT_APP_IMAGE_BASE_URL}/uploads/default-profile.png`
               : avatar
           }
           className="user-component__avatar"

@@ -5,7 +5,7 @@ import AuthService from "../../API/AuthService";
 
 import Add from "../../assets/add-friend-icon.png";
 
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function UserList() {
   const [showAddedFriends, setShowAddedFriends] = useState(false);

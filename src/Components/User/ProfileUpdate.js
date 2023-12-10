@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import UserService from "../../API/UserService";
-const baseURL = "http://localhost:8040";
+import env from "../Common/dotenv"
 
 function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
   const [image, setImage] = useState(null);
@@ -20,7 +20,7 @@ function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
     formData.append("image", file);
 
     try {
-      const response = await fetch(`${baseURL}/api/upload`, {
+      const response = await fetch(`${env.REACT_APP_IMAGE_BASE_URL}/api/upload`, {
         method: "POST",
         body: formData,
       });
@@ -30,7 +30,7 @@ function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
       }
 
       const data = await response.json();
-      setImageUrl(`${baseURL}${data.imageUrl}`); // 서버로부터 받은 이미지 URL
+      setImageUrl(`${env.REACT_APP_IMAGE_BASE_URL}${data.imageUrl}`); // 서버로부터 받은 이미지 URL
     } catch (error) {
       console.error(error);
     }

@@ -16,10 +16,10 @@ function Chat() {
   useEffect(() => {
     fetchAllUserInfo();
   }, []);
-  
+
   return (
     <WebSocketProvider>
-      <div id="chat-screen">
+      <div>
         <ChatHeader roomId={roomId} />
         {userInfo ? <ChatScreen roomId={roomId} userInfo={userInfo} /> : ""}
       </div>
