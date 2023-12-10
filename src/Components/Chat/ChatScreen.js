@@ -26,11 +26,13 @@ function ChatScreen({ roomId, userInfo }) {
   }, []);
 
   useEffect(() => {
-    if(scrollPosition == 0) {
+    if (scrollPosition == 0) {
       fetchMessages();
-      window.scrollTo({
-        top: scrollPosition+23,
-      });
+      if (startId != 1) {
+        window.scrollTo({
+          top: 100,
+        });
+      }
     }
   }, [scrollPosition]);
 
@@ -43,19 +45,25 @@ function ChatScreen({ roomId, userInfo }) {
   }
 
   const fetchMessages = async () => {
-    const response = await chatService.getMessages(roomId, startId);
-    setStartId(response.nextId);
-    setMessages((prevMessages) => {
-      let newMessages = [];
-      if (response.nextId) {
-        newMessages = response.messages.concat(prevMessages);
-      } else {
-        console.log("end")
-        console.log(response)
-        newMessages = prevMessages
-      }
-      return newMessages;
-    });   
+    if (startId != 1) {
+      const response = await chatService.getMessages(roomId, startId);
+      console.log(response)
+      setStartId(response.nextId);
+      console.log(messages)
+      setMessages((prevMessages) => {
+        if (response.length == 0) {
+          return prevMessages
+        }
+        else if (response.nextId) {
+          console.log(response.nextId)
+          return response.messages.concat(prevMessages);
+        }
+        else {
+          return prevMessages
+        }
+      });
+
+    }
   };
 
   const fetchUserInfo = async () => {
@@ -82,12 +90,15 @@ function ChatScreen({ roomId, userInfo }) {
   };
 
   const handleSendMessage = () => {
-    sendMessageWhenReady(socket, {
-      type: "sendmsg",
-      data: { userName: userId, roomId, message },
-    });
-    setMessage("");
-    handleScrollToBottom(true);
+    const trimmedMessage = message.trim();
+    if (trimmedMessage !== "") {
+      sendMessageWhenReady(socket, {
+        type: "sendmsg",
+        data: { userName: userId, roomId, message },
+      });
+      setMessage("");
+      handleScrollToBottom(true);
+    }
   };
 
   const getUserInfo = (id) => {
@@ -117,13 +128,13 @@ function ChatScreen({ roomId, userInfo }) {
   }, [messages]);
 
   const handleScrollToBottom = () => {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-      });
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+    });
   };
 
   const handleNewMessage = () => {
-    if(isNearBottom) {
+    if (isNearBottom) {
       window.scrollTo({
         top: document.documentElement.scrollHeight,
       });
@@ -151,7 +162,7 @@ function ChatScreen({ roomId, userInfo }) {
       <footer className="reply">
         <input
           type="text"
-          placeholder="Write a message..."
+          placeholder="메시지를 입력하세요"
           value={message}
           onChange={handleMessageChange}
           onKeyPress={(event) => {
@@ -159,6 +170,7 @@ function ChatScreen({ roomId, userInfo }) {
               handleSendMessage();
             }
           }}
+          maxLength={50}
         />
       </footer>
     </main>
