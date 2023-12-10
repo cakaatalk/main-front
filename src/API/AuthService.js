@@ -45,6 +45,31 @@ const AuthService = {
     const data = await response.json();
     return data.accessToken;
   },
+  sendEmail: async (emailValue) => {
+    const response = await fetch(`${API_Auth_URL}/mail`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: emailValue,
+      }),
+    });
+    return response;
+  },
+  mailVerify: async (email, verifyNum) => {
+    const response = await fetch(`${API_Auth_URL}/mail/verify`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        authCode: verifyNum,
+      }),
+    });
+    return response;
+  }
 };
 
 export default AuthService;

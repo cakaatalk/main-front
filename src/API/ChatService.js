@@ -31,6 +31,22 @@ const ChatService = {
     });
     const data = await response.json();
     return data; 
+  },
+  getMessages: async (roomId, startId) => {
+    let apiUrl = `${API_User_URL}/messages/${roomId}`;
+    if (startId) {
+      apiUrl = apiUrl + `?startId=${startId}`;
+    }
+
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${accessToken}`,
+      },
+    });
+    const data = await response.json();
+    return data; 
   }
 };
 

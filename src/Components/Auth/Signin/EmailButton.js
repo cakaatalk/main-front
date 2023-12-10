@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import authService from "../../../API/AuthService";
 
 function EmailButton({
     onClick,
@@ -20,22 +21,8 @@ function EmailButton({
 
     const handleCheckboxClick = async () => {
         setWarningMessage(``);
-
         try {
-            const response = await fetch(
-                "http://localhost:8080/api/auth/mail/verify",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        authCode: verifyNum,
-                    }),
-                }
-            );
-
+            const response = await authService.mailVerify(email, verifyNum);
             if (response.ok) {
                 setVerificationComplete(true);
                 setDisableValue(true);
@@ -46,7 +33,7 @@ function EmailButton({
                 setWarningMessage(errorResponse.error);
             }
         } catch (error) {
-            setWarningMessage(`${error.response.data.error}`);
+            setWarningMessage('${error.response.data.error}');
         }
     };
 

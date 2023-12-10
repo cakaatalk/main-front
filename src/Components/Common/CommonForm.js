@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { EmailButton } from '../Auth/Signin/EmailButton.js';
+import authService from "../../API/AuthService.js";
 
 
 function CommonForm({ onSubmit, buttonText, fields, showVerificationButton, setWarningMessage }) {
@@ -15,16 +16,7 @@ function CommonForm({ onSubmit, buttonText, fields, showVerificationButton, setW
     setEmailMessage("전송 중");
     setDisableValue(true);
     try {
-      const response = await fetch("http://localhost:8080/api/auth/mail", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: emailValue,
-        }),
-      });
-
+      const response = await authService.sendEmail(emailValue);
       if (response.ok) {
         setEmailMessage("재전송");
         setDisableValue(false);

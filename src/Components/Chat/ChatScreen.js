@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSocket } from "../../Contexts/SocketContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import {} from "../../Contexts/AuthContext";
+import chatService from "../../API/ChatService"
+import userService from "../../API/UserService"
 import Message from "./Message";
 
 function ChatScreen() {
@@ -34,42 +35,15 @@ function ChatScreen() {
     }
   }
 
-  const fetchMesssages = () => {
-    let apiUrl = `http://localhost:8080/api/chat/messages/${roomId}`;
-    if (startId) {
-      apiUrl = apiUrl + `?startId=${startId}`;
-    }
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: accessToken,
-      },
-    };
-
-    fetch(apiUrl, requestOptions)
-      .then((response) => response.json())
-      .then((res) => {
-        setStartId(res.nextId);
-        setMessages(res.messages);
-      })
-      .catch((error) => console.error("Error:", error));
+  const fetchMesssages = async () => {
+    const response = await chatService.getMessages(roomId, startId);
+    setStartId(response.nextId);
+    setMessages(response.messages);
   };
 
-  const fetchUserInfo = () => {
-    const apiUrl = "http://localhost:8080/api/user/profile";
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: accessToken,
-      },
-    };
-
-    fetch(apiUrl, requestOptions)
-      .then((response) => response.json())
-      .then((res) => setUserId(res.id))
-      .catch((error) => console.error("Error:", error));
+  const fetchUserInfo = async () => {
+    const response = await userService.searchProfile();
+    setUserId(response.id);
   };
 
   const fetchAllUserInfo = () => {
