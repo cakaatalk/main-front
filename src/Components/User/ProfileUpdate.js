@@ -133,6 +133,27 @@ function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
           >
             이미지 선택
           </label>
+          <div className="comment-profile">
+            마땅한 프로필 사진이 없으신가요?
+            <br />
+            지금 만들어보세요!{" "}
+            <button
+              onClick={() => {
+                window.open("https://cakaatalk.aolda.net/mychito", "_blank");
+              }}
+              style={{
+                width: "110px",
+                padding: "3px",
+                borderRadius: "5px",
+                border: "none",
+                backgroundColor: "#91b1db",
+                color: "white",
+                cursor: "pointer",
+              }}
+            >
+              프로필 만들러 가기
+            </button>
+          </div>
         </div>
         <div style={{ marginBottom: "20px" }}>
           <p>{name}</p>
