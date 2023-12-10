@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSocket } from "../../Contexts/SocketContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowUp,
-} from "@fortawesome/free-solid-svg-icons";
-import { } from "../../Contexts/AuthContext";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import {} from "../../Contexts/AuthContext";
 import Message from "./Message";
 
 function ChatScreen() {
@@ -12,11 +10,13 @@ function ChatScreen() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [userId, setUserId] = useState();
+  const [userInfo, setUserInfo] = useState();
   const [startId, setStartId] = useState(null);
   const accessToken = localStorage.getItem("accessToken");
   const roomId = localStorage.getItem("roomId");
 
   useEffect(() => {
+    fetchAllUserInfo();
     fetchUserInfo();
     fetchMesssages();
 
@@ -26,11 +26,6 @@ function ChatScreen() {
       socket.removeEventListener("message", handleSocketMessage);
     };
   }, []);
-
-  useEffect(() => {
-    console.log(messages)
-  }, [messages]);
-
   function sendMessageWhenReady(client, message) {
     if (client.readyState === WebSocket.OPEN) {
       client.send(JSON.stringify(message));
@@ -42,14 +37,14 @@ function ChatScreen() {
   const fetchMesssages = () => {
     let apiUrl = `http://localhost:8080/api/chat/messages/${roomId}`;
     if (startId) {
-      apiUrl = apiUrl + `?startId=${startId}`
+      apiUrl = apiUrl + `?startId=${startId}`;
     }
     const requestOptions = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: accessToken,
-      }
+      },
     };
 
     fetch(apiUrl, requestOptions)
@@ -59,7 +54,7 @@ function ChatScreen() {
         setMessages(res.messages);
       })
       .catch((error) => console.error("Error:", error));
-  }
+  };
 
   const fetchUserInfo = () => {
     const apiUrl = "http://localhost:8080/api/user/profile";
@@ -77,12 +72,35 @@ function ChatScreen() {
       .catch((error) => console.error("Error:", error));
   };
 
+  const fetchAllUserInfo = () => {
+    const apiUrl = "http://localhost:8080/api/user/findAll";
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: accessToken,
+      },
+    };
+
+    fetch(apiUrl, requestOptions)
+      .then((response) => response.json())
+      .then((res) => setUserInfo(res))
+      .catch((error) => console.error("Error:", error));
+  };
+
+  const getUserInfo = (id) => {
+    for (let el of userInfo) {
+      if (el.id == id) {
+        return { name: el.name, profileImage: el.profileImage };
+      }
+    }
+  };
+
   const handleSocketMessage = (event) => {
     const receivedMessage = JSON.parse(event.data);
 
     switch (receivedMessage.type) {
       case "getmsg":
-        console.log(receivedMessage.data);
         setMessages((messages) => {
           return [...messages, receivedMessage.data];
         });
@@ -97,14 +115,21 @@ function ChatScreen() {
   };
 
   const handleSendMessage = () => {
-    sendMessageWhenReady(socket, { type: "sendmsg", data: { userName: userId, roomId, message } })
+    sendMessageWhenReady(socket, {
+      type: "sendmsg",
+      data: { userName: userId, roomId, message },
+    });
     setMessage("");
   };
 
   return (
     <main className="main-screen main-chat">
       {messages.map((msg) => (
-        <Message message={msg} userId={userId} />
+        <Message
+          message={msg}
+          userId={userId}
+          senderInfo={getUserInfo(msg.sender)}
+        />
       ))}
       <div className="reply">
         <div className="reply__column">

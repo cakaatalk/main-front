@@ -1,23 +1,22 @@
 import React from "react";
 import "../../css/components/message.css";
 
-function Message({message, userId}) {
+function Message({ message, userId, senderInfo }) {
+  console.log("d");
+  console.log(message);
+  console.log(senderInfo);
   const isOwnMessage = message.sender === userId;
   const messageRowClass = `message-row ${
     isOwnMessage ? "message-row--own" : ""
   }`;
-  console.log(isOwnMessage);
   return (
     <div className={messageRowClass}>
       {!isOwnMessage && (
-        <img
-          src="https://avatars3.githubusercontent.com/u/3612017"
-          alt={message.sender}
-        />
+        <img src={senderInfo.profileImage} alt={senderInfo.name} />
       )}
       <div className="message-row__content">
         {!isOwnMessage && (
-          <span className="message__author">{message.sender}</span>
+          <span className="message__author">{senderInfo.name}</span>
         )}
         <div className="message__info">
           <span className="message__bubble">{message.content}</span>

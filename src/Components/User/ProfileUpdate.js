@@ -87,6 +87,7 @@ function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        zIndex: 101,
       }}
       onClick={onClose}
     >
@@ -98,7 +99,6 @@ function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
           borderRadius: "10px",
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
           backgroundColor: "white",
-          zIndex: 101,
         }}
         onClick={stopPropagation}
         ref={popupRef}
