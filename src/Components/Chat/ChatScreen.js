@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSocket } from "../../Contexts/SocketContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import chatService from "../../API/ChatService"
 import userService from "../../API/UserService"
 import Message from "./Message";

@@ -102,8 +102,7 @@ function UserList() {
     <>
       <div className="friends-list-container" style={{ maxHeight }}>
         <div className="search-box">
-          <div className="search-icon"></div>
-
+          
           <input
             type="text"
             placeholder="이름 검색"
