@@ -16,6 +16,7 @@ function Chat() {
   useEffect(() => {
     fetchAllUserInfo();
   }, []);
+  
   return (
     <WebSocketProvider>
       <div id="chat-screen">

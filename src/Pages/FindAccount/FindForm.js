@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { EmailButton } from '../../Components/Auth/Signin/EmailButton';
+import authService from "../../API/AuthService";
 
 
 function FindForm({ onSubmit, buttonText, fields, showVerificationButton, setWarningMessage }) {
@@ -12,17 +13,7 @@ function FindForm({ onSubmit, buttonText, fields, showVerificationButton, setWar
 
     const changePasswordHandler = async (e) => {
         try {
-            const response = await fetch("http://localhost:8080/api/auth/mail/updatepw", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: emailValue,
-                    password: passwordValue
-                }),
-            });
-
+            const response = await authService.mailUpdatePassword(emailValue, passwordValue);
             if (response.ok) {
                 window.location.href = "/";
                 alert("비밀번호 변경이 완료됐습니다.");
@@ -40,18 +31,7 @@ function FindForm({ onSubmit, buttonText, fields, showVerificationButton, setWar
         setEmailMessage("전송 중");
         setDisableValue(true);
         try {
-            console.log(emailValue, passwordValue);
-            const response = await fetch("http://localhost:8080/api/auth/mail/password", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: emailValue,
-                    password: passwordValue
-                }),
-            });
-
+            const response = await authService.mailPassword(emailValue, passwordValue);
             if (response.ok) {
                 setEmailMessage("재전송");
                 setDisableValue(false);

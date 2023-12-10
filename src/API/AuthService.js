@@ -69,6 +69,32 @@ const AuthService = {
       }),
     });
     return response;
+  },
+  mailPassword: async (emailValue, passwordValue) => {
+    const response = await fetch(`${API_Auth_URL}/mail/password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: emailValue,
+        password: passwordValue
+      }),
+    });
+    return response;
+  },
+  mailUpdatePassword: async (emailValue, passwordValue) => {
+    const response = await fetch(`${API_Auth_URL}/mail/updatepw`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: emailValue,
+        password: passwordValue
+      }),
+    });
+    return response;
   }
 };
 
