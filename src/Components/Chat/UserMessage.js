@@ -1,4 +1,4 @@
-import env from "../Common/dotenv"
+import env from "../Common/dotenv";
 
 function UserMessage({
   avatar,

@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import UserService from "../../API/UserService";
-import env from "../Common/dotenv"
+import env from "../Common/dotenv";
 
 function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
   const [image, setImage] = useState(null);
@@ -20,7 +20,7 @@ function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
     formData.append("image", file);
 
     try {
-      const response = await fetch(`${env.REACT_APP_IMAGE_BASE_URL}/api/upload`, {
+      const response = await fetch(`${env.REACT_APP_IMAGE_BASE_URL}/upload`, {
         method: "POST",
         body: formData,
       });

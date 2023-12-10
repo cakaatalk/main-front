@@ -6,7 +6,7 @@ import AuthService from "../../API/AuthService";
 import UserMessage from "../../Components/Chat/UserMessage";
 import AddChat from "../Chat/AddChat";
 import AddChatIcon from "../../assets/add-chat-room-icon.png";
-
+import env from "../../Components/Common/dotenv";
 function ChatList() {
   const [roomlist, setRoomList] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
@@ -21,6 +21,7 @@ function ChatList() {
     try {
       const response = await ChatService.getRoomList();
       setRoomList(response);
+      console.log(response);
     } catch (error) {
       if (error.response && refreshToken) {
         try {
