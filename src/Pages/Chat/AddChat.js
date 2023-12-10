@@ -15,6 +15,7 @@ function AddChat({ onClose }) {
   const [maxHeight, setMaxHeight] = useState("auto");
   const [friendsList, setFriendsList] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [roomName, setRoomName] = useState("");
 
   function updateMaxHeight() {
     const header = document.querySelector(".header");
@@ -78,9 +79,13 @@ function AddChat({ onClose }) {
   }, [onClose]);
 
   const onAddChat = async () => {
+    if (!roomName) {
+      alert("Please enter a room name");
+      return;
+    }
     let roomId;
     try {
-      roomId = await ChatService.getRoomId(selectedUsers);
+      roomId = await ChatService.getRoomId(selectedUsers, roomName);
       localStorage.setItem("roomId", roomId);
       window.location.href = `/chat`;
     } catch (error) {
@@ -90,7 +95,6 @@ function AddChat({ onClose }) {
       } catch (refreshError) {
         console.error("Error refreshing token:", refreshError);
       }
-      console.log("채팅추가", selectedUsers);
     }
   };
 
@@ -134,18 +138,27 @@ function AddChat({ onClose }) {
                   <label>
                     <input
                       type="checkbox"
+                      className="user-select-checkbox"
                       checked={selectedUsers.includes(friend.id)}
                       onChange={() => toggleUserSelection(friend.id)}
                     />
-                    Select
                   </label>
                 )}
               />
             ))}
           </div>
         </div>
-        <div className="friends-header">
-          <button onClick={() => onAddChat()}>채팅추가</button>
+        <div className="add-footer ">
+          <input
+            type="text"
+            placeholder="Enter Room Name"
+            value={roomName}
+            onChange={(e) => setRoomName(e.target.value)}
+            className="room-name-input"
+          />
+          <button className="add-chat-button" onClick={() => onAddChat()}>
+            채팅방 만들기
+          </button>
         </div>
       </div>
     </div>

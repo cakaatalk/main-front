@@ -54,7 +54,7 @@ function ChatList() {
   return (
     <div>
       <div className="screen-header">
-        <h1 className="header-title">채팅{roomlist.length}</h1>
+        <h1 className="header-title">채팅 {roomlist.length}</h1>
         <button
           onClick={() => setShowPopup(true)}
           style={{ background: "transparent", border: "none" }}

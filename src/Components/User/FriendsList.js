@@ -3,7 +3,7 @@ import UserComponent from "./UserComponent";
 import UserService from "../../API/UserService";
 import ChatService from "../../API/ChatService";
 import AuthService from "../../API/AuthService";
-import Comment from "../../assets/comment-icon.png";
+import Comment from "../../assets/speech-bubble.png";
 
 import { useEffect, useState } from "react";
 
@@ -11,7 +11,7 @@ import "../../css/components/friendList.css";
 
 function FriendsList() {
   const additionalContent = (
-    <img src={Comment} alt={"Comment"} height={"40px"} />
+    <img src={Comment} alt={"Comment"} height={"33px"} />
   );
   const [maxHeight, setMaxHeight] = useState("auto");
   const [friendsList, setFriendsList] = useState([]);

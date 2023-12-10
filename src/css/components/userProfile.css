@@ -157,3 +157,19 @@
   padding-right: 40px;
   z-index: 10;
 }
+
+.profile-component {
+  padding-top: 2vh;
+  padding-bottom: 1.5vh;
+  position: relative;
+  display: flex;
+  background-color: #fff;
+}
+
+.profile-component:hover {
+  background-color: #f0eeeea0;
+}
+.edit-button {
+  margin-left: auto; /* 왼쪽에 자동 마진을 주어 오른쪽으로 밀어냄 */
+  margin-right: 20px;
+}

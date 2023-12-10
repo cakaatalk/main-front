@@ -1,5 +1,5 @@
 .nav {
-  background-color: rgba(95, 140, 175, 0.344);
+  background-color: rgba(42, 100, 173);
   height: 40px;
   border-top: 1px solid #e1e1e1;
   padding: 20px 0;
@@ -9,6 +9,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.nav_icon {
+  filter: invert(100%);
+  height: 30px;
 }
 
 .nav__list {
@@ -23,7 +28,7 @@
   text-align: center;
   cursor: pointer;
   padding: 10px 0;
-  margin: 0 100px;
+  margin: 0 12vw;
 }
 
 .nav__link {

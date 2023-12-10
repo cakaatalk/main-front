@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../css/components/chatHeader.css";
+import ChatService from "../../API/ChatService";
 
-function ChatHeader({ title }) {
+function ChatHeader({ roomId }) {
+  const [roomInfo, setRoomInfo] = useState();
+  const fetchRoomInfo = async () => {
+    const temp = await ChatService.getRoomInfo(roomId);
+    console.log(temp);
+    setRoomInfo(temp);
+  };
+  useEffect(() => {
+    fetchRoomInfo();
+  });
   return (
     <header className="alt-header">
       <div className="alt-header__column">
-        <h1 className="alt-header__title">{title}</h1>
+        {roomInfo ? (
+          <>
+            <h1 className="alt-header__title">{roomInfo.roomName} </h1>
+            <span>{roomInfo.roomSize}</span>
+          </>
+        ) : (
+          ""
+        )}
       </div>
       <h1> </h1>
     </header>

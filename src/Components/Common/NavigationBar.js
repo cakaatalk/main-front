@@ -1,11 +1,9 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUser,
-  faComment,
-  faEllipsisH,
-} from "@fortawesome/free-solid-svg-icons";
 import "../../css/components/navigationBar.css";
+
+import friends from "../../assets/user.png";
+import chats from "../../assets/speech-bubble.png";
+import addFriends from "../../assets/add-friend-blue.png";
 
 function NavigationBar({ state, setState }) {
   return (
@@ -18,7 +16,7 @@ function NavigationBar({ state, setState }) {
               setState("MYFRIENDS");
             }}
           >
-            <FontAwesomeIcon icon={faUser} size="2x" />
+            <img className="nav_icon" src={friends} />
           </div>
         </li>
         <li className="nav__btn">
@@ -29,7 +27,7 @@ function NavigationBar({ state, setState }) {
             }}
           >
             {/* <span className="nav__notification badge">1</span> */}
-            <FontAwesomeIcon icon={faComment} size="2x" />
+            <img className="nav_icon" src={chats} />
           </div>
         </li>
         <li className="nav__btn">
@@ -39,7 +37,7 @@ function NavigationBar({ state, setState }) {
               setState("ALLUSER");
             }}
           >
-            <FontAwesomeIcon icon={faEllipsisH} size="2x" />
+            <img className="nav_icon" src={addFriends} />
           </div>
         </li>
         {/* <li className="nav__btn">

@@ -1,36 +1,35 @@
-import env from '../Components/Common/dotenv';
+import env from "../Components/Common/dotenv";
 
 const API_User_URL = env.REACT_APP_API_BASE_URL + "/chat";
 const accessToken = localStorage.getItem("accessToken");
 
 const ChatService = {
-  getRoomId: async (users) => { 
+  getRoomId: async (users, roomName) => {
     console.log(users);
     const response = await fetch(`${API_User_URL}/roomId`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `${accessToken}`,
+        "Content-Type": "application/json",
+        Authorization: `${accessToken}`,
       },
-      body : JSON.stringify({
-        userIds : users,
-        roomName : "testRoom"
+      body: JSON.stringify({
+        userIds: users,
+        roomName: roomName,
       }),
     });
     const data = await response.json();
-    console.log(data);
-    return data.roomId; 
+    return data.roomId;
   },
   getRoomList: async () => {
     const response = await fetch(`${API_User_URL}/roomlist`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `${accessToken}`,
+        "Content-Type": "application/json",
+        Authorization: `${accessToken}`,
       },
     });
     const data = await response.json();
-    return data; 
+    return data;
   },
   getMessages: async (roomId, startId) => {
     let apiUrl = `${API_User_URL}/messages/${roomId}`;
@@ -39,15 +38,26 @@ const ChatService = {
     }
 
     const response = await fetch(apiUrl, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `${accessToken}`,
+        "Content-Type": "application/json",
+        Authorization: `${accessToken}`,
       },
     });
     const data = await response.json();
-    return data; 
-  }
+    return data;
+  },
+  getRoomInfo: async (roomId) => {
+    const response = await fetch(`${API_User_URL}/roomInfo/${roomId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${accessToken}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  },
 };
 
 export default ChatService;

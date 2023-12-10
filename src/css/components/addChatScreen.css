@@ -1,18 +1,18 @@
 .header-title {
-  font-family: 'Inter', sans-serif;
-  margin-left: 12px;
-  margin-bottom: 10px;
-  color: #848484;
+  padding-top: 30px;
+  font-size: 30px;
+  background-color: #f4f1f1b3;
+  color: #111010;
 }
-.screen-header {
+/* .screen-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  background-color: #f0f0f0;
-}
+  justify-content: space-between; */
+/* align-items: center; */
+/* padding: 10px;
+  background-color: #f0f0f0; */
+/* } */
 
-.screen-header__title {
+/* .screen-header__title {
   font-size: 1.5rem;
   color: #333;
 }
@@ -20,4 +20,141 @@
 .screen-header__icons {
   display: flex;
   gap: 10px;
+} */
+
+.add-chat-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(10px);
+  z-index: 101;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4); /* 반투명 배경 */
+}
+
+.add-chat-popup {
+  width: 30%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.friends-list-container {
+  max-height: 300px; /* 필요에 따라 조정 */
+  margin-bottom: 20px;
+  overflow-y: auto;
+}
+
+.add-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* 가로축 중앙 정렬 */
+  margin-bottom: 15px;
+}
+
+.friends-list-title {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.room-name-input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+}
+
+.friends-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* UserComponent 스타일링 */
+.user-component {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin-right: 15px;
+}
+
+.user-name {
+  font-size: 1rem;
+  color: #333;
+  flex-grow: 1;
+}
+
+.user-select-checkbox {
+  appearance: none;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.user-select-checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #e6e6e6;
+  border-radius: 4px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.user-select-checkbox:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path fill="%23ffffff" d="M6.5 10.5l-2-2-1 1 3 3 8-8-1-1z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.add-chat-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.add-chat-footer {
+  text-align: center; /* 버튼을 가운데 정렬하기 위해 */
+  padding: 20px 0; /* 상하 패딩을 추가하여 레이아웃을 조정 */
+}
+
+.add-chat-button {
+  padding: 12px 25px; /* 버튼의 크기를 늘리기 위해 패딩을 조정 */
+  font-size: 1rem; /* 폰트 사이즈 조정 */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-chat-button:hover {
+  background-color: #0056b3;
 }

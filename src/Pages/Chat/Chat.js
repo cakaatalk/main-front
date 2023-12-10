@@ -29,7 +29,7 @@ function Chat() {
   return (
     <WebSocketProvider>
       <div id="chat-screen">
-        <ChatHeader title="" />
+        <ChatHeader roomId={roomId} />
         {userInfo ? <ChatScreen roomId={roomId} userInfo={userInfo} /> : ""}
       </div>
     </WebSocketProvider>

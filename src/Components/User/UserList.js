@@ -4,7 +4,6 @@ import UserService from "../../API/UserService";
 import AuthService from "../../API/AuthService";
 
 import Add from "../../assets/add-friend-icon.png";
-import Search from "../../assets/search-icon.png";
 
 import { useContext, useEffect, useState } from "react";
 
@@ -103,9 +102,7 @@ function UserList() {
     <>
       <div className="friends-list-container" style={{ maxHeight }}>
         <div className="search-box">
-          <div className="search-icon">
-            <img src={Search} alt={"Search"} height="30" />
-          </div>
+          <div className="search-icon"></div>
 
           <input
             type="text"
@@ -141,11 +138,7 @@ function UserList() {
             .map((friend) => (
               <UserComponent
                 key={friend.id}
-                avatar={
-                  !friend.profileImage
-                    ? "http://localhost:8040/uploads/default-profile.png"
-                    : friend.profileImage
-                }
+                avatar={friend.profileImage}
                 name={friend.name}
                 subtitle={friend.comment}
                 bold={true}
