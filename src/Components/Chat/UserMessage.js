@@ -12,7 +12,11 @@ function UserMessage({
       <div className="user-component">
         <div className="user-component__avatar-container">
           <img
-            src={avatar}
+            src={
+              avatar == null || avatar == ""
+                ? "http://localhost:8040/uploads/default-profile.png"
+                : avatar
+            }
             className="user-component__avatar user-component__avatar--xl"
             alt={name}
           />

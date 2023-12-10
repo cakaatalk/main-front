@@ -2,8 +2,6 @@ import React from "react";
 import "../../css/components/message.css";
 
 function Message({ message, userId, senderInfo }) {
-  console.log("d");
-  console.log(message);
   console.log(senderInfo);
   const isOwnMessage = message.sender === userId;
   const messageRowClass = `message-row ${
@@ -12,7 +10,14 @@ function Message({ message, userId, senderInfo }) {
   return (
     <div className={messageRowClass}>
       {!isOwnMessage && (
-        <img src={senderInfo.profileImage} alt={senderInfo.name} />
+        <img
+          src={
+            senderInfo.profileImage == null || senderInfo.profileImage == ""
+              ? "http://localhost:8040/uploads/default-profile.png"
+              : senderInfo.profileImage
+          }
+          alt={senderInfo.name}
+        />
       )}
       <div className="message-row__content">
         {!isOwnMessage && (

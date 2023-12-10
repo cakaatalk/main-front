@@ -117,10 +117,10 @@
 }
 
 .reply .reply__column:first-child {
-  width: 10%;
+  width: 100%;
 }
 .reply .reply__column:last-child {
-  width: 90%;
+  width: 100%;
   position: relative;
 }
 

@@ -6,12 +6,9 @@ import AuthService from "../../API/AuthService";
 import Add from "../../assets/add-friend-icon.png";
 import Search from "../../assets/search-icon.png";
 
-import { FriendsContext } from "../../Contexts/FriendsContext";
 import { useContext, useEffect, useState } from "react";
 
 function UserList() {
-  const { addedFriends, setAddedFriends } = useContext(FriendsContext);
-
   const [showAddedFriends, setShowAddedFriends] = useState(false);
   const [maxHeight, setMaxHeight] = useState("auto");
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,8 +18,9 @@ function UserList() {
   const handleAddFriend = async (userId) => {
     try {
       await UserService.addFriend(userId);
-      setAddedFriends([...addedFriends, userId]);
-      setUserList(prevUserList => prevUserList.filter(user => user.id !== userId));
+      setUserList((prevUserList) =>
+        prevUserList.filter((user) => user.id !== userId)
+      );
     } catch (error) {
       try {
         const refreshResponse = await AuthService.refreshAccessToken();
@@ -37,9 +35,9 @@ function UserList() {
     async function fetchAllUser() {
       try {
         const response = await UserService.getAllUserList();
-        const profile  = await UserService.searchProfile();
+        const profile = await UserService.searchProfile();
         setUser(profile);
-        setUserList(response.filter(user => user.id !== profile.id)); 
+        setUserList(response);
       } catch (error) {
         if (error.response) {
           try {
@@ -84,15 +82,16 @@ function UserList() {
         let response = searchQuery
           ? await UserService.searchUser(searchQuery)
           : await UserService.getAllUserList();
-  
-          response = response.filter(user => user.id !== me.id);
-  
+
+        response = response.filter((user) => user.id !== me.id);
+
         setUserList(response);
+        console.log(response);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
     };
-  
+
     fetchUsers();
   }, [searchQuery, me]);
 
@@ -104,9 +103,9 @@ function UserList() {
     <>
       <div className="friends-list-container" style={{ maxHeight }}>
         <div className="search-box">
-
           <div className="search-icon">
-          <img src={Search} alt={"Search"} height="30" /></div>
+            <img src={Search} alt={"Search"} height="30" />
+          </div>
 
           <input
             type="text"
@@ -116,14 +115,15 @@ function UserList() {
             className="search-input"
           />
         </div>
-       
       </div>
       <div className="friends-header">
         <h2 className="friends-list-title">
-            전체 유저 { Array.isArray(userList) ? (
-          me ? userList.length : userList.length)
-          : 0
-           }
+          전체 유저{" "}
+          {Array.isArray(userList)
+            ? me
+              ? userList.length
+              : userList.length
+            : 0}
           <button
             className="toggle-friends-button"
             onClick={toggleAddedFriends}
@@ -137,11 +137,8 @@ function UserList() {
       <div className="friends-list">
         {Array.isArray(userList) &&
           userList
-            .filter(friend => friend.id !== me.id)
-            .filter(
-              (friend) => showAddedFriends || !addedFriends.includes(friend.id)
-            )
-            .map( friend => (
+            .filter((friend) => showAddedFriends || !friend.isFriend)
+            .map((friend) => (
               <UserComponent
                 key={friend.id}
                 avatar={
@@ -153,18 +150,18 @@ function UserList() {
                 subtitle={friend.comment}
                 bold={true}
                 additionalContent={() =>
-                  !addedFriends.includes(friend.id) && (
+                  !friend.isFriend && (
                     <img
                       src={Add}
                       alt={"Add"}
                       className="add-friend-icon"
                       onClick={() => handleAddFriend(friend.id)}
+                      height={"30px"}
                     />
                   )
                 }
               />
             ))}
-
       </div>
     </>
   );

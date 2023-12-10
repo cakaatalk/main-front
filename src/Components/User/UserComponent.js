@@ -2,7 +2,11 @@ import React from "react";
 import "../../css/components/userProfile.css";
 
 function UserComponent({ avatar, name, subtitle, additionalContent }) {
-  const content = typeof additionalContent === "function" ? additionalContent() : additionalContent;
+  console.log(additionalContent);
+  const content =
+    typeof additionalContent === "function"
+      ? additionalContent()
+      : additionalContent;
 
   return (
     <div className="user-component-container">
@@ -12,11 +16,7 @@ function UserComponent({ avatar, name, subtitle, additionalContent }) {
           <h4 className="user-component__title">{name}</h4>
           {subtitle && <p className="user-component__subtitle">{subtitle}</p>}
         </div>
-        {content && (
-          <div className="user-component__additional">
-            {content}
-          </div>
-        )}
+        {content && <div className="user-component__additional">{content}</div>}
       </div>
     </div>
   );
