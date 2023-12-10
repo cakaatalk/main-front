@@ -29,7 +29,7 @@ function ChatScreen({ roomId, userInfo }) {
     if(scrollPosition == 0) {
       fetchMessages();
       window.scrollTo({
-        top: document.documentElement.scrollHeight-10,
+        top: scrollPosition+23,
       });
     }
   }, [scrollPosition]);
@@ -47,10 +47,12 @@ function ChatScreen({ roomId, userInfo }) {
     setStartId(response.nextId);
     setMessages((prevMessages) => {
       let newMessages = [];
-      if (startId) {
+      if (response.nextId) {
         newMessages = response.messages.concat(prevMessages);
       } else {
-        newMessages = response.messages;
+        console.log("end")
+        console.log(response)
+        newMessages = prevMessages
       }
       return newMessages;
     });   
