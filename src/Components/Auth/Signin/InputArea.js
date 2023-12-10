@@ -11,7 +11,6 @@ function InputArea(props) {
   const { signIn } = useContext(AuthContext);
 
   const loginHandler = async (e) => {
-
     const { email, password } = e.target.elements;
     const userData = {
       email: email.value,
@@ -39,7 +38,6 @@ function InputArea(props) {
     };
     try {
       const response = await authService.signUp(userData);
-      console.log(response);
       if (response) {
         signIn(response, userData);
         window.location.href = "/main";
@@ -58,9 +56,7 @@ function InputArea(props) {
   return (
     <>
       <h1 className="login-header">
-        {props.isLoginView === 1
-          ? "CaKaA-Talk 로그인"
-          : "CaKaA-Talk 회원가입"}
+        {props.isLoginView === 1 ? "CaKaA-Talk 로그인" : "CaKaA-Talk 회원가입"}
       </h1>
       {props.isLoginView === 1 ? (
         <CommonForm

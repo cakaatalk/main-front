@@ -2,7 +2,6 @@ import React from "react";
 import "../../css/components/message.css";
 
 function Message({ message, userId, senderInfo }) {
-  console.log(senderInfo);
   const isOwnMessage = message.sender === userId;
   const messageRowClass = `message-row ${
     isOwnMessage ? "message-row--own" : ""

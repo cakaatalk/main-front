@@ -6,12 +6,11 @@ function ChatHeader({ roomId }) {
   const [roomInfo, setRoomInfo] = useState();
   const fetchRoomInfo = async () => {
     const temp = await ChatService.getRoomInfo(roomId);
-    console.log(temp);
     setRoomInfo(temp);
   };
   useEffect(() => {
     fetchRoomInfo();
-  });
+  }, []);
   return (
     <header className="alt-header">
       <div className="alt-header__column">
