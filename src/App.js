@@ -12,7 +12,6 @@ function App() {
   const [route, setRoute] = useState(window.location.pathname);
 
   useEffect(() => {
-    console.log(route);
     const handleLocationChange = () => {
       setRoute(window.location.pathname);
     };
