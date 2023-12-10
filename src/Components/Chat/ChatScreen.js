@@ -21,6 +21,7 @@ function ChatScreen({ roomId, userInfo }) {
       socket.removeEventListener("message", handleSocketMessage);
     };
   }, []);
+
   function sendMessageWhenReady(client, message) {
     if (client.readyState === WebSocket.OPEN) {
       client.send(JSON.stringify(message));
@@ -40,14 +41,18 @@ function ChatScreen({ roomId, userInfo }) {
     setUserId(response.id);
   };
 
+  // useEffect(() => {
+  //   console.log(messages);
+  // }, [messages]);
+
   const handleSocketMessage = (event) => {
     const receivedMessage = JSON.parse(event.data);
 
     switch (receivedMessage.type) {
       case "getmsg":
-        setMessages((messages) => {
-          return [...messages, receivedMessage.data];
-        });
+          setMessages((messages) => {
+            return !messages ? [receivedMessage.data] : [...messages, receivedMessage.data];
+          });
         break;
       default:
         break;
@@ -65,6 +70,7 @@ function ChatScreen({ roomId, userInfo }) {
     });
     setMessage("");
   };
+  
   const getUserInfo = (id) => {
     for (let el of userInfo) {
       if (el.id == id) {
@@ -72,10 +78,11 @@ function ChatScreen({ roomId, userInfo }) {
       }
     }
   };
+
   return (
     <main className="main-screen main-chat">
-      {Array.isArray(messages) &&
-        messages?.map((msg) => (
+      {Array.isArray(messages) && 
+        messages.map((msg) => (
           <Message
             message={msg}
             userId={userId}

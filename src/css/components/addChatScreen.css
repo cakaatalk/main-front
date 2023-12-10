@@ -122,15 +122,15 @@
 }
 
 .user-select-checkbox:checked {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #0054a6;
+  border-color: #0054a6;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path fill="%23ffffff" d="M6.5 10.5l-2-2-1 1 3 3 8-8-1-1z"/></svg>');
   background-repeat: no-repeat;
   background-position: center;
 }
 .add-chat-button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #0054a6;
   color: white;
   border: none;
   border-radius: 8px;
@@ -147,14 +147,10 @@
 .add-chat-button {
   padding: 12px 25px; /* 버튼의 크기를 늘리기 위해 패딩을 조정 */
   font-size: 1rem; /* 폰트 사이즈 조정 */
-  background-color: #007bff;
+  background-color: #0054a6;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s;
-}
-
-.add-chat-button:hover {
-  background-color: #0056b3;
 }

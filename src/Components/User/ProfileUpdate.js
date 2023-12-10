@@ -125,8 +125,8 @@ function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
               marginTop: "10px",
               textAlign: "center",
               borderRadius: "5px",
-              border: "1px solid #007bff",
-              backgroundColor: "#007bff",
+              border: "1px solid #0054a6",
+              backgroundColor: "#0054a6",
               color: "white",
               cursor: "pointer",
             }}
@@ -158,7 +158,7 @@ function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
             padding: "10px",
             borderRadius: "5px",
             border: "none",
-            backgroundColor: "#007bff",
+            backgroundColor: "#0054a6",
             color: "white",
             cursor: "pointer",
           }}
