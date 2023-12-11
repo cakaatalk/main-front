@@ -139,7 +139,7 @@ function ProfileUpdate({ onClose, origin_image, origin_comment, name }) {
             지금 만들어보세요!{" "}
             <button
               onClick={() => {
-                window.open("https://cakaatalk.aolda.net/mychito", "_blank");
+                window.open("http://chito.aolda.net/", "_blank");
               }}
               style={{
                 width: "110px",
